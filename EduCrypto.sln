@@ -3,23 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EduCrypto", "EduCrypto\EduCrypto.csproj", "{46525033-E55A-4977-A615-CF0E557F0907}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduCrypto", "EduCrypto\EduCrypto.csproj", "{6F6A6E91-0612-49DB-9945-77738FF213EF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BDFF36A3-4380-41D4-88E7-D2206D469F1F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{BCD1E900-4CDD-4ACF-9F59-D3BBFF0AB8B1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{691AE196-B0B8-4AE9-BB8A-4667E2AD1654}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{16D25B02-1F11-4E68-9508-877759D6A4E4}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{EB37B26A-847A-42CB-9424-819FD09ECE30}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{5BBF0B5B-E00E-4801-A209-E2606BD9A79B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{D0E77F60-9293-4EC6-9028-A720C165837E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{681B2F24-2A4A-46FB-BB62-C045F034641A}"
 	ProjectSection(SolutionItems) = preProject
 		DataStructure.md = DataStructure.md
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{61709528-F3C9-4E09-A507-524A1C55BD92}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{AEB19767-3CF9-4909-B2BF-0F4E8CE83C71}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{44D9C1D9-D724-46A5-8E09-BABCA92343CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,26 +25,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{46525033-E55A-4977-A615-CF0E557F0907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46525033-E55A-4977-A615-CF0E557F0907}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46525033-E55A-4977-A615-CF0E557F0907}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46525033-E55A-4977-A615-CF0E557F0907}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AEB19767-3CF9-4909-B2BF-0F4E8CE83C71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AEB19767-3CF9-4909-B2BF-0F4E8CE83C71}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AEB19767-3CF9-4909-B2BF-0F4E8CE83C71}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AEB19767-3CF9-4909-B2BF-0F4E8CE83C71}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44D9C1D9-D724-46A5-8E09-BABCA92343CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44D9C1D9-D724-46A5-8E09-BABCA92343CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44D9C1D9-D724-46A5-8E09-BABCA92343CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44D9C1D9-D724-46A5-8E09-BABCA92343CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F6A6E91-0612-49DB-9945-77738FF213EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F6A6E91-0612-49DB-9945-77738FF213EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F6A6E91-0612-49DB-9945-77738FF213EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F6A6E91-0612-49DB-9945-77738FF213EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{46525033-E55A-4977-A615-CF0E557F0907} = {BDFF36A3-4380-41D4-88E7-D2206D469F1F}
-		{AEB19767-3CF9-4909-B2BF-0F4E8CE83C71} = {691AE196-B0B8-4AE9-BB8A-4667E2AD1654}
-		{44D9C1D9-D724-46A5-8E09-BABCA92343CB} = {61709528-F3C9-4E09-A507-524A1C55BD92}
+		{6F6A6E91-0612-49DB-9945-77738FF213EF} = {BCD1E900-4CDD-4ACF-9F59-D3BBFF0AB8B1}
+		{16D25B02-1F11-4E68-9508-877759D6A4E4} = {5BBF0B5B-E00E-4801-A209-E2606BD9A79B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD7502FA-FBB9-4FFD-81D1-576B05CFE420}
