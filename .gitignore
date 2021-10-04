@@ -231,6 +231,6 @@ _Pvt_Extensions
 .fake/
 
 # Manual added
-.vs/
-bin/
-obj/
+**/.vs
+**/bin
+**/obj
