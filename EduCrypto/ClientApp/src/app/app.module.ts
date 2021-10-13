@@ -5,15 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MenuSideNavComponent } from './models/main-templates/menu-sidenav/components/menu-sidenav.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuSideNavComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +22,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
