@@ -1,9 +1,23 @@
 #DataStructure
 
-Felhaszn·lÛ kezelÈs: -username -password -email -full name -birth date -id -xp level -
+Felhaszn√°l√≥ kezel√©s: 
+  -username 
+  -password 
+  -email 
+  -full name 
+  -birth date 
+  -id 
+  -xp level -
 
-Felhaszn·lÛ pÈnz¸gy: -wallet number -money ($) -id (foreign key)
+Felhaszn√°l√≥ p√©nz√ºgy: 
+  -wallet number 
+  -money ($) 
+  -id (foreign key)
 
-Crypto t·bla: -wallet number / id (foreign key) -crypto type -crypto value
+Felhaszn√°l√≥ Crypto t√°bla: 
+  -wallet number / id (foreign key) 
+  -crypto type
+  -crypto value
 
-Csoportok: - -access level
+Csoportok: 
+  -access level
