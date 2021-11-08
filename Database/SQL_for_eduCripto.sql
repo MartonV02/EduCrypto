@@ -5,6 +5,24 @@
 USE eduCrypto;
 
 
+CREATE table users_handling (
+id int,
+userName varchar(100) NOT NULL,
+password varchar(100) NOT NULL,
+email varchar (100) NOT NULL,
+fullName varchar (100) NOT NULL,
+birthDate date NOT NULL,
+xpLevel int NOT NULL,
+CONSTRAINT pk_users_handling PRIMARY KEY (id)
+);
+
+CREATE table user_finance (
+userId int NOT NULL,
+walletNumber varchar (200) NOT NULL,
+money float NOT NULL,
+CONSTRAINT	pk_user_finance PRIMARY KEY (userId),
+CONSTRAINT fk_user_trade_history FOREIGN KEY (userId)
+);
 
 CREATE table user_crypto (
   id int NOT NULL AUTO_INCREMENT,
@@ -51,3 +69,4 @@ CREATE TABLE users_for_groups(
   CONSTRAINT fk_userId FOREIGN KEY(userId) REFERENCES users_handling(id),
   CONSTRAINT fk_groupId FOREIGN KEY(groupId) REFERENCES groups(id)
   );
+
