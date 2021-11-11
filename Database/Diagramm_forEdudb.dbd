@@ -2,12 +2,14 @@
 <!-- Devart (www.devart.com), the Database Diagram File -->
 <!-- Modifying this generated file will probably render it invalid -->
 <DevartDatabaseDiagram>
-  <SchemaVersion>1.2</SchemaVersion>
+  <SchemaVersion>1.3</SchemaVersion>
   <DatabaseProvider>59f90733-4d68-4fdf-82a7-f0fcbf5460aa</DatabaseProvider>
   <Connection>
-    <Name>localhost</Name>
-    <Category>00000000-0000-0000-0000-000000000000</Category>
-    <ConnectionString>User Id=root;Host=localhost;Character Set=utf8</ConnectionString>
+    <ConnectionModel>
+      <PropertyValue Name="Database">59f90733-4d68-4fdf-82a7-f0fcbf5460aa</PropertyValue>
+      <PropertyValue Name="ConnectionString" xml:space="preserve">User Id=root;Host=localhost;Character Set=utf8</PropertyValue>
+      <PropertyValue Name="ExecutionTimeout">0</PropertyValue>
+    </ConnectionModel>
   </Connection>
   <Settings>
     <DbDiagramOptions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -41,7 +43,7 @@
   <VirtualRelations>
     <RelationCount>0</RelationCount>
   </VirtualRelations>
-  <Diagram Version="1.22.1.0">
+  <Diagram Version="1.26.0.0">
     <DiagramModel>
       <Model xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="DDRootModel">
         <CustomProperties>
@@ -54,19 +56,19 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-590 px</X>
-              <Y>-250 px</Y>
+              <X>540 px</X>
+              <Y>310 px</Y>
             </Location>
             <Size>
-              <Width>181 px</Width>
-              <Height>129 px</Height>
+              <Width>213 px</Width>
+              <Height>229 px</Height>
             </Size>
             <DbOid>
-              <Path>educrypto.groups</Path>
+              <Path>educrypto.cryptcurrencies</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
-              <ConstraintsCollapsed>False</ConstraintsCollapsed>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
               <IndexesCollapsed>True</IndexesCollapsed>
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
@@ -77,67 +79,90 @@
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>-590 px</X>
-              <Y>30 px</Y>
+              <X>-290 px</X>
+              <Y>-160 px</Y>
+            </Location>
+            <Size>
+              <Width>181 px</Width>
+              <Height>110 px</Height>
+            </Size>
+            <DbOid>
+              <Path>educrypto.groups</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="TableModel">
+            <CustomProperties>
+              <OID>3</OID>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>-450 px</X>
+              <Y>230 px</Y>
             </Location>
             <Size>
               <Width>232 px</Width>
-              <Height>231 px</Height>
+              <Height>178 px</Height>
             </Size>
             <DbOid>
               <Path>educrypto.users_for_groups</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
-              <ConstraintsCollapsed>False</ConstraintsCollapsed>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
               <IndexesCollapsed>True</IndexesCollapsed>
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>3</OID>
-              <Comment>4</Comment>
-              <OutModel>2</OutModel>
-              <InModel>1</InModel>
-              <OutPort>5</OutPort>
-              <InPort>6</InPort>
+              <OID>4</OID>
+              <Comment>5</Comment>
+              <OutModel>3</OutModel>
+              <InModel>2</InModel>
+              <OutPort>6</OutPort>
+              <InPort>7</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>45.5 px</X>
+                  <X>120.75 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>5</OID>
+                  <OID>6</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
               <Port>
                 <Location>
-                  <X>135.5 px</X>
+                  <X>140.75 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>6</OID>
+                  <OID>7</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>-544.5 px</X>
-                <Y>-30 px</Y>
+                <X>-329.25 px</X>
+                <Y>190 px</Y>
               </PointD>
               <PointD>
-                <X>-454.5 px</X>
-                <Y>-30 px</Y>
+                <X>-149.25 px</X>
+                <Y>190 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -148,21 +173,21 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>4</OID>
-              <HolderModel>3</HolderModel>
-              <Port>7</Port>
+              <OID>5</OID>
+              <HolderModel>4</HolderModel>
+              <Port>8</Port>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-45 px</X>
-                  <Y>60 px</Y>
+                  <X>-180 px</X>
+                  <Y>160 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Top</Align>
                 <CustomProperties>
-                  <OID>7</OID>
+                  <OID>8</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -175,47 +200,47 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>8</OID>
+              <OID>9</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>280 px</X>
-              <Y>-310 px</Y>
+              <X>-10 px</X>
+              <Y>-60 px</Y>
             </Location>
             <Size>
               <Width>172 px</Width>
-              <Height>197 px</Height>
+              <Height>178 px</Height>
             </Size>
             <DbOid>
               <Path>educrypto.users_handling</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
-              <ConstraintsCollapsed>False</ConstraintsCollapsed>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
               <IndexesCollapsed>True</IndexesCollapsed>
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>9</OID>
-              <Comment>10</Comment>
-              <OutModel>2</OutModel>
-              <InModel>8</InModel>
-              <OutPort>11</OutPort>
-              <InPort>12</InPort>
+              <OID>10</OID>
+              <Comment>11</Comment>
+              <OutModel>3</OutModel>
+              <InModel>9</InModel>
+              <OutPort>12</OutPort>
+              <InPort>13</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>115.5 px</Y>
+                  <Y>44.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>11</OID>
+                  <OID>12</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
@@ -227,15 +252,15 @@
                 <Anchors>Left Right</Anchors>
                 <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>12</OID>
+                  <OID>13</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>366 px</X>
-                <Y>145.5 px</Y>
+                <X>76 px</X>
+                <Y>274.5 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
@@ -246,21 +271,21 @@
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>10</OID>
-              <HolderModel>9</HolderModel>
-              <Port>13</Port>
+              <OID>11</OID>
+              <HolderModel>10</HolderModel>
+              <Port>14</Port>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-362 px</X>
+                  <X>-147 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Right</Align>
                 <CustomProperties>
-                  <OID>13</OID>
+                  <OID>14</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -273,92 +298,86 @@
           </Model>
           <Model xsi:type="TableModel">
             <CustomProperties>
-              <OID>14</OID>
+              <OID>15</OID>
               <Parent>0</Parent>
             </CustomProperties>
             <Location>
-              <X>550 px</X>
-              <Y>-30 px</Y>
+              <X>-120 px</X>
+              <Y>460 px</Y>
             </Location>
             <Size>
-              <Width>194 px</Width>
-              <Height>163 px</Height>
+              <Width>232 px</Width>
+              <Height>161 px</Height>
             </Size>
             <DbOid>
-              <Path>educrypto.user_finance</Path>
+              <Path>educrypto.user_crypto</Path>
               <TypeName>Table</TypeName>
             </DbOid>
             <Compartments>
-              <ConstraintsCollapsed>False</ConstraintsCollapsed>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
               <IndexesCollapsed>True</IndexesCollapsed>
               <TriggersCollapsed>True</TriggersCollapsed>
             </Compartments>
           </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
-              <OID>15</OID>
-              <Comment>16</Comment>
-              <OutModel>14</OutModel>
-              <InModel>8</InModel>
-              <OutPort>17</OutPort>
-              <InPort>18</InPort>
+              <OID>16</OID>
+              <Comment>17</Comment>
+              <OutModel>15</OutModel>
+              <InModel>1</InModel>
+              <OutPort>18</OutPort>
+              <InPort>19</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>81.5 px</Y>
+                  <Y>39.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
-                <CustomProperties>
-                  <OID>17</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>129 px</X>
-                  <Y>0 px</Y>
-                </Location>
-                <Anchors>Left Right</Anchors>
-                <Align>Bottom</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>18</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>189.5 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>19</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
             </PortAnchors>
-            <BendPoints>
-              <PointD>
-                <X>409 px</X>
-                <Y>51.5 px</Y>
-              </PointD>
-            </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>educrypto.user_finance.fk_user_finance_userId</Path>
+              <Path>educrypto.user_crypto.fk_user_crypto_cryptoId</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>16</OID>
-              <HolderModel>15</HolderModel>
-              <Port>19</Port>
+              <OID>17</OID>
+              <HolderModel>16</HolderModel>
+              <Port>20</Port>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>141 px</X>
-                  <Y>82.25 px</Y>
+                  <X>-214 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
-                  <OID>19</OID>
+                  <OID>20</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -369,35 +388,12 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
-          <Model xsi:type="TableModel">
-            <CustomProperties>
-              <OID>20</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Location>
-              <X>-140 px</X>
-              <Y>-210 px</Y>
-            </Location>
-            <Size>
-              <Width>187 px</Width>
-              <Height>265 px</Height>
-            </Size>
-            <DbOid>
-              <Path>educrypto.user_trade_history</Path>
-              <TypeName>Table</TypeName>
-            </DbOid>
-            <Compartments>
-              <ConstraintsCollapsed>False</ConstraintsCollapsed>
-              <IndexesCollapsed>True</IndexesCollapsed>
-              <TriggersCollapsed>True</TriggersCollapsed>
-            </Compartments>
-          </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
               <OID>21</OID>
               <Comment>22</Comment>
-              <OutModel>20</OutModel>
-              <InModel>1</InModel>
+              <OutModel>15</OutModel>
+              <InModel>3</InModel>
               <OutPort>23</OutPort>
               <InPort>24</InPort>
               <Parent>0</Parent>
@@ -405,8 +401,8 @@
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>65.625 px</Y>
+                  <X>0.0227272727272521 px</X>
+                  <Y>79.125 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
                 <Align>Left</Align>
@@ -417,11 +413,11 @@
               </Port>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>108.477272727273 px</Y>
+                  <X>116.454545454545 px</X>
+                  <Y>178 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
                 <CustomProperties>
                   <OID>24</OID>
                   <PortType>FloatAnchor</PortType>
@@ -430,17 +426,13 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>-160 px</X>
-                <Y>-144.375 px</Y>
-              </PointD>
-              <PointD>
-                <X>-160 px</X>
-                <Y>-141.522727272727 px</Y>
+                <X>-333.545454545455 px</X>
+                <Y>539.125 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>educrypto.user_trade_history.fk_user_trade_history_groupId</Path>
+              <Path>educrypto.user_crypto.fk_user_crypto_groupWalletNumber</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -454,8 +446,8 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>144.5 px</X>
-                  <Y>-2.85227966308594 px</Y>
+                  <X>106.772720336914 px</X>
+                  <Y>0 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
                 <Align>Left</Align>
@@ -471,75 +463,94 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
-          <Model xsi:type="RelationLinkModel">
+          <Model xsi:type="TableModel">
             <CustomProperties>
               <OID>26</OID>
-              <Comment>27</Comment>
-              <OutModel>20</OutModel>
-              <InModel>8</InModel>
-              <OutPort>28</OutPort>
-              <InPort>29</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>130 px</X>
+              <Y>260 px</Y>
+            </Location>
+            <Size>
+              <Width>194 px</Width>
+              <Height>127 px</Height>
+            </Size>
+            <DbOid>
+              <Path>educrypto.user_finance</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>27</OID>
+              <Comment>28</Comment>
+              <OutModel>26</OutModel>
+              <InModel>9</InModel>
+              <OutPort>29</OutPort>
+              <InPort>30</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>63.75 px</Y>
+                  <X>48.5 px</X>
+                  <Y>0 px</Y>
                 </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
                 <CustomProperties>
-                  <OID>28</OID>
+                  <OID>29</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>178.185393258427 px</Y>
+                  <Y>89 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
-                  <OID>29</OID>
+                  <OID>30</OID>
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>67 px</X>
-                <Y>-146.25 px</Y>
-              </PointD>
-              <PointD>
-                <X>67 px</X>
-                <Y>-131.814606741573 px</Y>
+                <X>178.5 px</X>
+                <Y>29 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>educrypto.user_trade_history.fk_user_trade_history_userId</Path>
+              <Path>educrypto.user_finance.fk_user_finance_userId</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>27</OID>
-              <HolderModel>26</HolderModel>
-              <Port>30</Port>
+              <OID>28</OID>
+              <HolderModel>27</HolderModel>
+              <Port>31</Port>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-126.5 px</X>
-                  <Y>-14.4353942871094 px</Y>
+                  <X>0 px</X>
+                  <Y>115.5 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Right</Align>
+                <Align>Top</Align>
                 <CustomProperties>
-                  <OID>30</OID>
+                  <OID>31</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -550,35 +561,12 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
-          <Model xsi:type="TableModel">
-            <CustomProperties>
-              <OID>31</OID>
-              <Parent>0</Parent>
-            </CustomProperties>
-            <Location>
-              <X>-10 px</X>
-              <Y>200 px</Y>
-            </Location>
-            <Size>
-              <Width>232 px</Width>
-              <Height>214 px</Height>
-            </Size>
-            <DbOid>
-              <Path>educrypto.user_crypto</Path>
-              <TypeName>Table</TypeName>
-            </DbOid>
-            <Compartments>
-              <ConstraintsCollapsed>False</ConstraintsCollapsed>
-              <IndexesCollapsed>True</IndexesCollapsed>
-              <TriggersCollapsed>True</TriggersCollapsed>
-            </Compartments>
-          </Model>
           <Model xsi:type="RelationLinkModel">
             <CustomProperties>
               <OID>32</OID>
               <Comment>33</Comment>
-              <OutModel>31</OutModel>
-              <InModel>2</InModel>
+              <OutModel>15</OutModel>
+              <InModel>26</InModel>
               <OutPort>34</OutPort>
               <InPort>35</InPort>
               <Parent>0</Parent>
@@ -587,10 +575,10 @@
               <Port>
                 <Location>
                   <X>0 px</X>
-                  <Y>107 px</Y>
+                  <Y>80.5 px</Y>
                 </Location>
                 <Anchors>Top Bottom</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>34</OID>
                   <PortType>FloatAnchor</PortType>
@@ -598,7 +586,7 @@
               </Port>
               <Port>
                 <Location>
-                  <X>116 px</X>
+                  <X>48.5 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
@@ -611,13 +599,13 @@
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>-474 px</X>
-                <Y>307 px</Y>
+                <X>178.5 px</X>
+                <Y>540.5 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>educrypto.user_crypto.fk_user_crypto_groupWalletNumber</Path>
+              <Path>educrypto.user_crypto.fk_user_crypto_walletNumber</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
@@ -631,11 +619,11 @@
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>232 px</X>
-                  <Y>0 px</Y>
+                  <X>-66.5 px</X>
+                  <Y>76.75 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Left</Align>
+                <Align>Right</Align>
                 <CustomProperties>
                   <OID>36</OID>
                   <PortType>FixedAnchor</PortType>
@@ -648,32 +636,43 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
-          <Model xsi:type="RelationLinkModel">
+          <Model xsi:type="TableModel">
             <CustomProperties>
               <OID>37</OID>
-              <Comment>38</Comment>
-              <OutModel>31</OutModel>
-              <InModel>14</InModel>
-              <OutPort>39</OutPort>
-              <InPort>40</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <Location>
+              <X>270 px</X>
+              <Y>-270 px</Y>
+            </Location>
+            <Size>
+              <Width>183 px</Width>
+              <Height>212 px</Height>
+            </Size>
+            <DbOid>
+              <Path>educrypto.user_trade_history</Path>
+              <TypeName>Table</TypeName>
+            </DbOid>
+            <Compartments>
+              <ConstraintsCollapsed>True</ConstraintsCollapsed>
+              <IndexesCollapsed>True</IndexesCollapsed>
+              <TriggersCollapsed>True</TriggersCollapsed>
+            </Compartments>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>38</OID>
+              <Comment>39</Comment>
+              <OutModel>37</OutModel>
+              <InModel>1</InModel>
+              <OutPort>40</OutPort>
+              <InPort>41</InPort>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port>
                 <Location>
-                  <X>0 px</X>
-                  <Y>107 px</Y>
-                </Location>
-                <Anchors>Top Bottom</Anchors>
-                <Align>Right</Align>
-                <CustomProperties>
-                  <OID>39</OID>
-                  <PortType>FloatAnchor</PortType>
-                </CustomProperties>
-              </Port>
-              <Port>
-                <Location>
-                  <X>97 px</X>
+                  <X>83.25 px</X>
                   <Y>0 px</Y>
                 </Location>
                 <Anchors>Left Right</Anchors>
@@ -683,36 +682,52 @@
                   <PortType>FloatAnchor</PortType>
                 </CustomProperties>
               </Port>
+              <Port>
+                <Location>
+                  <X>33.25 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>41</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
             </PortAnchors>
             <BendPoints>
               <PointD>
-                <X>647 px</X>
-                <Y>307 px</Y>
+                <X>353.25 px</X>
+                <Y>222 px</Y>
+              </PointD>
+              <PointD>
+                <X>573.25 px</X>
+                <Y>222 px</Y>
               </PointD>
             </BendPoints>
             <IsManuallyRouted>false</IsManuallyRouted>
             <DbOid>
-              <Path>educrypto.user_crypto.fk_user_crypto_walletNumber</Path>
+              <Path>educrypto.user_trade_history.fk_user_trade_history_boughtId</Path>
               <TypeName>ForeignKey</TypeName>
             </DbOid>
           </Model>
           <Model xsi:type="RelationCommentModel">
             <CustomProperties>
-              <OID>38</OID>
-              <HolderModel>37</HolderModel>
-              <Port>41</Port>
+              <OID>39</OID>
+              <HolderModel>38</HolderModel>
+              <Port>42</Port>
               <Parent>0</Parent>
             </CustomProperties>
             <PortAnchors>
               <Port xsi:type="LinkPort">
                 <Location>
-                  <X>-212.5 px</X>
-                  <Y>0 px</Y>
+                  <X>-110 px</X>
+                  <Y>-280 px</Y>
                 </Location>
                 <Anchors>None</Anchors>
-                <Align>Right</Align>
+                <Align>Bottom</Align>
                 <CustomProperties>
-                  <OID>41</OID>
+                  <OID>42</OID>
                   <PortType>FixedAnchor</PortType>
                 </CustomProperties>
                 <LinkPortAnchor>OutPoint</LinkPortAnchor>
@@ -723,13 +738,246 @@
               <Y>2 px</Y>
             </CommentOffset>
           </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>43</OID>
+              <Comment>44</Comment>
+              <OutModel>37</OutModel>
+              <InModel>2</InModel>
+              <OutPort>45</OutPort>
+              <InPort>46</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>40 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>45</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>70 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>46</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>40 px</X>
+                <Y>-230 px</Y>
+              </PointD>
+              <PointD>
+                <X>40 px</X>
+                <Y>-90 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>educrypto.user_trade_history.fk_user_trade_history_groupId</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>44</OID>
+              <HolderModel>43</HolderModel>
+              <Port>47</Port>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>230 px</X>
+                  <Y>-70 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>47</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>22 px</X>
+              <Y>2 px</Y>
+            </CommentOffset>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>48</OID>
+              <Comment>49</Comment>
+              <OutModel>37</OutModel>
+              <InModel>1</InModel>
+              <OutPort>50</OutPort>
+              <InPort>51</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>161.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>50</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>21.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>51</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>431.5 px</X>
+                <Y>-38 px</Y>
+              </PointD>
+              <PointD>
+                <X>561.5 px</X>
+                <Y>-38 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>educrypto.user_trade_history.fk_user_trade_history_spentId</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>49</OID>
+              <HolderModel>48</HolderModel>
+              <Port>52</Port>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>-130 px</X>
+                  <Y>-194 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Bottom</Align>
+                <CustomProperties>
+                  <OID>52</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>58 px</X>
+              <Y>18.5 px</Y>
+            </CommentOffset>
+          </Model>
+          <Model xsi:type="RelationLinkModel">
+            <CustomProperties>
+              <OID>53</OID>
+              <Comment>54</Comment>
+              <OutModel>37</OutModel>
+              <InModel>9</InModel>
+              <OutPort>55</OutPort>
+              <InPort>56</InPort>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port>
+                <Location>
+                  <X>0 px</X>
+                  <Y>106 px</Y>
+                </Location>
+                <Anchors>Top Bottom</Anchors>
+                <Align>Right</Align>
+                <CustomProperties>
+                  <OID>55</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+              <Port>
+                <Location>
+                  <X>86 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>Left Right</Anchors>
+                <Align>Top</Align>
+                <CustomProperties>
+                  <OID>56</OID>
+                  <PortType>FloatAnchor</PortType>
+                </CustomProperties>
+              </Port>
+            </PortAnchors>
+            <BendPoints>
+              <PointD>
+                <X>76 px</X>
+                <Y>-164 px</Y>
+              </PointD>
+            </BendPoints>
+            <IsManuallyRouted>false</IsManuallyRouted>
+            <DbOid>
+              <Path>educrypto.user_trade_history.fk_user_trade_history_userId</Path>
+              <TypeName>ForeignKey</TypeName>
+            </DbOid>
+          </Model>
+          <Model xsi:type="RelationCommentModel">
+            <CustomProperties>
+              <OID>54</OID>
+              <HolderModel>53</HolderModel>
+              <Port>57</Port>
+              <Parent>0</Parent>
+            </CustomProperties>
+            <PortAnchors>
+              <Port xsi:type="LinkPort">
+                <Location>
+                  <X>188.5 px</X>
+                  <Y>0 px</Y>
+                </Location>
+                <Anchors>None</Anchors>
+                <Align>Left</Align>
+                <CustomProperties>
+                  <OID>57</OID>
+                  <PortType>FixedAnchor</PortType>
+                </CustomProperties>
+                <LinkPortAnchor>OutPoint</LinkPortAnchor>
+              </Port>
+            </PortAnchors>
+            <CommentOffset>
+              <X>190.378509521484 px</X>
+              <Y>4 px</Y>
+            </CommentOffset>
+          </Model>
         </Children>
         <ViewPort>
           <ScaleMode>Free</ScaleMode>
-          <Scale>0.76</Scale>
+          <Scale>0.71</Scale>
           <Location>
-            <X>-715.789482666185 px</X>
-            <Y>-314.73684527273 px</Y>
+            <X>-787.324016573882 px</X>
+            <Y>-350.704227343459 px</Y>
           </Location>
         </ViewPort>
       </Model>

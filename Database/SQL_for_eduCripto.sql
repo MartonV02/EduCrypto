@@ -51,6 +51,20 @@ CREATE TABLE users_for_groups(
   CONSTRAINT fk_users_for_groups_groupId FOREIGN KEY(groupId) REFERENCES groups(id)
   );
 
+CREATE table cryptcurrencies(
+  id int NOT NULL UNIQUE,
+  name varchar (20) NOT NULL,
+  short varchar (5) NOT NULL,
+  price decimal (15,2) NOT NULL,
+  dayPercent decimal (4,2) NOT NULL,
+  weekPercent decimal (4,2) NOT NULL,
+  marvetCap decimal (15,2) NOT NULL,
+  volume decimal (15,2) NOT NULL,
+  circulatingSupply decimal (15,2) NOT NULL,
+
+  CONSTRAINT pk_cryptcurrencies PRIMARY KEY (id)
+  );
+
 CREATE table user_crypto(
   id int NOT NULL AUTO_INCREMENT,
   walletNumber varchar (34),
@@ -78,22 +92,8 @@ CREATE table user_trade_history(
   CONSTRAINT fk_user_trade_history_userId FOREIGN KEY (userId) REFERENCES users_handling(id),
   CONSTRAINT fk_user_trade_history_groupId FOREIGN KEY (groupId) REFERENCES groups(id),
   CONSTRAINT fk_user_trade_history_spentId FOREIGN KEY (spentId) REFERENCES cryptcurrencies(id),
-  CONSTRAINT fk_user_trade_history_boughtId FOREIGN KEY (boughtId) REFERENCES cryptcurrencies(id),
+  CONSTRAINT fk_user_trade_history_boughtId FOREIGN KEY (boughtId) REFERENCES cryptcurrencies(id)
 );
-
-CREATE table cryptcurrencies(
-  id int NOT NULL UNIQUE,
-  name varchar (20) NOT NULL,
-  short varchar (5) NOT NULL,
-  price decimal (15,2) NOT NULL,
-  dayPercent decimal (4,2) NOT NULL,
-  weekPercent decimal (4,2) NOT NULL,
-  marvetCap decimal (15,2) NOT NULL,
-  volume decimal (15,2) NOT NULL,
-  circulatingSupply decimal (15,2) NOT NULL,
-
-  CONSTRAINT pk_cryptcurrencies PRIMARY KEY (id),
-  );
 
 
 
