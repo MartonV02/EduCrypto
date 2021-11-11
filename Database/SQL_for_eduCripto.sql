@@ -24,16 +24,16 @@ CONSTRAINT pk_users_handling PRIMARY KEY (id)
 CREATE table user_finance(
   userId int NOT NULL,
   walletNumber varchar (34) NOT NULL Unique,
-  money float NOT NULL,
+  money decimal (15,2) NOT NULL,
   
-  CONSTRAINT	pk_user_finance PRIMARY KEY (userId),
-  CONSTRAINT fk_user_trade_history FOREIGN KEY (userId) REFERENCES users_handling(id)
+  CONSTRAINT pk_user_finance PRIMARY KEY (userId),
+  CONSTRAINT fk_user_finance_userId FOREIGN KEY (userId) REFERENCES users_handling(id)
 );
 
 CREATE TABLE groups(
     id int NOT NULL AUTO_INCREMENT,
     name varchar(50) NOT NULL,
-    startBudget decimal,
+    startBudget decimal (15,2) NOT NULL,
 
     CONSTRAINT pk_groups PRIMARY KEY(id)
   );
@@ -44,7 +44,7 @@ CREATE TABLE users_for_groups(
   groupId int NOT NULL,
   accesLevel varchar(50) NOT NULL,
   groupWalletNumber varchar(34) NOT NULL Unique,
-  balance decimal,
+  money decimal (15,2) NOT NULL,
 
   CONSTRAINT pk_users_for_groups PRIMARY KEY(id),
   CONSTRAINT fk_users_for_groups_userId FOREIGN KEY(userId) REFERENCES users_handling(id),
@@ -53,14 +53,14 @@ CREATE TABLE users_for_groups(
 
 CREATE table user_crypto(
   id int NOT NULL AUTO_INCREMENT,
-  walletNumber varchar (34) NOT NULL,
+  walletNumber varchar (34),
   cryptoType varchar (20) NOT NULL,
   cryptoValue decimal(15,2) NOT NULL,
   groupWalletNumber varchar (34),
     
   CONSTRAINT pk_user_crypto PRIMARY KEY (id),
-  CONSTRAINT fk_walletNumberInFree FOREIGN KEY (walletNumber) REFERENCES user_finance(walletNumber),
- -- CONSTRAINT fk_walletNumberInGroup FOREIGN KEY (groupWalletNumber) REFERENCES users_for_groups(groupWalletNumber)
+  CONSTRAINT fk_user_crypto_walletNumber FOREIGN KEY (walletNumber) REFERENCES user_finance(walletNumber),
+  CONSTRAINT fk_user_crypto_groupWalletNumber FOREIGN KEY (groupWalletNumber) REFERENCES users_for_groups(groupWalletNumber)
 );
 
 CREATE table user_trade_history(
