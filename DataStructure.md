@@ -1,9 +1,50 @@
-#DataStructure
+ # DataStructure #
 
-Felhasználó kezelés: -username -password -email -full name -birth date -id -xp level -
+ ## User ##
+Users handling:
+- id (primary key)
+- user name
+- password
+- email
+- full name
+- birth date
+- xp level [int]
 
-Felhasználó pénzügy: -wallet number -money ($) -id (foreign key)
+User finance:
+- userId (foreign key, primary key)
+- wallet number [string]
+- money ($) [float]
 
-Crypto tábla: -wallet number / id (foreign key) -crypto type -crypto value
+Users Crypto:
+- id (primary key)
+- wallet number (foreign key)
+- crypto type [string]
+- crypto value [float]
 
-Csoportok: - -access level
+Users Trade Historys:
+- id (primary key)
+- userId (foreign key)
+- trade date
+- spent type 
+- spent value
+- bought type
+- bougth value
+- groupId
+
+ ## Group ##
+Groups:
+- id
+- name
+- start budget
+
+Users handling for groups:
+- id (primary key)
+- userId
+- groupId (foreign key)
+- access level [string]
+- group wallet number
+- money ($)
+
+## Exchange rate ##
+Kripto Ã¡rfolyam tÃ¡rolÃ¡s:
+- Third party data
