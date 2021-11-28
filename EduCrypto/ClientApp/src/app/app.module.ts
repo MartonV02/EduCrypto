@@ -9,10 +9,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialModule } from './material/material.module';
+import { MenuSideBarTemplateComponent } from './components/menu-sidebar-template/component/menu-sidebar-template.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MenuSideBarTemplateComponent
   ],
   imports: [
     BrowserModule,
