@@ -1,6 +1,6 @@
 <mat-toolbar class="mat-elevation-z8">
   <button mat-icon-button (click)="sidenav.toggle()">
-    <mat-icon>
+    <mat-icon *ngIf="!sidenav.opened">
       menu
     </mat-icon>
     <mat-icon *ngIf="sidenav.opened">
