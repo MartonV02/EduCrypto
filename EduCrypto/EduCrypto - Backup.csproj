@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.9" />
-    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.5.2">
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.4.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -28,12 +28,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\src\app\components\menu-sidebar-template\model\" />
-    <Folder Include="ClientApp\src\app\components\menu-sidebar-template\service\" />
+    <Folder Include="ClientApp\src\app\models\main-templates\menu-sidenav\components\" />
+    <Folder Include="ClientApp\src\app\models\main-templates\menu-sidenav\models\" />
+    <Folder Include="ClientApp\src\app\models\main-templates\menu-sidenav\services\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
