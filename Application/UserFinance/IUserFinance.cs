@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.UserFinance
 {
-    interface IUserFinance : IIdentity
+    public interface IUserFinance : IIdentity
     {
         public int userId { get; set; }
         public string walletNumber { get; set; }
