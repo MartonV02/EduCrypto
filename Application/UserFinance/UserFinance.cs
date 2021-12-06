@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.UserFinance
 {
-    class UserFinance : IUserFinance
+    public class UserFinance : IUserFinance
     {
         public int Id { get; set; }
         public int userId { get; set; }
