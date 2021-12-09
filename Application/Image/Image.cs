@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Images
 {
-    class Image : IImage
+    public class Image : IImage
     {
         public int Id { get; set; }
         public string IamageTitle { get ; set; }

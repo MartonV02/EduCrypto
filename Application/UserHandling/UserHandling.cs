@@ -16,6 +16,6 @@ namespace Application.UserHandling
         public string fullNme { get; set; }
         public DateTime birthDate { get; set; }
         public int xpLevel { get; set; }
-        public int profilePictureId { get; set; }
+        public Image profilePictureId { get; set; }
     }
 }
