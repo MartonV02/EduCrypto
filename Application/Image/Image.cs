@@ -1,11 +1,11 @@
-﻿using Application.Picture;
+﻿using Application.Images;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Image
+namespace Application.Images
 {
     class Image : IImage
     {
