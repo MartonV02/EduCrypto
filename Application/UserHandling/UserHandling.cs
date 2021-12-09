@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Images;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,5 +16,6 @@ namespace Application.UserHandling
         public string fullNme { get; set; }
         public DateTime birthDate { get; set; }
         public int xpLevel { get; set; }
+        public int profilePictureId { get; set; }
     }
 }
