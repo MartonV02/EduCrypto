@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure.Internal;
+using System;
 
 namespace Application.Common
 {
@@ -18,8 +19,8 @@ namespace Application.Common
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseMySql(ConnectionString);
+        {   
+            optionsBuilder.UseMySql(this.ConnectionString, new MySqlServerVersion(new Version()));
         }
 
         public static ApplicationDbContext AppDbContext { get; set; }
