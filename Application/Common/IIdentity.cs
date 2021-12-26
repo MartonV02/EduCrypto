@@ -2,6 +2,7 @@
 {
     public interface IIdentity
     {
-        int Id{ get; set; }
+        public int Id { get; set; }
     }
+
 }
