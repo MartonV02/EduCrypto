@@ -1,15 +1,19 @@
-﻿using Application.Common;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserCrypto
 {
-    public class UserCrypto: IEntity, IUserCrypto 
+    public class UserCrypto : IUserCrypto
     {
+        [Key]
+        public int id { get; set; }
+
         [StringLength(34)]
         [Required]
         public string walletNumber { get; set; }
-        
+
         [Required]
+        [ForeignKey("CryptoCurrency")]
         public int cryptoId { get; set; }
 
         [Required]
@@ -19,5 +23,6 @@ namespace Application.UserCrypto
         [StringLength(34)]
         [Required]
         public string groupWalletNumber { get; set; }
+        public bool isFavourite { get; set; }
     }
 }

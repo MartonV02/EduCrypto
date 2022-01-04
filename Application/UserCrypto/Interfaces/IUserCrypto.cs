@@ -9,5 +9,6 @@ namespace Application.UserCrypto
         public int cryptoId { get; set; }
         public double cryptoValue { get; set; }
         public string  groupWalletNumber { get; set; }
+        public bool isFavourite { get; set; }
     }
 }
