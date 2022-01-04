@@ -1,15 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserForGroups
 {
-    public class UserForGroups : IUserForGroups
+    public class UserForGroups
     {
         public int Id { get; set; }
 
         [Required]
+        [ForeignKey("UserHandling")]
         public int userId { get; set; }
 
         [Required]
+        [ForeignKey("Groups")]
         public int groupId { get; set; }
 
         [Required]
