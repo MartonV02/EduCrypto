@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserForGroups
 {
-    public class UserForGroups
+    public class UserForGroups: IUserForGroups
     {
         public int Id { get; set; }
 
