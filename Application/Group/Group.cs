@@ -1,11 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Group
 {
     class Group: IGroup
     {
         public int Id { get; set; }
+        [Required]
+        [MaxLength(50)]
         public string name { get; set; }
+        [Required]
+        [Range(0,999999999999999.99)]
         public decimal startBudget { get; set; }
         public DateTime startDate { get; set; }
         public DateTime finishDate { get; set; }
