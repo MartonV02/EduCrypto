@@ -12,7 +12,7 @@ namespace Application.UserForGroups
         public int userId { get; set; }
 
         [Required]
-        [ForeignKey("Groups")]
+        [ForeignKey("Group")]
         public int groupId { get; set; }
 
         [Required]

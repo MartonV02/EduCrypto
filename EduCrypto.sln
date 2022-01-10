@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.31919.166
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EduCrypto", "EduCrypto\EduCrypto.csproj", "{6F6A6E91-0612-49DB-9945-77738FF213EF}"
 EndProject
@@ -16,10 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 		DataStructure.md = DataStructure.md
 		README.md = README.md
 	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{9330376B-828B-4261-AFC3-EDB93AE6ED0B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6045E482-2102-4868-9478-A97B27D55D02}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI-plans", "GUI-plans", "{16B3AA0D-68F4-400E-99A3-6D4FF17B14A3}"
 	ProjectSection(SolutionItems) = preProject
@@ -45,10 +41,6 @@ Global
 		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9330376B-828B-4261-AFC3-EDB93AE6ED0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9330376B-828B-4261-AFC3-EDB93AE6ED0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9330376B-828B-4261-AFC3-EDB93AE6ED0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9330376B-828B-4261-AFC3-EDB93AE6ED0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +48,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6F6A6E91-0612-49DB-9945-77738FF213EF} = {BCD1E900-4CDD-4ACF-9F59-D3BBFF0AB8B1}
 		{16D25B02-1F11-4E68-9508-877759D6A4E4} = {5BBF0B5B-E00E-4801-A209-E2606BD9A79B}
-		{9330376B-828B-4261-AFC3-EDB93AE6ED0B} = {6045E482-2102-4868-9478-A97B27D55D02}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD7502FA-FBB9-4FFD-81D1-576B05CFE420}
