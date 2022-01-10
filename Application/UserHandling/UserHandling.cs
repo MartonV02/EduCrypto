@@ -1,4 +1,4 @@
-﻿using Application.Images;
+using Application.Images;
 using System;
 using System.ComponentModel.DataAnnotations;
 
