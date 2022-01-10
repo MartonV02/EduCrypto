@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Application.Group.Interfaces;
 
 namespace Application.Group
 {
-    class Group: IGroup
+    public class Group: IGroup
     {
         public int Id { get; set; }
         [Required]
