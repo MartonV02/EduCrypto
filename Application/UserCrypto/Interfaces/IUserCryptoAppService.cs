@@ -6,9 +6,10 @@ namespace Application.UserCrypto.Interfaces
     internal interface IUserCryptoAppService
     {
         public IEnumerable<EntityClass> GetAll();
-        public IEnumerable<EntityClass> GetById(int id);
-        public IEnumerable<EntityClass> Create();
-        public IEnumerable<EntityClass> Update();
-        public IEnumerable<EntityClass> Delete();
+        public EntityClass GetById(int id);
+        public IEnumerable<EntityClass> GetByCryptoId(int cryptoId);
+        public EntityClass Create(EntityClass entity);
+        public EntityClass Update(EntityClass entity);
+        public void Delete(int id);
     }
 }

@@ -5,8 +5,7 @@ namespace Application.UserCrypto
 {
     public class UserCrypto : IUserCrypto
     {
-        [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
 
         [StringLength(34)]
         [Required]
