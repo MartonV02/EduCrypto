@@ -15,6 +15,6 @@ namespace Application.UserTradeHistory
         public decimal spentValue { get; set; }
         public int boughtId { get; set; }
         public decimal boughtValue { get; set; }
-        public int? droupId { get; set; }
+        public int? groupId { get; set; }
     }
 }
