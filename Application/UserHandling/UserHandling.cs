@@ -1,4 +1,5 @@
 using Application.Images;
+using Application.UserHandling.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 
