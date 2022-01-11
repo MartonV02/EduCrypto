@@ -1,8 +1,9 @@
+using Application.CryptoCurrencies.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace Application.CryptoCurrencies
 {
-    class CryptoCurrency : ICryptoCurrency
+    public class CryptoCurrency : ICryptoCurrency
     { 
         public int Id { get; set; }
         [Required]

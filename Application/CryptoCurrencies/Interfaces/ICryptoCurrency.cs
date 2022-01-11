@@ -1,6 +1,6 @@
 ﻿using Application.Common;
 
-namespace Application.CryptoCurrencies
+namespace Application.CryptoCurrencies.Interfaces
 {
     interface ICryptoCurrency : IIdentity
     {
