@@ -1,10 +1,11 @@
+using Application.UserTradeHistory.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserTradeHistory
 {
-    class UserTradeHistory : IUserTradeHistory
+    public class UserTradeHistory : IUserTradeHistory
     {
         public int Id { get; set; }
         [Required]
