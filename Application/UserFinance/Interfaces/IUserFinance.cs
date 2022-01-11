@@ -1,6 +1,6 @@
 ﻿using Application.Common;
 
-namespace Application.UserFinance
+namespace Application.UserFinance.Interfaces
 {
     public interface IUserFinance : IIdentity
     {
