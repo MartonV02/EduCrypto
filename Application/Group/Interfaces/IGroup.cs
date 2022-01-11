@@ -1,7 +1,7 @@
 ﻿using Application.Common;
 using System;
 
-namespace Application.Group
+namespace Application.Group.Interfaces
 {
     interface IGroup: IIdentity
     {
