@@ -25,5 +25,10 @@ namespace Application.UserCrypto
 
             return result.ToList();
         }
+
+        public IEnumerable<EntityClass> GetByCryptoId(int cryptoId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
