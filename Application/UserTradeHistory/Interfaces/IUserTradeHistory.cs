@@ -1,7 +1,7 @@
 ﻿using Application.Common;
 using System;
 
-namespace Application.UserTradeHistory
+namespace Application.UserTradeHistory.Interfaces
 {
     public interface IUserTradeHistory : IIdentity
     {
