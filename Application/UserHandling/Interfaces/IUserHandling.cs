@@ -2,7 +2,7 @@
 using Application.Images;
 using System;
 
-namespace Application.UserHandling
+namespace Application.UserHandling.Interfaces
 {
     public interface IUserHandling : IIdentity
     {
