@@ -5,15 +5,16 @@ namespace Application.UserForGroups
 {
     public class UserForGroups: IUserForGroups
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("UserHandling")]
-        public int userId { get; set; }
+        public UserHandling.UserHandling userHandling { get; set; }
+        public int? userId { get; set; }
 
         [Required]
-        [ForeignKey("Group")]
-        public int groupId { get; set; }
+        public Group.Group group { get; set; }
+        public int? groupId { get; set; }
 
         [Required]
         [MaxLength(50)]

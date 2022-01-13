@@ -7,25 +7,26 @@ namespace Application.UserTradeHistory
 {
     public class UserTradeHistory : IUserTradeHistory
     {
+        [Key]
         public int Id { get; set; }
         [Required]
-        [ForeignKey("UserHandling")]
-        public int userId { get; set; }
+        public UserHandling.UserHandling userHandling { get; set; }
+        public int? userId { get; set; }
         [Required]
         public DateTime tradeDate { get; set; } = DateTime.Now;
         [Required]
-        [ForeignKey("CryptoCurrency")]
-        public int spentId { get; set; }
+        public CryptoCurrencies.CryptoCurrency spentCryptoCurrency { get; set; }
+        public int? spentId { get; set; }
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal spentValue { get; set; }
         [Required]
-        [ForeignKey("CryptoCurrency")]
-        public int boughtId { get; set; }
+        public CryptoCurrencies.CryptoCurrency boughtCryptoCurrency { get; set; }
+        public int? boughtId { get; set; }
         [Required]
         [Range(0,999999999999999.99)]
         public decimal boughtValue { get; set; }
-        [ForeignKey("Group")]
+        public Group.Group? group { get; set; }
         public int? groupId { get; set; }
     }
 }

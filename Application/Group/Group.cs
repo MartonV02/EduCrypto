@@ -6,6 +6,7 @@ namespace Application.Group
 {
     public class Group: IGroup
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]

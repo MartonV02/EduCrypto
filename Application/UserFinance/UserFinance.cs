@@ -8,9 +8,8 @@ namespace Application.UserFinance
     {
         public int Id { get; set; }
         [Required]
-        [Key]
-        [ForeignKey("UserHandling")]
-        public int userId { get; set; }
+        public UserHandling.UserHandling userHandling { get; set; }
+        public int? userId { get; set; }
         [Required]
         [MaxLength(34)]
         public string walletNumber { get; set; }
