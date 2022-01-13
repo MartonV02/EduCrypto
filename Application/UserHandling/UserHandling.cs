@@ -7,6 +7,7 @@ namespace Application.UserHandling
 {
     public class UserHandling : IUserHandling
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(100)]

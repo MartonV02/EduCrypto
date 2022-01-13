@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Application.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220113114229_EduCrypro_v3")]
-    partial class EduCrypro_v3
+    [Migration("20220113160850_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -109,19 +109,54 @@ namespace Application.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("cryptoId")
+                    b.Property<int?>("cryptoCurrencyId")
                         .HasColumnType("int");
 
                     b.Property<double>("cryptoValue")
                         .HasColumnType("double");
 
                     b.Property<string>("groupWalletNumber")
-                        .IsRequired()
                         .HasMaxLength(34)
                         .HasColumnType("varchar(34)");
 
                     b.Property<bool>("isFavourite")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<int?>("userFinanceId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("userForGroupsId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("walletNumber")
+                        .HasMaxLength(34)
+                        .HasColumnType("varchar(34)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("cryptoCurrencyId");
+
+                    b.HasIndex("userFinanceId");
+
+                    b.HasIndex("userForGroupsId");
+
+                    b.ToTable("UserCryptos");
+                });
+
+            modelBuilder.Entity("Application.UserFinance.UserFinance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("moneyDollar")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int?>("userHandlingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("userId")
+                        .HasColumnType("int");
 
                     b.Property<string>("walletNumber")
                         .IsRequired()
@@ -130,27 +165,7 @@ namespace Application.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserCryptos");
-                });
-
-            modelBuilder.Entity("Application.UserFinance.UserFinance", b =>
-                {
-                    b.Property<int>("userId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("moneyDollar")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("walletNumber")
-                        .IsRequired()
-                        .HasMaxLength(34)
-                        .HasColumnType("varchar(34)");
-
-                    b.HasKey("userId");
+                    b.HasIndex("userHandlingId");
 
                     b.ToTable("UserFinances");
                 });
@@ -166,7 +181,8 @@ namespace Application.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("varchar(50)");
 
-                    b.Property<int>("groupId")
+                    b.Property<int?>("groupId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("groupWalletNumber")
@@ -177,10 +193,17 @@ namespace Application.Migrations
                     b.Property<decimal>("money")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<int>("userId")
+                    b.Property<int?>("userHandlingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("groupId");
+
+                    b.HasIndex("userHandlingId");
 
                     b.ToTable("UserForGroups");
                 });
@@ -233,7 +256,10 @@ namespace Application.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("boughtId")
+                    b.Property<int?>("boughtCryptoCurrencyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("boughtId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("boughtValue")
@@ -242,7 +268,10 @@ namespace Application.Migrations
                     b.Property<int?>("groupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("spentId")
+                    b.Property<int?>("spentCryptoCurrencyId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("spentId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("spentValue")
@@ -251,12 +280,70 @@ namespace Application.Migrations
                     b.Property<DateTime>("tradeDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("userId")
+                    b.Property<int?>("userHandlingId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("userId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("boughtCryptoCurrencyId");
+
+                    b.HasIndex("groupId");
+
+                    b.HasIndex("spentCryptoCurrencyId");
+
+                    b.HasIndex("userHandlingId");
+
                     b.ToTable("UserTradeHistories");
+                });
+
+            modelBuilder.Entity("Application.UserCrypto.UserCrypto", b =>
+                {
+                    b.HasOne("Application.CryptoCurrencies.CryptoCurrency", "cryptoCurrency")
+                        .WithMany()
+                        .HasForeignKey("cryptoCurrencyId");
+
+                    b.HasOne("Application.UserFinance.UserFinance", "userFinance")
+                        .WithMany()
+                        .HasForeignKey("userFinanceId");
+
+                    b.HasOne("Application.UserForGroups.UserForGroups", "userForGroups")
+                        .WithMany()
+                        .HasForeignKey("userForGroupsId");
+
+                    b.Navigation("cryptoCurrency");
+
+                    b.Navigation("userFinance");
+
+                    b.Navigation("userForGroups");
+                });
+
+            modelBuilder.Entity("Application.UserFinance.UserFinance", b =>
+                {
+                    b.HasOne("Application.UserHandling.UserHandling", "userHandling")
+                        .WithMany()
+                        .HasForeignKey("userHandlingId");
+
+                    b.Navigation("userHandling");
+                });
+
+            modelBuilder.Entity("Application.UserForGroups.UserForGroups", b =>
+                {
+                    b.HasOne("Application.Group.Group", "group")
+                        .WithMany()
+                        .HasForeignKey("groupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Application.UserHandling.UserHandling", "userHandling")
+                        .WithMany()
+                        .HasForeignKey("userHandlingId");
+
+                    b.Navigation("group");
+
+                    b.Navigation("userHandling");
                 });
 
             modelBuilder.Entity("Application.UserHandling.UserHandling", b =>
@@ -266,6 +353,33 @@ namespace Application.Migrations
                         .HasForeignKey("profilePictureIdId");
 
                     b.Navigation("profilePictureId");
+                });
+
+            modelBuilder.Entity("Application.UserTradeHistory.UserTradeHistory", b =>
+                {
+                    b.HasOne("Application.CryptoCurrencies.CryptoCurrency", "boughtCryptoCurrency")
+                        .WithMany()
+                        .HasForeignKey("boughtCryptoCurrencyId");
+
+                    b.HasOne("Application.Group.Group", "group")
+                        .WithMany()
+                        .HasForeignKey("groupId");
+
+                    b.HasOne("Application.CryptoCurrencies.CryptoCurrency", "spentCryptoCurrency")
+                        .WithMany()
+                        .HasForeignKey("spentCryptoCurrencyId");
+
+                    b.HasOne("Application.UserHandling.UserHandling", "userHandling")
+                        .WithMany()
+                        .HasForeignKey("userHandlingId");
+
+                    b.Navigation("boughtCryptoCurrency");
+
+                    b.Navigation("group");
+
+                    b.Navigation("spentCryptoCurrency");
+
+                    b.Navigation("userHandling");
                 });
 #pragma warning restore 612, 618
         }
