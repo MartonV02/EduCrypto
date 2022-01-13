@@ -16,7 +16,7 @@ namespace Application.Common
         public DbSet<Application.UserTradeHistory.UserTradeHistory> UserTradeHistories { get; set; }
         public string ConnectionString { get; set; }
 #if DEBUG
-        = "Server=localhost;Database=WorkSheet;Uid=root;Pwd=;";
+        = "Server=localhost;Database=EduCrypto;Uid=root;Pwd=;";
 #endif
         public ApplicationDbContext() { }
 
