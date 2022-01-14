@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Application.Quiz
 {
-    class QuizModel
+    public class QuizModel
     {
         public string question{ get; set; }
         public string[] answers { get; set; }
-        private byte correctAnswer { get; set; }
+        private int correctAnswer { get; set; }
 
         public QuizModel(string row)
         {
@@ -20,10 +20,10 @@ namespace Application.Quiz
             {
                 this.answers[i] = s[i + 1];
             }
-            this.correctAnswer = byte.Parse(s[4]);
+            this.correctAnswer = int.Parse(s[4]);
         }
 
-        public bool IsRight(byte answer)
+        public bool IsRight(int answer)
         {
             if (answer == this.correctAnswer)
             {
