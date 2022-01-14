@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Quiz
 {
-    class QuizAppService
+    public class QuizAppService
     {
         public List<QuizModel> Questions { get; set; }
 
@@ -25,7 +25,7 @@ namespace Application.Quiz
             return Questions[xp];
         }
 
-        public bool CheckQuestion(byte answer, int xp)
+        public bool CheckQuestion(int answer, int xp)
         {
             return Questions[xp].IsRight(answer);
         }

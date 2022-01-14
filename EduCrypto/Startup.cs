@@ -78,7 +78,7 @@ namespace EduCrypto
                 //endpoints.MapControllerRoute(
                 //    name: "default",
                 //    pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapControllers();
+                //endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>
