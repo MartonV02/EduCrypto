@@ -13,6 +13,7 @@ namespace Application.Quiz
 
         public QuizAppService()
         {
+            Questions = new List<QuizModel>();
             StreamReader sr = new StreamReader("question.txt");
             while (!sr.EndOfStream)
             {
