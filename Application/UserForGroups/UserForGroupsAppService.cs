@@ -2,7 +2,7 @@
 using Application.UserForGroups.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using EntityClass = Application.UserForGroups.UserForGroups;
+using EntityClass = Application.UserForGroups.UserForGroupsModel;
 
 namespace Application.UserForGroups
 {

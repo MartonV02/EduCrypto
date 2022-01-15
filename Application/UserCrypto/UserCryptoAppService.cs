@@ -2,7 +2,7 @@
 using Application.UserCrypto.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using EntityClass = Application.UserCrypto.UserCrypto;
+using EntityClass = Application.UserCrypto.UserCryptoModel;
 
 namespace Application.UserCrypto
 {
@@ -14,9 +14,9 @@ namespace Application.UserCrypto
         public UserCryptoAppService() : base(ApplicationDbContext.AppDbContext)
         { }
 
-        public IEnumerable<EntityClass> GetByUserId(int cryptoId)
+        public IEnumerable<EntityClass> GetByUserId(string walletNumber)
         {
-            var result = dbContext.Set<EntityClass>().Where(x => x.cryptoId == cryptoId);
+            var result = dbContext.Set<EntityClass>().Where(x => x.walletNumber == walletNumber);
 
             if (result == null)
             {
@@ -24,6 +24,11 @@ namespace Application.UserCrypto
             }
 
             return result.ToList();
+        }
+
+        public IEnumerable<EntityClass> GetByCryptoId(int cryptoId)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

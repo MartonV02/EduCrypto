@@ -3,7 +3,7 @@ using Application.UserHandling.Interfaces;
 
 namespace Application.UserHandling
 {
-    public class UserHandlingAppService : GenericApplicationService<UserHandling>, IUserHandlingAppService
+    public class UserHandlingAppService : GenericApplicationService<UserHandlingModel>, IUserHandlingAppService
     {
         public UserHandlingAppService(ApplicationDbContext dbContext) : base(dbContext)
         { }

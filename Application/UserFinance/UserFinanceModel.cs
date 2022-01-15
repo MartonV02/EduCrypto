@@ -4,13 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserFinance
 {
-    public class UserFinance : IUserFinance
+    public class UserFinanceModel : IUserFinance
     {
         public int Id { get; set; }
         [Required]
-        [Key]
-        [ForeignKey("UserHandling")]
-        public int userId { get; set; }
+        public UserHandling.UserHandlingModel userHandling { get; set; }
+        public int? userId { get; set; }
         [Required]
         [MaxLength(34)]
         public string walletNumber { get; set; }

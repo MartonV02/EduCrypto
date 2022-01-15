@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EntityClass = Application.UserCrypto.UserCrypto;
+using EntityClass = Application.UserCrypto.UserCryptoModel;
 
 namespace Application.UserCrypto.Interfaces
 {
