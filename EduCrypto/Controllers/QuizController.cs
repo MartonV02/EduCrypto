@@ -1,4 +1,5 @@
-﻿using Application.Quiz;
+﻿using Application.Common;
+using Application.Quiz;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,7 +10,15 @@ namespace EduCrypto.Controllers
     public class QuizController : Controller
     {
         QuizAppService quizAppService = new QuizAppService();
-        UserHandlingAppService userHandlingAppService = new UserHandlingAppService();
+        readonly UserHandlingAppService userHandlingAppService = new UserHandlingAppService();
+
+        public QuizController(ApplicationDbContext dbContext)
+        {
+#if DEBUG
+            dbContext.Database.EnsureCreated();
+#endif
+            userHandlingAppService = new UserHandlingAppService(dbContext);
+        }
 
         [HttpGet("{xp}")]
         public ActionResult GetNextQuestion(int xp) //TODO should change userId
