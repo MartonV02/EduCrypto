@@ -1,5 +1,6 @@
 ﻿using Application.Common;
 using Application.UserTradeHistory.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using EntityClass = Application.UserTradeHistory.UserTradeHistoryModel;
@@ -13,6 +14,12 @@ namespace Application.UserTradeHistory
 
         public UserTradeHistoryAppService() : base(ApplicationDbContext.AppDbContext)
         { }
+
+        public override EntityClass Create(EntityClass userTradeHystoryModel)
+        {
+            userTradeHystoryModel.tradeDate = DateTime.Now;
+            return base.Create(userTradeHystoryModel);
+        }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
         {
@@ -29,6 +36,18 @@ namespace Application.UserTradeHistory
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
         {
             var result = dbContext.Set<EntityClass>().Where(x => x.groupId == groupId);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.ToList();
+        }
+
+        public IEnumerable<EntityClass> GetByUserAndGroupId(int userId, int groupId)
+        {
+            var result = dbContext.Set<EntityClass>().Where(x => x.groupId == groupId && x.userId == userId);
 
             if (result == null)
             {

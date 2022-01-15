@@ -32,7 +32,7 @@ namespace Application.Common
             return result.FirstOrDefault();
         }
 
-        public T Create(T entity)
+        public virtual T Create(T entity)
         {
             dbContext.Add(entity);
             dbContext.SaveChanges();
