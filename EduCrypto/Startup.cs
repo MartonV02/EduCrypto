@@ -39,7 +39,7 @@ namespace EduCrypto
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/ClientApp";
             });
         }
 
@@ -88,9 +88,11 @@ namespace EduCrypto
 
                 spa.Options.SourcePath = "ClientApp";
 
+                //Comment for Me(Kleno)
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    //spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }

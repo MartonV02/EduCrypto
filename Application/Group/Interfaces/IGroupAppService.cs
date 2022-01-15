@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EntityClass = Application.Group.Group;
+using EntityClass = Application.Group.GroupModel;
 
 namespace Application.Group.Interfaces
 {

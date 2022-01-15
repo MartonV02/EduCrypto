@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EntityClass = Application.UserTradeHistory.UserTradeHistory;
+using EntityClass = Application.UserTradeHistory.UserTradeHistoryModel;
 
 namespace Application.UserTradeHistory.Interfaces
 {

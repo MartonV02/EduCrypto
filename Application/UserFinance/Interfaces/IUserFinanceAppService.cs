@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EntityClass = Application.UserFinance.UserFinance;
+using EntityClass = Application.UserFinance.UserFinanceModel;
 
 namespace Application.UserFinance.Interfaces
 {

@@ -4,8 +4,9 @@ using Application.Group.Interfaces;
 
 namespace Application.Group
 {
-    public class Group: IGroup
+    public class GroupModel: IGroup
     {
+        [Key]
         public int Id { get; set; }
         [Required]
         [MaxLength(50)]
@@ -15,6 +16,6 @@ namespace Application.Group
         public decimal startBudget { get; set; }
         public DateTime startDate { get; set; }
         public DateTime finishDate { get; set; }
-        public bool isFinished { get; set; } = true;
+        public bool isFinished { get; set; } = false;
     }
 }

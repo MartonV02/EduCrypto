@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EntityClass = Application.CryptoCurrencies.CryptoCurrency;
+using EntityClass = Application.CryptoCurrencies.CryptoCurrencyModel;
 
 namespace Application.CryptoCurrencies.Interfaces
 {

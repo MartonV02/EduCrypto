@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using EntityClass = Application.UserHandling.UserHandling;
+using EntityClass = Application.UserHandling.UserHandlingModel;
 
 namespace Application.UserHandling.Interfaces
 {

@@ -3,17 +3,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserForGroups
 {
-    public class UserForGroups: IUserForGroups
+    public class UserForGroupsModel: IUserForGroups
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]
-        [ForeignKey("UserHandling")]
-        public int userId { get; set; }
+        public UserHandling.UserHandlingModel userHandling { get; set; }
+        public int? userId { get; set; }
 
         [Required]
-        [ForeignKey("Group")]
-        public int groupId { get; set; }
+        public Group.GroupModel group { get; set; }
+        public int? groupId { get; set; }
 
         [Required]
         [MaxLength(50)]
