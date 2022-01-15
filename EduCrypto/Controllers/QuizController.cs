@@ -1,10 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Application.Quiz;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Application.Quiz;
 using Application.UserHandling;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EduCrypto.Controllers
 {
