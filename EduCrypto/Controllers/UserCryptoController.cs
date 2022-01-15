@@ -5,13 +5,13 @@ namespace EduCrypto.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
-    public class UserCryptoController : Controller
+    public class UserCryptoController : ControllerBase
     {
         private readonly UserCryptoAppService _userCryptoAppService;
         public UserCryptoController(UserCryptoAppService userCryptoAppService)
         {
             this._userCryptoAppService = userCryptoAppService;
-    }
+        }
 
         [HttpGet]
         public IActionResult GetAll()
@@ -34,7 +34,7 @@ namespace EduCrypto.Controllers
         {
             var result = _userCryptoAppService.Create(entity);
 
-            return Ok();
+            return Created("Created.", result);
         }
 
         [HttpPut]
@@ -45,10 +45,10 @@ namespace EduCrypto.Controllers
             return Ok();
         }
 
-        [HttpDelete]
-        public IActionResult Delete([FromQuery] UserCrypto entity)
+        [HttpDelete("{id}")]
+        public IActionResult Delete([FromQuery] int id)
         {
-            var result = _userCryptoAppService.Delete(entity);
+            _userCryptoAppService.Delete(id);
 
             return Ok();
         }
