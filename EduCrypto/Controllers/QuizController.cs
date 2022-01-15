@@ -20,20 +20,22 @@ namespace EduCrypto.Controllers
             userHandlingAppService = new UserHandlingAppService(dbContext);
         }
 
-        [HttpGet("{xp}")]
-        public ActionResult GetNextQuestion(int xp) //TODO should change userId
+        [HttpGet("{userId}")]
+        public ActionResult GetNextQuestion(int userId) //TODO should change userId
         {
             return this.Run(() =>
             {
+                int xp = userHandlingAppService.GetById(userId).xpLevel;
                 return Ok(quizAppService.GetQuestion(xp));
             });
         }
 
-        [HttpPut("{xp}/{answer}")]
-        public ActionResult CheckQuestion(int xp, int answer, int userId)
+        [HttpPut("{answer}")]
+        public ActionResult CheckQuestion(int answer, int userId)
         {
             return this.Run(() =>
             {
+                int xp = userHandlingAppService.GetById(userId).xpLevel;
                 bool check = quizAppService.CheckQuestion(answer, xp);
                 if (check)
                 {
