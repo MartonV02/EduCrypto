@@ -3,7 +3,7 @@ using Application.Group.Interfaces;
 
 namespace Application.Group
 {
-    public class GroupAppService : GenericApplicationService<Group>, IGroupAppService
+    public class GroupAppService : GenericApplicationService<GroupModel>, IGroupAppService
     {
         public GroupAppService(ApplicationDbContext dbContext) : base(dbContext)
         { }

@@ -3,7 +3,7 @@ using Application.CryptoCurrencies.Interfaces;
 
 namespace Application.CryptoCurrencies
 {
-    public class CryptoCurrencyAppService : GenericApplicationService<CryptoCurrency>, ICryptoCurrenciesAppService
+    public class CryptoCurrencyAppService : GenericApplicationService<CryptoCurrencyModel>, ICryptoCurrenciesAppService
     {
         public CryptoCurrencyAppService(ApplicationDbContext dbContext) : base(dbContext)
         { }

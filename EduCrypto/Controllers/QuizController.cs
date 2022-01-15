@@ -32,7 +32,7 @@ namespace EduCrypto.Controllers
                 bool check = quizAppService.CheckQuestion(answer, xp);
                 if (check)
                 {
-                    UserHandling user = userHandlingAppService.GetById(userId);
+                    UserHandlingModel user = userHandlingAppService.GetById(userId);
                     user.xpLevel++;
                     userHandlingAppService.Update(user);
                 }

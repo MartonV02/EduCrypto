@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserFinance
 {
-    public class UserFinance : IUserFinance
+    public class UserFinanceModel : IUserFinance
     {
         public int Id { get; set; }
         [Required]
-        public UserHandling.UserHandling userHandling { get; set; }
+        public UserHandling.UserHandlingModel userHandling { get; set; }
         public int? userId { get; set; }
         [Required]
         [MaxLength(34)]

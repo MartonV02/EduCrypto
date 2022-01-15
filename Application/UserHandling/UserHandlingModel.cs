@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.UserHandling
 {
-    public class UserHandling : IUserHandling
+    public class UserHandlingModel : IUserHandling
     {
         [Key]
         public int Id { get; set; }
@@ -25,6 +25,6 @@ namespace Application.UserHandling
         public DateTime birthDate { get; set; }
         [Required]
         public int xpLevel { get; set; }
-        public Image profilePictureId { get; set; }
+        public ImageModel profilePictureId { get; set; }
     }
 }

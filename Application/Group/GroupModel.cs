@@ -4,7 +4,7 @@ using Application.Group.Interfaces;
 
 namespace Application.Group
 {
-    public class Group: IGroup
+    public class GroupModel: IGroup
     {
         [Key]
         public int Id { get; set; }

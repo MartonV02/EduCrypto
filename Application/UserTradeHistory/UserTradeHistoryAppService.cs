@@ -2,7 +2,7 @@
 using Application.UserTradeHistory.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using EntityClass = Application.UserTradeHistory.UserTradeHistory;
+using EntityClass = Application.UserTradeHistory.UserTradeHistoryModel;
 
 namespace Application.UserTradeHistory
 {
