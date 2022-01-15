@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.CryptoCurrencies
 {
-    public class CryptoCurrency : ICryptoCurrency
+    public class CryptoCurrencyModel : ICryptoCurrency
     { 
         public int Id { get; set; }
         [Required]

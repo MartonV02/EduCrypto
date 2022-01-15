@@ -2,7 +2,7 @@
 using Application.UserCrypto.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using EntityClass = Application.UserCrypto.UserCrypto;
+using EntityClass = Application.UserCrypto.UserCryptoModel;
 
 namespace Application.UserCrypto
 {

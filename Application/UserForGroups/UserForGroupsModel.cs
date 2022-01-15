@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserForGroups
 {
-    public class UserForGroups: IUserForGroups
+    public class UserForGroupsModel: IUserForGroups
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public UserHandling.UserHandling userHandling { get; set; }
+        public UserHandling.UserHandlingModel userHandling { get; set; }
         public int? userId { get; set; }
 
         [Required]
-        public Group.Group group { get; set; }
+        public Group.GroupModel group { get; set; }
         public int? groupId { get; set; }
 
         [Required]

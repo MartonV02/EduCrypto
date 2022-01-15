@@ -2,11 +2,11 @@
 using Application.UserFinance.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
-using EntityClass = Application.UserFinance.UserFinance;
+using EntityClass = Application.UserFinance.UserFinanceModel;
 
 namespace Application.UserFinance
 {
-    public class UserFinanceAppService : GenericApplicationService<UserFinance>, IUserFinanceAppService
+    public class UserFinanceAppService : GenericApplicationService<UserFinanceModel>, IUserFinanceAppService
     {
         public UserFinanceAppService(ApplicationDbContext dbContext) : base(dbContext)
         { }

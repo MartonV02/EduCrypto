@@ -2,7 +2,7 @@
 
 namespace Application.Images
 {
-    public class Image : IImage
+    public class ImageModel : IImage
     {
         [Key]
         public int Id { get; set; }
