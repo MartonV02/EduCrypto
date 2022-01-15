@@ -17,5 +17,17 @@ namespace Application.Group
             groupModel.startDate = DateTime.Now;
             return base.Create(groupModel);
         }
+
+        public override GroupModel GetById(int id)
+        {
+            GroupModel group = base.GetById(id);
+            if (!group.isFinished && group.finishDate >= DateTime.Now)
+            {
+                group.isFinished = true;
+                base.Update(group);
+                return base.GetById(id);
+            }
+            return group;
+        }
     }
 }
