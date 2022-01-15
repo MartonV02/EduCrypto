@@ -45,6 +45,18 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
+        public IEnumerable<EntityClass> GetByUserAndGroupId(int userId, int groupId)
+        {
+            var result = dbContext.Set<EntityClass>().Where(x => x.groupId == groupId && x.userId == userId);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.ToList();
+        }
+
         public IEnumerable<EntityClass> GetByCryptoCurrencyId(int cryptoCurrencyId)
         {
             var result = dbContext.Set<EntityClass>().Where(x => x.boughtId == cryptoCurrencyId);

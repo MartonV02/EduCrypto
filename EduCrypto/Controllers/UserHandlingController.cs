@@ -37,50 +37,29 @@ namespace EduCrypto.Controllers
         [HttpPut]
         public ActionResult Create(UserHandlingModel user)
         {
-            try
+            return this.Run(() =>
             {
                 return Ok(userHandlingAppService.Create(user));
-            }
-            catch
-            {
-                return BadRequest(new
-                {
-                    ErrorMessage = "Unexpected Error"
-                });
-            }
+            });
         }
 
         [HttpPost]
         public ActionResult Modify(UserHandlingModel user)
         {
-            try
+            return this.Run(() =>
             {
                 return Ok(userHandlingAppService.Update(user));
-            }
-            catch
-            {
-                return BadRequest(new
-                {
-                    ErrorMessage = "Unexpected Error"
-                });
-            }
+            });
         }
 
         [HttpDelete]
         public ActionResult Delete(UserHandlingModel user)
         {
-            try
+            return this.Run(() =>
             {
                 userHandlingAppService.Delete(user.Id);
                 return Ok();
-            }
-            catch
-            {
-                return BadRequest(new
-                {
-                    ErrorMessage = "Unexpected Error"
-                });
-            }
+            });
         }
 
     }

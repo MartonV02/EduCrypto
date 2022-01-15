@@ -18,7 +18,7 @@ namespace EduCrypto.Controllers
             {
                 return controller.StatusCode(501, new
                 {
-                    ErrorMessage = "Nem létező azonosító"
+                    ErrorMessage = "Not existing identifier"
                 });
             }
             catch (Exception ex)
@@ -29,7 +29,7 @@ namespace EduCrypto.Controllers
                     ErrorMessage = ex.Message,
                     StackTrace = ex.StackTrace
 #else
-                    ErrorMessage = "Váratlan hiba"
+                    ErrorMessage = "Unexpected Error"
 #endif
                 });
             }
