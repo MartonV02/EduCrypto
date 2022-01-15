@@ -20,7 +20,7 @@ namespace Application.Common
             return result;
         }
 
-        public T GetById(int id)
+        public virtual T GetById(int id)
         {
             var result = dbContext.Set<T>().Where(x => x.Id == id);
 

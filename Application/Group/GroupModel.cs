@@ -16,6 +16,6 @@ namespace Application.Group
         public decimal startBudget { get; set; }
         public DateTime startDate { get; set; }
         public DateTime finishDate { get; set; }
-        public bool isFinished { get; set; } = true;
+        public bool isFinished { get; set; } = false;
     }
 }
