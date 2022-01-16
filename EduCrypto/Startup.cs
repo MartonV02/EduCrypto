@@ -1,11 +1,15 @@
+using Application.Common;
+using Application.UserCrypto;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
 
 namespace EduCrypto
 {
@@ -36,6 +40,12 @@ namespace EduCrypto
             });
 
             services.AddMvc();
+
+            services.AddDbContext<ApplicationDbContext>(option =>
+            {
+                option.UseMySql(Configuration.GetConnectionString("educrypto"), new MySqlServerVersion(new Version()));
+            });
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -88,11 +98,10 @@ namespace EduCrypto
 
                 spa.Options.SourcePath = "ClientApp";
 
-                //Comment for Me(Kleno)
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                    //spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }
