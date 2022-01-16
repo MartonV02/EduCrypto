@@ -1,16 +1,18 @@
-﻿using Application.UserCrypto;
+﻿using Application.Common;
+using Application.UserCrypto;
 using Microsoft.AspNetCore.Mvc;
+using EntityClass = Application.UserCrypto.UserCryptoModel;
 
 namespace EduCrypto.Controllers
 {
     [ApiController]
-    [Route("api/[Controller]")]
+    [Route("api/[controller]")]
     public class UserCryptoController : ControllerBase
     {
         private readonly UserCryptoAppService _userCryptoAppService;
-        public UserCryptoController(UserCryptoAppService userCryptoAppService)
+        public UserCryptoController(ApplicationDbContext dbContext)
         {
-            this._userCryptoAppService = userCryptoAppService;
+            this._userCryptoAppService = new UserCryptoAppService(dbContext);
         }
 
         [HttpGet]
@@ -30,19 +32,19 @@ namespace EduCrypto.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromQuery] UserCrypto entity)
+        public IActionResult Create([FromQuery] EntityClass entity)
         {
             var result = _userCryptoAppService.Create(entity);
 
-            return Created("Created.", result);
+            return Ok(result);
         }
 
         [HttpPut]
-        public IActionResult Update([FromQuery] UserCrypto entity)
+        public IActionResult Update([FromQuery] EntityClass entity)
         {
             var result = _userCryptoAppService.Update(entity);
 
-            return Ok();
+            return Ok(entity);
         }
 
         [HttpDelete("{id}")]
