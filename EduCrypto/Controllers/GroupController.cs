@@ -1,6 +1,7 @@
 ﻿using Application.Common;
 using Application.Group;
 using Application.UserForGroups;
+using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -12,6 +13,7 @@ namespace EduCrypto.Controllers
     {
         readonly GroupAppService groupAppService;
         readonly UserForGroupsAppService userForGroupsAppService;
+        readonly UserHandlingAppService userHandlingAppService;
 
         public GroupController(ApplicationDbContext dbContext)
         {
@@ -20,6 +22,7 @@ namespace EduCrypto.Controllers
 #endif
             groupAppService = new GroupAppService(dbContext);
             userForGroupsAppService = new UserForGroupsAppService(dbContext);
+            userHandlingAppService = new UserHandlingAppService(dbContext);
         }
 
         [HttpGet]
@@ -37,11 +40,14 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpPut]
-        public ActionResult Create(GroupModel groupModel, UserForGroupsModel userForGroupsModel)
+        [HttpPut("{userId}")]
+        public ActionResult Create(int userId, GroupModel groupModel)
         {
             return this.Run(() =>
             {
+                UserHandlingModel user = userHandlingAppService.GetById(userId);
+                UserForGroupsModel userForGroupsModel = new UserForGroupsModel();
+                userForGroupsModel.userHandling = user;
                 userForGroupsModel.group = groupModel;
                 userForGroupsModel.accesLevel = "creator";
                 userForGroupsModel.money = groupModel.startBudget;
