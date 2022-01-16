@@ -25,5 +25,12 @@ namespace Application.UserFinance
 
             return result.ToList();
         }
+
+        public override EntityClass Create(EntityClass entity)
+        {
+            entity.userId = entity.userHandling.Id;
+            entity.moneyDollar = 1000;
+            return base.Create(entity);
+        }
     }
 }
