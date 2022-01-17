@@ -39,6 +39,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\model\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\service\" />
+    <Folder Include="ClientApp\src\app\components\home-list\" />
   </ItemGroup>
 
   <ItemGroup>
