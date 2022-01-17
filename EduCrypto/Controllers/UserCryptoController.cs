@@ -37,6 +37,52 @@ namespace EduCrypto.Controllers
             });
         }
 
+        [HttpGet("{userForGroupId:int}")]
+        public IActionResult GetByUserForGroupsId(int userForGroupId)
+        {
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.GetByUserForGroupsId(userForGroupId);
+
+                return Ok(result);
+            });
+        }
+
+        [HttpGet("{groupId:int}")]
+        public IActionResult GetByGroupId(int groupId)
+        {
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.GetByGroupId(groupId);
+
+                return Ok(result);
+            });
+        }
+
+        //Biztosan törölni kell ilyet nem lehet
+        [HttpGet("Group/{groupId}/Crypto/{cryptoId}")]
+        public IActionResult GetByGroupAndCryptoId(int groupId, int cryptoId)
+        {
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.GetByGroupAndCryptoId(groupId, cryptoId);
+
+                return Ok(result);
+            });
+        }
+
+        //Group Controllerbe kell
+        [HttpGet("Group/{groupId}/User/{userId}")]
+        public IActionResult GetByGroupAndUserId(int groupId, int userId)
+        {
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.GetByGroupAndUserId(groupId, userId);
+
+                return Ok(result);
+            });
+        }
+
         [HttpPost]
         public IActionResult Create([FromQuery] EntityClass entity)
         {
