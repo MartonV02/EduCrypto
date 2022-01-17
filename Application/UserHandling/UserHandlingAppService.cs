@@ -10,5 +10,11 @@ namespace Application.UserHandling
 
         public UserHandlingAppService() : base(ApplicationDbContext.AppDbContext)
         { }
+
+        public override UserHandlingModel Create(UserHandlingModel entity)
+        {
+            entity.moneyDollar = 1000;
+            return base.Create(entity);
+        }
     }
 }

@@ -5,7 +5,6 @@ using Application.UserHandling;
 using Application.CryptoCurrencies;
 using Application.Group;
 using Application.UserCrypto;
-using Application.UserFinance;
 using Application.UserForGroups;
 using Application.UserTradeHistory;
 
@@ -17,7 +16,6 @@ namespace Application.Common
         public DbSet<CryptoCurrencyModel> CryptoCurrencies { get; set; }
         public DbSet<GroupModel> Groups { get; set; }
         public DbSet<UserCryptoModel> UserCryptos { get; set; }
-        public DbSet<UserFinanceModel> UserFinances { get; set; }
         public DbSet<UserForGroupsModel> UserForGroups { get; set; }
         public DbSet<UserTradeHistoryModel> UserTradeHistories { get; set; }
         public string ConnectionString { get; set; }
