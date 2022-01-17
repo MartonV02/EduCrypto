@@ -18,12 +18,17 @@ namespace Application.UserTradeHistory
         public override EntityClass Create(EntityClass userTradeHystoryModel)
         {
             userTradeHystoryModel.tradeDate = DateTime.Now;
+            userTradeHystoryModel.userId = userTradeHystoryModel.userHandlingModel.Id;
+            if (userTradeHystoryModel.groupModel != null)
+            {
+                userTradeHystoryModel.groupId = userTradeHystoryModel.groupModel.Id;
+            }
             return base.Create(userTradeHystoryModel);
         }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
         {
-            var result = dbContext.Set<EntityClass>().Where(x => x.userId == userId);
+            var result = dbContext.Set<EntityClass>().Where(x => x.userId == userId && x.groupId == null);
 
             if (result == null)
             {

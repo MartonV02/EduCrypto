@@ -40,8 +40,8 @@ namespace Application.UserForGroups
 
         public override EntityClass Create(EntityClass entity)
         {
-            entity.groupId = entity.group.Id;
-            entity.userId = entity.userHandling.Id;
+            entity.groupId = entity.groupModel.Id;
+            entity.userId = entity.userHandlingModel.Id;
             return base.Create(entity);
         }
     }
