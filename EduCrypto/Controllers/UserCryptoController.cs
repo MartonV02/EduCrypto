@@ -7,7 +7,7 @@ namespace EduCrypto.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserCryptoController : ControllerBase
+    public class UserCryptoController : Controller
     {
         private readonly UserCryptoAppService _userCryptoAppService;
         public UserCryptoController(ApplicationDbContext dbContext)
@@ -18,41 +18,56 @@ namespace EduCrypto.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = _userCryptoAppService.GetAll();
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.GetAll();
 
-            return Ok(result);
+                return Ok(result);
+            });
         }
 
         [HttpGet("{id:int}")]
         public IActionResult GetById(int id)
         {
-            var result = _userCryptoAppService.GetById(id);
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.GetById(id);
 
-            return Ok(result);
+                return Ok(result);
+            });
         }
 
         [HttpPost]
         public IActionResult Create([FromQuery] EntityClass entity)
         {
-            var result = _userCryptoAppService.Create(entity);
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.Create(entity);
 
-            return Ok(result);
+                return Ok(result);
+            });
         }
 
         [HttpPut]
         public IActionResult Update([FromQuery] EntityClass entity)
         {
-            var result = _userCryptoAppService.Update(entity);
+            return this.Run(() =>
+            {
+                var result = _userCryptoAppService.Update(entity);
 
-            return Ok(entity);
+                return Ok(entity);
+            });
         }
 
         [HttpDelete("{id}")]
-        public IActionResult Delete([FromQuery] int id)
+        public IActionResult Delete(int id)
         {
-            _userCryptoAppService.Delete(id);
+            return this.Run(() =>
+            {
+                _userCryptoAppService.Delete(id);
 
-            return Ok();
+                return Ok();
+            });
         }
     }
 }
