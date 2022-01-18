@@ -33,13 +33,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\components\home-crypto-list\component\home-crypto-list.component.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\home-crypto-list.model.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-cryptocurrencys.model.ts" />
     <None Remove="ClientApp\src\app\components\home-crypto-list\service\import-crypto-currencies.service.ts" />
     <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\components\home-crypto-list\component\" />
-    <Folder Include="ClientApp\src\app\components\home-crypto-list\model\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\model\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\service\" />
   </ItemGroup>
