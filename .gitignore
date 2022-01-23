@@ -234,3 +234,5 @@ _Pvt_Extensions
 **/.vs
 **/bin
 **/obj
+/EduCrypto/ClientApp/src/app/components/home-crypto-list/model/imported-crypto.model.js
+/EduCrypto/ClientApp/src/app/components/home-crypto-list/model/imported-crypto.model.js.map

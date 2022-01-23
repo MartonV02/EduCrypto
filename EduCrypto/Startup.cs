@@ -35,6 +35,18 @@ namespace EduCrypto
                 });
             });
 
+            services.AddCors(option =>
+            {
+                option.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.SetIsOriginAllowed(origin => origin.StartsWith("http://localhost:4200"))
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .Build();
+                });
+            });
+
             services.AddMvc();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -71,6 +83,8 @@ namespace EduCrypto
                 
             }
 
+            app.UseCors("EnableCORS");
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -91,8 +105,8 @@ namespace EduCrypto
                 //Comment for Me(Kleno)
                 if (env.IsDevelopment())
                 {
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                    spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    //spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }

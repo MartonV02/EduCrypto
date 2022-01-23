@@ -11,10 +11,13 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialModule } from './material/material.module';
 import { MenuSideBarTemplateComponent } from './components/menu-sidebar-template/component/menu-sidebar-template.component';
 
+import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
+
 @NgModule({
   declarations: [
     AppComponent,
-    MenuSideBarTemplateComponent
+    MenuSideBarTemplateComponent,
+    HomeCryptoListComponent
   ],
   imports: [
     BrowserModule,

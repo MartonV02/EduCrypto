@@ -28,22 +28,21 @@
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="ClientApp\src\app\components\home-crypto-list\model - Copy\**" />
+    <Content Remove="ClientApp\src\app\components\home-crypto-list\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="ClientApp\src\app\components\home-crypto-list\model - Copy\**" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="ClientApp\src\app\components\home-crypto-list\model - Copy\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\components\home-crypto-list\model - Copy\**" />
-    <TypeScriptCompile Remove="ClientApp\src\app\components\home-crypto-list\model - Copy\**" />
+    <Compile Remove="ClientApp\src\app\components\home-crypto-list\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\components\home-crypto-list\**" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\home-crypto-list\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\components\home-crypto-list\component\home-crypto-list.component.ts" />
-    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.ts" />
-    <None Remove="ClientApp\src\app\components\home-crypto-list\service\import-crypto-currencies.service.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js.map" />
     <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
   </ItemGroup>
 
