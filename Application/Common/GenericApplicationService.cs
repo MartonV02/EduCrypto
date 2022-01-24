@@ -16,7 +16,12 @@ namespace Application.Common
         {
             dbContext.Set<T>().Load();
             var result = dbContext.Set<T>().ToList();
-            
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
             return result;
         }
 

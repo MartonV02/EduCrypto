@@ -24,10 +24,17 @@ namespace Application.UserTradeHistory
 
         public override IEnumerable<EntityClass> GetAll()
         {
-            return dbContext.Set<EntityClass>()
+            var result = dbContext.Set<EntityClass>()
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.ToList();
         }
 
         public override EntityClass GetById(int id)
@@ -37,14 +44,14 @@ namespace Application.UserTradeHistory
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.groupModel)
-                .FirstOrDefault();
+                .Where(f => f.Id == id);
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result;
+            return result.FirstOrDefault();
         }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
@@ -105,6 +112,23 @@ namespace Application.UserTradeHistory
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.groupModel)
                 .Where(x => x.boughtCryptoCurrencyModel.Id == cryptoCurrencyId);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.ToList();
+        }
+
+        public IEnumerable<EntityClass> GetByUserIdAndCryptoCurrencyId(int userId, int cryptoCurrencyId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Include(f => f.boughtCryptoCurrencyModel)
+                .Include(g => g.spentCryptoCurrencyModel)
+                .Include(e => e.userHandlingModel)
+                .Include(h => h.groupModel)
+                .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoCurrencyModel.Id == cryptoCurrencyId);
 
             if (result == null)
             {
