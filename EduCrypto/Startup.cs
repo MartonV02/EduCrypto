@@ -1,3 +1,4 @@
+using Application.ImportCryptos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -34,6 +35,8 @@ namespace EduCrypto
                     Description = "Basic Authorization header using the Bearer scheme."
                 });
             });
+
+            services.AddScoped<ImportCryptosAppService, ImportCryptosAppService>();
 
             services.AddCors(option =>
             {
