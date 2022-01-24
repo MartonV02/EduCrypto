@@ -24,10 +24,17 @@ namespace Application.UserForGroups
 
         public override EntityClass GetById(int id)
         {
-            return dbContext.Set<EntityClass>()
+            var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
                 .Include(e => e.userHandlingModel)
                 .FirstOrDefault();
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
