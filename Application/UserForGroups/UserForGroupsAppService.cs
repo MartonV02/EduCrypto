@@ -1,5 +1,6 @@
 ﻿using Application.Common;
 using Application.UserForGroups.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using EntityClass = Application.UserForGroups.UserForGroupsModel;
@@ -14,9 +15,27 @@ namespace Application.UserForGroups
         public UserForGroupsAppService() : base(ApplicationDbContext.AppDbContext)
         { }
 
+        public override IEnumerable<EntityClass> GetAll()
+        {
+            return dbContext.Set<EntityClass>()
+                .Include(f => f.groupModel)
+                .Include(e => e.userHandlingModel);
+        }
+
+        public override EntityClass GetById(int id)
+        {
+            return dbContext.Set<EntityClass>()
+                .Include(f => f.groupModel)
+                .Include(e => e.userHandlingModel)
+                .FirstOrDefault();
+        }
+
         public IEnumerable<EntityClass> GetByUserId(int userId)
         {
-            var result = dbContext.Set<EntityClass>().Where(x => x.userId == userId);
+            var result = dbContext.Set<EntityClass>()
+                .Include(f => f.groupModel)
+                .Include(e => e.userHandlingModel)
+                .Where(x => x.userHandlingModel.Id == userId);
 
             if (result == null)
             {
@@ -28,7 +47,10 @@ namespace Application.UserForGroups
 
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
         {
-            var result = dbContext.Set<EntityClass>().Where(x => x.groupId == groupId);
+            var result = dbContext.Set<EntityClass>()
+                .Include(f => f.groupModel)
+                .Include(e => e.userHandlingModel).ThenInclude(g => g.profilePicture)
+                .Where(x => x.groupModel.Id == groupId);
 
             if (result == null)
             {
@@ -36,13 +58,6 @@ namespace Application.UserForGroups
             }
 
             return result.ToList();
-        }
-
-        public override EntityClass Create(EntityClass entity)
-        {
-            entity.groupId = entity.groupModel.Id;
-            entity.userId = entity.userHandlingModel.Id;
-            return base.Create(entity);
         }
     }
 }
