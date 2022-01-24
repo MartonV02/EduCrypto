@@ -37,5 +37,12 @@ namespace Application.UserForGroups
 
             return result.ToList();
         }
+
+        public override EntityClass Create(EntityClass entity)
+        {
+            entity.groupId = entity.groupModel.Id;
+            entity.userId = entity.userHandlingModel.Id;
+            return base.Create(entity);
+        }
     }
 }
