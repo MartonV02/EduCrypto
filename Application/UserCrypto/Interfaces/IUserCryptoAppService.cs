@@ -10,7 +10,7 @@ namespace Application.UserCrypto.Interfaces
         public IEnumerable<EntityClass> GetByUserForGroupsId(int userForGroupId);
         public IEnumerable<EntityClass> GetByGroupId(int groupId);
         public IEnumerable<EntityClass> GetByGroupAndCryptoId(int groupId, int cryptoId);
-        public EntityClass GetByGroupAndUserId(int groupId, int userId);
+        public IEnumerable<EntityClass> GetByGroupAndUserId(int groupId, int userId);
         public EntityClass Create(EntityClass entity);
         public EntityClass Update(EntityClass entity);
         public void Delete(int id);

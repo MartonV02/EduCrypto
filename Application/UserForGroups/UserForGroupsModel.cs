@@ -1,7 +1,6 @@
 ﻿using Application.Group;
 using Application.UserHandling;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserForGroups
 {

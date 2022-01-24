@@ -16,22 +16,29 @@ namespace Application.UserHandling
 
         public override IEnumerable<UserHandlingModel> GetAll()
         {
-            return dbContext.Set<UserHandlingModel>()
+            var result = dbContext.Set<UserHandlingModel>()
                 .Include(f => f.profilePicture);
-        }
-
-        public override UserHandlingModel GetById(int id)
-        {
-            var result =  dbContext.Set<UserHandlingModel>()
-                .Include(f => f.profilePicture)
-                .Where(x => x.Id == id).FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result;
+            return result.ToList();
+        }
+
+        public override UserHandlingModel GetById(int id)
+        {
+            var result =  dbContext.Set<UserHandlingModel>()
+                .Include(f => f.profilePicture)
+                .Where(x => x.Id == id);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.FirstOrDefault();
         }
 
         public override UserHandlingModel Create(UserHandlingModel entity)

@@ -17,9 +17,16 @@ namespace Application.UserForGroups
 
         public override IEnumerable<EntityClass> GetAll()
         {
-            return dbContext.Set<EntityClass>()
+            var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
                 .Include(e => e.userHandlingModel);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.ToList();
         }
 
         public override EntityClass GetById(int id)
@@ -27,14 +34,14 @@ namespace Application.UserForGroups
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
                 .Include(e => e.userHandlingModel)
-                .FirstOrDefault();
+                .Where(f => f.Id == id);
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result;
+            return result.FirstOrDefault();
         }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
