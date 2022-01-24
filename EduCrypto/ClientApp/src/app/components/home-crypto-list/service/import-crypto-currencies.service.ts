@@ -23,6 +23,7 @@ export class HomeCryptoListService
         headers:
         {
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
           'X-CMC_PRO_API_KEY': 'a32bf73f-f24a-4484-8d59-220e19acd17d',
         }
       })
