@@ -22,9 +22,16 @@ namespace Application.UserHandling
 
         public override UserHandlingModel GetById(int id)
         {
-            return dbContext.Set<UserHandlingModel>()
+            var result =  dbContext.Set<UserHandlingModel>()
                 .Include(f => f.profilePicture)
                 .Where(x => x.Id == id).FirstOrDefault();
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result;
         }
 
         public override UserHandlingModel Create(UserHandlingModel entity)
