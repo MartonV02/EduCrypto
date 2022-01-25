@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Web;
@@ -23,6 +24,7 @@ namespace Application.ImportCryptos
             var client = new WebClient();
             client.Headers.Add("X-CMC_PRO_API_KEY", API_KEY);
             client.Headers.Add("Accepts", "application/json");
+            //return JsonConvert.SerializeObject(client.DownloadString(URL.ToString()));
             return client.DownloadString(URL.ToString());
         }
 

@@ -2,7 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
-import { ImportedCryptoModel } from "../model/imported-crypto.model";
+import { environment } from "../../../../environments/environment";
+//import { ImportedCryptoModel } from "../model/imported-crypto.model";
 
 //https://github.com/sbuntz/InstantCrypto/blob/main/assets/js/script.js
 //https://coursetro.com/posts/code/91/Angular-CryptoCurrency-Tutorial---Display-Exchange-Data-with-an-API
@@ -18,15 +19,7 @@ export class HomeCryptoListService
 
   public getListOfCryptos(): Observable<any>
   {
-    return this.http.get<any>("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
-      {
-        headers:
-        {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-          'X-CMC_PRO_API_KEY': 'a32bf73f-f24a-4484-8d59-220e19acd17d',
-        }
-      })
+    return this.http.get<any>(`${environment.ApiURL}/`)
       .pipe(
         take(1),
         map((data: any) =>
