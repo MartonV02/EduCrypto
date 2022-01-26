@@ -19,7 +19,7 @@ export class HomeCryptoListService
 
   public getListOfCryptos(): Observable<any>
   {
-    return this.http.get<any>(`${environment.ApiURL}/`)
+    return this.http.get<any>("")
       .pipe(
         take(1),
         map((data: any) =>

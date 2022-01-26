@@ -44,6 +44,8 @@
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js" />
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js.map" />
     <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
+    <None Remove="ClientApp\src\app\shared\BackendUrlEnum.constant.ts" />
+    <None Remove="ClientApp\src\app\shared\GenericUrlGenerator.service.ts" />
   </ItemGroup>
 
   <ItemGroup>

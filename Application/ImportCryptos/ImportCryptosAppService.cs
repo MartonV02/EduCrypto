@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Net;
 using System.Web;
 
@@ -10,7 +8,7 @@ namespace Application.ImportCryptos
     {
         private static string API_KEY = "a32bf73f-f24a-4484-8d59-220e19acd17d";
 
-        public string makeAPICall()
+        public string GetCryptoList()
         {
             var URL = new UriBuilder("https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest");
 

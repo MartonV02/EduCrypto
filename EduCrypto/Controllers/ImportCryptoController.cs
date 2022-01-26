@@ -16,7 +16,8 @@ namespace EduCrypto.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var result = this._importCryptoAppService.makeAPICall();
+            var result = this._importCryptoAppService.GetCryptoList();
+
             return Ok(result);
         }
     }
