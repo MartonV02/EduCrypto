@@ -2,8 +2,10 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map, take } from "rxjs/operators";
-import { environment } from "../../../../environments/environment";
-//import { ImportedCryptoModel } from "../model/imported-crypto.model";
+import { BackendUrlEnum } from "../../../shared/BackendUrlEnum.constant";
+import { GenericUrlGenerator } from "../../../shared/GenericUrlGenerator.service";
+import { ImportedCryptoModel } from "../model/imported-crypto.model";
+import { Bac}
 
 //https://github.com/sbuntz/InstantCrypto/blob/main/assets/js/script.js
 //https://coursetro.com/posts/code/91/Angular-CryptoCurrency-Tutorial---Display-Exchange-Data-with-an-API
@@ -15,11 +17,15 @@ import { environment } from "../../../../environments/environment";
 })
 export class HomeCryptoListService
 {
+  private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.ImportCrypto);
+
   constructor(private http: HttpClient) { }
 
-  public getListOfCryptos(): Observable<any>
+  public getListOfCryptos(): Observable<ImportedCryptoModel>
   {
-    return this.http.get<any>("")
+    var HttpURI = this._uriGenerator.GetBasicUrl();
+
+    return this.http.get<ImportedCryptoModel>(HttpURI)
       .pipe(
         take(1),
         map((data: any) =>

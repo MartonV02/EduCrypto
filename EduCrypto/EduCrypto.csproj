@@ -41,6 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto-usd.model.ts" />
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js" />
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js.map" />
     <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
@@ -55,6 +56,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\components\home-crypto-list\model\imported-crypto-usd.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

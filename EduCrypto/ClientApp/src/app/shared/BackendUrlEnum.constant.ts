@@ -1,4 +1,4 @@
-enum BackendUrlEnum
+export enum BackendUrlEnum
 {
   CryptoCurrency = "CryptoCurrency",
   Group = "Group",
