@@ -11,8 +11,6 @@ namespace Application.UserCrypto
 
         [Required]
         public UserHandlingModel userHandlingModel { get; set; }
-        [MaxLength(34)]
-        public string? walletNumber { get; set; }
 
         [Required]
         public CryptoCurrencyModel cryptoCurrency { get; set; }
@@ -22,8 +20,6 @@ namespace Application.UserCrypto
         public double cryptoValue { get; set; }
 
         public UserForGroupsModel? userForGroupsModel { get; set; }
-        [StringLength(34)]
-        public string? groupWalletNumber { get; set; }
         public bool isFavourite { get; set; }
     }
 }
