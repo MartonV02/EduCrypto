@@ -10,6 +10,7 @@ namespace Application.UserTradeHistory.Interfaces
         public IEnumerable<EntityClass> GetByUserId(int userId);
         public IEnumerable<EntityClass> GetByGroupId(int groupId);
         public IEnumerable<EntityClass> GetByCryptoCurrencyId(int cryptoCurrencyId);
+        public IEnumerable<EntityClass> GetByUserIdAndCryptoCurrencyId(int userId, int cryptoCurrencyId);
         public EntityClass Create(EntityClass entity);
         public EntityClass Update(EntityClass entity);
         public void Delete(int id);

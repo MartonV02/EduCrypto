@@ -12,11 +12,16 @@ namespace Application.Common
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> GetAll()
         {
             dbContext.Set<T>().Load();
             var result = dbContext.Set<T>().ToList();
-            
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
             return result;
         }
 

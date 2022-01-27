@@ -1,7 +1,6 @@
 ﻿using Application.Group;
 using Application.UserHandling;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserForGroups
 {
@@ -12,11 +11,9 @@ namespace Application.UserForGroups
 
         [Required]
         public UserHandlingModel userHandlingModel { get; set; }
-        public int? userId { get; set; }
 
         [Required]
         public GroupModel groupModel { get; set; }
-        public int? groupId { get; set; }
 
         [Required]
         [MaxLength(50)]
