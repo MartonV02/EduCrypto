@@ -44,12 +44,18 @@
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto-usd.model.ts" />
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js" />
     <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js.map" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\next.model.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\status.model.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\test.model.ts" />
     <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
     <None Remove="ClientApp\src\app\shared\BackendUrlEnum.constant.ts" />
+    <None Remove="ClientApp\src\app\shared\generic-http-api-response.model.ts" />
     <None Remove="ClientApp\src\app\shared\GenericUrlGenerator.service.ts" />
+    <None Remove="ClientApp\src\app\shared\message-api.model.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\home-crypto-list\service\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\model\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\service\" />
   </ItemGroup>
@@ -60,6 +66,7 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\components\home-crypto-list\model\imported-crypto-usd.model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\components\home-crypto-list\model\test.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

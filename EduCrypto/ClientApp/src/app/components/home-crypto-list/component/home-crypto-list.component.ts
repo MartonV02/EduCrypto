@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ImportedCryptoModel } from '../model/imported-crypto.model';
-import { HomeCryptoListService } from '../service/import-crypto-currencies.service';
+import { ImportCryptoCurrenciesService } from '../service/import-crypto-currencies.service';
 
 @Component({
   selector: 'home-crypto-list',
   templateUrl: './home-crypto-list.component.html',
-  //styleUrls: ['./home-crypto-list.component.scss']
+  styleUrls: ['./home-crypto-list.component.scss']
 })
 export class HomeCryptoListComponent implements OnInit {
 
@@ -16,20 +16,23 @@ export class HomeCryptoListComponent implements OnInit {
   //https://algotrading101.com/learn/coingecko-api-guide/
 
   displayedColumns: string[] = ['id', 'name', 'symbol', 'slug'];
-  public entity = new Observable<any>();
+  public entity: ImportedCryptoModel[];
+  //public entity: Observable<ImportedCryptoModel[]>;
 
-  constructor(private _homeCryptoListService: HomeCryptoListService) { }
+  constructor(private _importCryptoCurrenciesService: ImportCryptoCurrenciesService) { }
 
   ngOnInit(): void
   {
     this.getList();
   }
 
-  getList()
+  private getList(): void
   {
-    this._homeCryptoListService.getListOfCryptos().subscribe(coindata => {
-      this.entity = coindata;
-    });
-    return this.entity;
+    this._importCryptoCurrenciesService.getListOfCryptos()
+      .subscribe((data: ImportedCryptoModel[]) =>
+      {
+        this.entity = data;
+        console.log(this.entity);
+      });
   }
 }

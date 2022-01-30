@@ -5,7 +5,6 @@ export class GenericUrlGenerator
   private _UriPrefix = "api/";
   private _backendUrlEnum: BackendUrlEnum;
   
-
   constructor(backendUrlEnum: BackendUrlEnum)
   {
     this._backendUrlEnum = backendUrlEnum;
