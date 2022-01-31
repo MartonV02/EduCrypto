@@ -143,12 +143,12 @@ namespace Application.UserTradeHistory
 
         private UserCryptoModel TradeFromDollart(EntityClass userTradeHystoryModel)
         {
-            var userAppService = new UserHandlingAppService();
-            var cryptoAppService = new CryptoCurrencyAppService();
+            UserHandlingAppService userAppService = new UserHandlingAppService();
+            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
             try
             {
-                var user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id); //TODO ask Pali, kelle GETBYID
-                var crypto = cryptoAppService.GetById(userTradeHystoryModel.boughtCryptoCurrencyModel.Id); //TODO ask Pali, kelle GETBYID
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.boughtCryptoCurrencyModel.Id);
                 if (user.moneyDollar < userTradeHystoryModel.spentValue)
                 {
                     throw new Exception("Not Enough Money");
@@ -158,13 +158,14 @@ namespace Application.UserTradeHistory
                     var userCryptoAppService = new UserCryptoAppService();
                     try
                     {
-                        var userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
+                        this.DecreaseDollar(userTradeHystoryModel.spentValue, user);
                         return userCryptoAppService.Update(userCryptoModel);
                     }
                     catch (KeyNotFoundException)
                     {
-                        var userCryptoModel = new UserCryptoModel
+                        UserCryptoModel userCryptoModel = new UserCryptoModel
                         {
                             Id = 0,
                             userHandlingModel = user,
@@ -172,6 +173,7 @@ namespace Application.UserTradeHistory
                             cryptoValue = userTradeHystoryModel.boughtValue,
                             isFavourite = false
                         };
+                        this.DecreaseDollar(userTradeHystoryModel.spentValue, user);
                         return userCryptoAppService.Create(userCryptoModel);
                     }
                 }
@@ -180,7 +182,20 @@ namespace Application.UserTradeHistory
             {
                 throw new Exception("No such a user or crypto value");
             }
+        }
 
+        private void DecreaseDollar(decimal dollar, UserHandlingModel user)
+        {
+            user.moneyDollar -= dollar;
+            var userAppService = new UserHandlingAppService();
+            userAppService.Update(user);
+        }
+
+        private void IncreaseDollar(decimal dollar, UserHandlingModel user)
+        {
+            user.moneyDollar += dollar;
+            var userAppService = new UserHandlingAppService();
+            userAppService.Update(user);
         }
     }
 }
