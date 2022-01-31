@@ -17,7 +17,7 @@ namespace Application.UserCrypto
 
         [Required]
         [Range(0, 999999999999999.99)]
-        public double cryptoValue { get; set; }
+        public decimal cryptoValue { get; set; }
 
         public UserForGroupsModel? userForGroupsModel { get; set; }
         public bool isFavourite { get; set; }

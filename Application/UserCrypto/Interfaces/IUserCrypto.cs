@@ -9,7 +9,7 @@ namespace Application.UserCrypto
     {
         public UserHandlingModel userHandlingModel { get; set; }
         public CryptoCurrencyModel cryptoCurrency { get; set; }
-        public double cryptoValue { get; set; }
+        public decimal cryptoValue { get; set; }
         public UserForGroupsModel? userForGroupsModel { get; set; }
         public bool isFavourite { get; set; }
     }
