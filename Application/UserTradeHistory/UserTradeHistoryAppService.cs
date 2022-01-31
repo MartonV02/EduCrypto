@@ -1,4 +1,7 @@
 ﻿using Application.Common;
+using Application.CryptoCurrencies;
+using Application.UserCrypto;
+using Application.UserHandling;
 using Application.UserTradeHistory.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -136,6 +139,48 @@ namespace Application.UserTradeHistory
             }
 
             return result.ToList();
+        }
+
+        private UserCryptoModel TradeFromDollart(EntityClass userTradeHystoryModel)
+        {
+            var userAppService = new UserHandlingAppService();
+            var cryptoAppService = new CryptoCurrencyAppService();
+            try
+            {
+                var user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id); //TODO ask Pali, kelle GETBYID
+                var crypto = cryptoAppService.GetById(userTradeHystoryModel.boughtCryptoCurrencyModel.Id); //TODO ask Pali, kelle GETBYID
+                if (user.moneyDollar < userTradeHystoryModel.spentValue)
+                {
+                    throw new Exception("Not Enough Money");
+                }
+                else
+                {
+                    var userCryptoAppService = new UserCryptoAppService();
+                    try
+                    {
+                        var userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
+                        userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
+                        return userCryptoAppService.Update(userCryptoModel);
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        var userCryptoModel = new UserCryptoModel
+                        {
+                            Id = 0,
+                            userHandlingModel = user,
+                            cryptoCurrency = crypto,
+                            cryptoValue = userTradeHystoryModel.boughtValue,
+                            isFavourite = false
+                        };
+                        return userCryptoAppService.Create(userCryptoModel);
+                    }
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("No such a user or crypto value");
+            }
+
         }
     }
 }
