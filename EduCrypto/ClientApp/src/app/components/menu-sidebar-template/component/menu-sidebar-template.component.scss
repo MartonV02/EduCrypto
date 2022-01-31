@@ -1,10 +1,10 @@
-mat-toolbar
+.mat-toolbar
 {
   background: #004a9f;
   color: white;
 }
 
-mat-sidenav
+.mat-sidenav
 {
   margin: 16px;
   width: 200px;
@@ -29,7 +29,7 @@ mat-sidenav
   color: lightgray;
 }
 
-mat-sidenav-container
+.mat-sidenav-container
 {
   height: calc(100vh - 65px);
 }
@@ -42,7 +42,7 @@ mat-sidenav-container
   justify-content: flex-start;
   font-size: 1rem;
 
-  mat-icon
+  .mat-icon
   {
     margin-right: 8px;
   }
@@ -69,9 +69,36 @@ mat-sidenav-container
   color: lightgrey;
 }
 
-mat-divider
+.mat-divider
 {
   margin-top: 16px;
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
+}
+
+.header
+{
+    width:100%;
+}
+
+.div_login
+{
+  display: flex;
+  margin: auto;
+}
+
+#img_login
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+#login_id
+{
+    margin: auto;
+}
+
+body {
+  filter: blur(1000rem);
 }
