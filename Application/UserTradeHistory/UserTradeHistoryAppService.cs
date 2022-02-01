@@ -1,6 +1,7 @@
 ﻿using Application.Common;
 using Application.CryptoCurrencies;
 using Application.UserCrypto;
+using Application.UserForGroups;
 using Application.UserHandling;
 using Application.UserTradeHistory.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -141,7 +142,7 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        private UserCryptoModel TradeFromDollart(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeFromDollar(EntityClass userTradeHystoryModel)
         {
             UserHandlingAppService userAppService = new UserHandlingAppService();
             CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
@@ -184,18 +185,84 @@ namespace Application.UserTradeHistory
             }
         }
 
+        private UserCryptoModel TradeFromDollarInGroup(EntityClass userTradeHystoryModel)
+        {
+            UserHandlingAppService userAppService = new UserHandlingAppService();
+            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();  //TODO ki kell e rakni a metódusból?
+            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
+            try
+            {
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
+                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.boughtCryptoCurrencyModel.Id);
+
+                if (user.Id != userForGroups.userHandlingModel.Id)
+                {
+                    throw new Exception("Not maching users");
+                }
+
+                if (userForGroups.money < userTradeHystoryModel.spentValue)
+                {
+                    throw new Exception("Not Enough Money");
+                }
+                else
+                {
+                    var userCryptoAppService = new UserCryptoAppService();
+                    try
+                    {
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(userForGroups.Id, crypto.Id);
+                        userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
+                        this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
+                        return userCryptoAppService.Update(userCryptoModel);
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        UserCryptoModel userCryptoModel = new UserCryptoModel
+                        {
+                            Id = 0,
+                            userHandlingModel = user,
+                            cryptoCurrency = crypto,
+                            cryptoValue = userTradeHystoryModel.boughtValue,
+                            userForGroupsModel = userForGroups,
+                            isFavourite = false
+                        };
+                        this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
+                        return userCryptoAppService.Create(userCryptoModel);
+                    }
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("No such a user or crypto value");
+            }
+        }
+
         private void DecreaseDollar(decimal dollar, UserHandlingModel user)
         {
             user.moneyDollar -= dollar;
-            var userAppService = new UserHandlingAppService();
+            UserHandlingAppService userAppService = new UserHandlingAppService();
             userAppService.Update(user);
         }
 
         private void IncreaseDollar(decimal dollar, UserHandlingModel user)
         {
             user.moneyDollar += dollar;
-            var userAppService = new UserHandlingAppService();
+            UserHandlingAppService userAppService = new UserHandlingAppService();
             userAppService.Update(user);
+        }
+
+        private void DecreaseDollarInGroup(decimal dollar, UserForGroupsModel userForGroups)
+        {
+            userForGroups.money -= dollar;
+            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
+            userForGroupsAppService.Update(userForGroups);
+        }
+
+        private void IncreaseDollarInGroup(decimal dollar, UserForGroupsModel userForGroups)
+        {
+            userForGroups.money += dollar;
+            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
+            userForGroupsAppService.Update(userForGroups);
         }
     }
 }
