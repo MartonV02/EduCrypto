@@ -20,26 +20,17 @@ export class ImportCryptoCurrenciesService
 
   constructor(private http: HttpClient) { }
 
-  //public getListOfCryptos(): Observable<ImportedCryptoModel[]>
-  //{
-  //  var HttpURI = this._uriGenerator.GetBasicUrl();
-
-  //  return this.http.get<ImportedCryptoModel[]>(HttpURI)
-  //    .pipe(
-  //      take(1),
-  //      map((data: ImportedCryptoModel[]) =>
-  //      {
-  //        return data;
-  //      })
-  //    );
-  //}
-
-  public getListOfCryptos(): any {
+  public getListOfCryptos(): Observable<ImportedCryptoModel[]>
+  {
     var HttpURI = this._uriGenerator.GetBasicUrl();
 
-    return this.http.get<any>(HttpURI)
-      .pipe(map(response => ({
-        data: response.data,
-      })));
+    return this.http.get<ImportedCryptoModel[]>(HttpURI)
+      .pipe(
+        take(1),
+        map((data: ImportedCryptoModel[]) =>
+        {
+            return data;
+        })
+      );
   }
 }

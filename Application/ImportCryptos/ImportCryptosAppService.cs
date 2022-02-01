@@ -27,9 +27,10 @@ namespace Application.ImportCryptos
             return client.DownloadString(URL.ToString());
         }
 
-        public ImportedCryptos GetList()
+        public CryptoPropertiesModel[] GetList()
         {
-            ImportedCryptos result = JsonSerializer.Deserialize<ImportedCryptos>(this.GetCryptoList());
+            var resultData = JsonSerializer.Deserialize<ImportedCryptos>(this.GetCryptoList());
+            CryptoPropertiesModel[] result = resultData.data;
 
             return result;
         }
