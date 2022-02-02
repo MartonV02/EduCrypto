@@ -1,5 +1,6 @@
 ﻿using Application.ImportCryptos.Entities;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Text.Json;
 using System.Web;
@@ -16,7 +17,7 @@ namespace Application.ImportCryptos
 
             var queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString["start"] = "1";
-            queryString["limit"] = "1000";
+            queryString["limit"] = "5";
             queryString["convert"] = "USD";
 
             URL.Query = queryString.ToString();
@@ -27,12 +28,13 @@ namespace Application.ImportCryptos
             return client.DownloadString(URL.ToString());
         }
 
-        public CryptoPropertiesModel[] GetList()
+        public IEnumerable<CryptoPropertiesModel> GetList()
         {
             var resultData = JsonSerializer.Deserialize<ImportedCryptos>(this.GetCryptoList());
-            CryptoPropertiesModel[] result = resultData.data;
+            
+            var resultInnerProperties = resultData.data;
 
-            return result;
+            return resultInnerProperties;
         }
     }
 }
