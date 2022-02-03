@@ -31,8 +31,13 @@ namespace Application.UserTradeHistory
         {
             if (userTradeHystoryModel.spentCryptoCurrencyModel == null && userTradeHystoryModel.boughtCryptoCurrencyModel != null && userTradeHystoryModel.userForGroupsModel == null)
                 this.TradeDollarToCrypto(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService);
-            if (userTradeHystoryModel.spentCryptoCurrencyModel != null && userTradeHystoryModel.boughtCryptoCurrencyModel == null && userTradeHystoryModel.userForGroupsModel == null)
+            else if (userTradeHystoryModel.spentCryptoCurrencyModel != null && userTradeHystoryModel.boughtCryptoCurrencyModel == null && userTradeHystoryModel.userForGroupsModel == null)
                 this.TradeCryptoToDollar(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService);
+            else if (userTradeHystoryModel.spentCryptoCurrencyModel == null && userTradeHystoryModel.boughtCryptoCurrencyModel != null && userTradeHystoryModel.userForGroupsModel != null)
+                this.TradeDollarToCryptoInGroup(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService, userForGroupsAppService);
+            else if (userTradeHystoryModel.spentCryptoCurrencyModel != null && userTradeHystoryModel.boughtCryptoCurrencyModel == null && userTradeHystoryModel.userForGroupsModel != null)
+                this.TradeCryptoToDollarInGroup(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService, userForGroupsAppService);
+
             return this.Create(userTradeHystoryModel);
         }
 
@@ -209,7 +214,7 @@ namespace Application.UserTradeHistory
                     }
                     userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                     this.IncreaseDollar(userTradeHystoryModel.boughtValue, user);
-                    return userCryptoAppService.Create(userCrypto);
+                    return userCryptoAppService.Update(userCrypto);
                 }
                 catch (KeyNotFoundException)
                 {
@@ -294,7 +299,7 @@ namespace Application.UserTradeHistory
                     }
                     userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                     this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups);
-                    return userCryptoAppService.Create(userCrypto);
+                    return userCryptoAppService.Update(userCrypto);
                 }
                 catch (KeyNotFoundException)
                 {

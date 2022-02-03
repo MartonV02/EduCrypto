@@ -1,4 +1,8 @@
 ﻿using Application.Common;
+using Application.CryptoCurrencies;
+using Application.UserCrypto;
+using Application.UserForGroups;
+using Application.UserHandling;
 using Application.UserTradeHistory;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,6 +14,10 @@ namespace EduCrypto.Controllers
     public class UserTradeHistoryController : Controller
     {
         readonly UserTradeHistoryAppService userTradeHistoryAppService;
+        readonly UserHandlingAppService userHandlingAppService;
+        readonly UserForGroupsAppService userForGroupsAppService;
+        readonly UserCryptoAppService userCryptoAppService;
+        readonly CryptoCurrencyAppService cryptoCurrencyAppService;
 
         public UserTradeHistoryController(ApplicationDbContext dbContext)
         {
@@ -17,6 +25,10 @@ namespace EduCrypto.Controllers
             dbContext.Database.EnsureCreated();
 #endif
             userTradeHistoryAppService = new UserTradeHistoryAppService(dbContext);
+            userHandlingAppService = new UserHandlingAppService(dbContext);
+            userForGroupsAppService = new UserForGroupsAppService(dbContext);
+            userCryptoAppService = new UserCryptoAppService(dbContext);
+            cryptoCurrencyAppService = new CryptoCurrencyAppService(dbContext);
         }
 
         [HttpGet]
@@ -57,7 +69,8 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                return Ok(userTradeHistoryAppService.Create(userTradeHistoryModel));
+                return Ok(userTradeHistoryAppService.CreateWithTransaction(userTradeHistoryModel, this.userHandlingAppService, 
+                    this.cryptoCurrencyAppService, this.userCryptoAppService, this.userForGroupsAppService));
             });
         }
     }
