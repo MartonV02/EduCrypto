@@ -26,6 +26,16 @@ namespace Application.UserTradeHistory
             return base.Create(userTradeHystoryModel);
         }
 
+        public EntityClass CreateWithTransaction(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
+            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
+        {
+            if (userTradeHystoryModel.spentCryptoCurrencyModel == null && userTradeHystoryModel.boughtCryptoCurrencyModel != null && userTradeHystoryModel.userForGroupsModel == null)
+                this.TradeDollarToCrypto(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService);
+            if (userTradeHystoryModel.spentCryptoCurrencyModel != null && userTradeHystoryModel.boughtCryptoCurrencyModel == null && userTradeHystoryModel.userForGroupsModel == null)
+                this.TradeCryptoToDollar(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService);
+            return this.Create(userTradeHystoryModel);
+        }
+
         public override IEnumerable<EntityClass> GetAll()
         {
             var result = dbContext.Set<EntityClass>()
@@ -142,7 +152,7 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        private UserCryptoModel TradeToDollarCrypto(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+        private UserCryptoModel TradeDollarToCrypto(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
             CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService)
         {
             try
