@@ -142,11 +142,9 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        private UserCryptoModel TradeToDollarCrypto(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeToDollarCrypto(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService)
         {
-            UserHandlingAppService userAppService = new UserHandlingAppService();
-            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
-            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
@@ -185,11 +183,9 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeCryptoToDollar(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeCryptoToDollar(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService)
         {
-            UserHandlingAppService userAppService = new UserHandlingAppService();
-            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
-            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
@@ -216,12 +212,9 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeDollarToCryptoInGroup(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeDollarToCryptoInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
-            UserHandlingAppService userAppService = new UserHandlingAppService();
-            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
-            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
-            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
@@ -268,12 +261,9 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeCryptoToDollarInGroup(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeCryptoToDollarInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
-            UserHandlingAppService userAppService = new UserHandlingAppService();
-            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
-            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
-            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
