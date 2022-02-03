@@ -1,5 +1,4 @@
 import { ImportedCryptosQuote } from "./imported-cryptos-quote.model";
-import { TestModel } from "./test.model";
 
 export class ImportedCryptoModel
 {
@@ -12,6 +11,3 @@ export class ImportedCryptoModel
   last_updated: Date;
   quote: ImportedCryptosQuote;
 }
-
-/*
-*/
