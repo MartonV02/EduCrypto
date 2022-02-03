@@ -142,10 +142,11 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        private UserCryptoModel TradeFromDollar(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeToDollarCrypto(EntityClass userTradeHystoryModel)
         {
             UserHandlingAppService userAppService = new UserHandlingAppService();
             CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
+            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
@@ -156,7 +157,6 @@ namespace Application.UserTradeHistory
                 }
                 else
                 {
-                    var userCryptoAppService = new UserCryptoAppService();
                     try
                     {
                         UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
@@ -185,11 +185,43 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeFromDollarInGroup(EntityClass userTradeHystoryModel)
+        private UserCryptoModel TradeCryptoToDollar(EntityClass userTradeHystoryModel)
         {
             UserHandlingAppService userAppService = new UserHandlingAppService();
-            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();  //TODO ki kell e rakni a metódusból?
             CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
+            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
+            try
+            {
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.spentCryptoCurrencyModel.Id);
+                try
+                {
+                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
+                    if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
+                    {
+                        throw new KeyNotFoundException();
+                    }
+                    userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
+                    this.IncreaseDollar(userTradeHystoryModel.boughtValue, user);
+                    return userCryptoAppService.Create(userCrypto);
+                }
+                catch (KeyNotFoundException)
+                {
+                    throw new Exception("Not enough Crypto currency");
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("No such a user or crypto value");
+            }
+        }
+
+        private UserCryptoModel TradeDollarToCryptoInGroup(EntityClass userTradeHystoryModel)
+        {
+            UserHandlingAppService userAppService = new UserHandlingAppService();
+            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
+            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
+            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
@@ -207,10 +239,9 @@ namespace Application.UserTradeHistory
                 }
                 else
                 {
-                    var userCryptoAppService = new UserCryptoAppService();
                     try
                     {
-                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(userForGroups.Id, crypto.Id);
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoId(userForGroups.Id, crypto.Id);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
                         this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
                         return userCryptoAppService.Update(userCryptoModel);
@@ -229,6 +260,45 @@ namespace Application.UserTradeHistory
                         this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
                         return userCryptoAppService.Create(userCryptoModel);
                     }
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new Exception("No such a user or crypto value");
+            }
+        }
+
+        private UserCryptoModel TradeCryptoToDollarInGroup(EntityClass userTradeHystoryModel)
+        {
+            UserHandlingAppService userAppService = new UserHandlingAppService();
+            CryptoCurrencyAppService cryptoAppService = new CryptoCurrencyAppService();
+            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
+            UserCryptoAppService userCryptoAppService = new UserCryptoAppService();
+            try
+            {
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.spentCryptoCurrencyModel.Id);
+                UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
+
+                if (user.Id != userForGroups.userHandlingModel.Id)
+                {
+                    throw new Exception("Not maching users");
+                }
+
+                try
+                {
+                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserForGroupsIdAndCryptoId(userForGroups.Id, crypto.Id);
+                    if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
+                    {
+                        throw new KeyNotFoundException();
+                    }
+                    userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
+                    this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups);
+                    return userCryptoAppService.Create(userCrypto);
+                }
+                catch (KeyNotFoundException)
+                {
+                    throw new Exception("Not enough Crypto currency");
                 }
             }
             catch (KeyNotFoundException)

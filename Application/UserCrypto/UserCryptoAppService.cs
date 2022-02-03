@@ -129,5 +129,21 @@ namespace Application.UserCrypto
 
             return result.ToList().FirstOrDefault();
         }
+
+        public EntityClass GetByUserForGroupsIdAndCryptoId(int userForGroupId, int cryptoId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Include(f => f.cryptoCurrency)
+                .Include(e => e.userHandlingModel)
+                .Include(e => e.userForGroupsModel)
+                .Where(x => x.userForGroupsModel.Id == userForGroupId && x.cryptoCurrency.Id == cryptoId);
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result.ToList().FirstOrDefault();
+        }
     }
 }
