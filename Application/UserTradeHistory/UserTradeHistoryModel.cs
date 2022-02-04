@@ -16,12 +16,12 @@ namespace Application.UserTradeHistory
         [Required]
         public DateTime tradeDate { get; set; } = DateTime.Now;
         [Required]
-        public CryptoCurrencyModel spentCryptoCurrencyModel { get; set; }
+        public CryptoCurrencyModel? spentCryptoCurrencyModel { get; set; }
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal spentValue { get; set; }
         [Required]
-        public CryptoCurrencyModel boughtCryptoCurrencyModel { get; set; }
+        public CryptoCurrencyModel? boughtCryptoCurrencyModel { get; set; }
         [Required]
         [Range(0,999999999999999.99)]
         public decimal boughtValue { get; set; }
