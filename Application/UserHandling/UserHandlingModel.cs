@@ -30,7 +30,7 @@ namespace Application.UserHandling
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal moneyDollar { get; set; }
-        public ImageModel profilePicture { get; set; }
+        public ImageModel? profilePicture { get; set; }
         [MaxLength(100)]
         [Required]
         public string PasswordHash { get; set; }
