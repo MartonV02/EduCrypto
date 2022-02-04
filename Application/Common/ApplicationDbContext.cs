@@ -36,5 +36,16 @@ namespace Application.Common
         }
 
         public static ApplicationDbContext AppDbContext { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserHandlingModel>().HasIndex(e => e.userName).IsUnique();
+            modelBuilder.Entity<UserHandlingModel>().HasIndex(e => e.email).IsUnique();
+            modelBuilder.Entity<UserHandlingModel>().HasIndex(e => e.walletNumber).IsUnique();
+
+            modelBuilder.Entity<GroupModel>().HasIndex(e => e.name).IsUnique();
+
+            modelBuilder.Entity<UserForGroupsModel>().HasIndex(e => e.groupWalletNumber).IsUnique();
+        }
     }
 }
