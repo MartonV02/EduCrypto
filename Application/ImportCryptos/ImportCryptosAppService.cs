@@ -17,7 +17,7 @@ namespace Application.ImportCryptos
 
             var queryString = HttpUtility.ParseQueryString(string.Empty);
             queryString["start"] = "1";
-            queryString["limit"] = "5";
+            queryString["limit"] = "100";
             queryString["convert"] = "USD";
 
             URL.Query = queryString.ToString();
