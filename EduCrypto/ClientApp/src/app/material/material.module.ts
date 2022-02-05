@@ -10,7 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import { NgxCaptchaModule } from 'ngx-captcha';
+import { RecaptchaModule } from 'ng-recaptcha';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+
 
 const Material = [
   CommonModule,
@@ -24,7 +26,8 @@ const Material = [
   ReactiveFormsModule,
   MatFormFieldModule,
   MatSlideToggleModule,
-  NgxCaptchaModule,
+  RecaptchaModule,
+  MatProgressBarModule
 ];
 
 @NgModule({

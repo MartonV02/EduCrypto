@@ -1,4 +1,5 @@
 mat-card {
+  min-width: 400px;
     max-width: 600px;
     margin: 2em auto;
     text-align: center;
@@ -16,14 +17,10 @@ mat-card {
     padding-top: 5px;
   }
   
-  .button-row a {
-    margin-right: 8px;
-    text-align: center;
-  }
-  
-  .forget-password{
-    padding-left: 0px;
-  }
+  // .button-row a {
+  //   margin-right: 8px;
+  //   text-align: center;
+  // }
   
   .emailInput{
     padding-top: 10px;
@@ -35,8 +32,16 @@ mat-card {
     display: block;
   }
   
-  .aLink{
-    float: right;
-    padding-right: 60px;
-    text-decoration: none;
+  // .aLink{
+  //   float: right;
+  //   padding-right: 60px;
+  //   text-decoration: none;
+  // }
+
+  .captcha-div{
+    text-align: center;
+  }
+
+  .recaptcha{
+    display: inline-block;
   }

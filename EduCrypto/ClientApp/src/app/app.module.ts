@@ -12,13 +12,15 @@ import { MaterialModule } from './material/material.module';
 import { MenuSideBarTemplateComponent } from './components/menu-sidebar-template/component/menu-sidebar-template.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuSideBarTemplateComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,

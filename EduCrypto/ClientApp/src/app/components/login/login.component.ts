@@ -8,8 +8,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
+  key : string;
   hide: boolean = false;
-  constructor(private fb: FormBuilder) { }
+
+
+  constructor(private fb: FormBuilder) {
+    this.key = '';
+   }
 
   ngOnInit(): void {}
   loginForm: FormGroup = this.fb.group({
@@ -21,9 +26,21 @@ export class LoginComponent implements OnInit {
       if (!this.loginForm.valid) {
         return;
       }
-
+      
       console.log(this.loginForm.value);
     }
-  
+    
+    resolved(captchaResponse: string) {
+      this.key = captchaResponse;
+    }
+
+    // componentDidMount() {
+    //   const darkmode = document.querySelector('html').classList.contains('dark');
+    //   if (darkmode) {
+    //     this.setState({ theme: 'dark' });
+    //   } else {
+    //     this.setState({ theme: 'light' });
+    //   }
+    // }
 
 }

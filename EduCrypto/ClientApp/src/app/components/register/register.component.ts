@@ -7,9 +7,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
+  key : string;
   hide: boolean = false;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {
+    this.key = '';
+   }
 
   ngOnInit(): void {}
   registerForm: FormGroup = this.fb.group({
@@ -28,5 +30,7 @@ export class RegisterComponent implements OnInit {
       console.log(this.registerForm.value);
     }
   
-
+    resolved(captchaResponse: string) {
+      this.key = captchaResponse;
+    }
 }
