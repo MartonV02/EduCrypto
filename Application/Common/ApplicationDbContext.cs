@@ -35,8 +35,6 @@ namespace Application.Common
             optionsBuilder.UseMySql(this.ConnectionString, new MySqlServerVersion(new Version()));
         }
 
-        public static ApplicationDbContext AppDbContext { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserHandlingModel>().HasIndex(e => e.userName).IsUnique();
@@ -46,6 +44,13 @@ namespace Application.Common
             modelBuilder.Entity<GroupModel>().HasIndex(e => e.name).IsUnique();
 
             modelBuilder.Entity<UserForGroupsModel>().HasIndex(e => e.groupWalletNumber).IsUnique();
+
+            modelBuilder.Entity<UserHandlingModel>().HasData(
+                new UserHandlingModel() { Id = 1, userName = "test", email = "test@test.com", fullName = "Test Elek", birthDate = new DateTime(2000, 01, 01), xpLevel = 0, moneyDollar = 1000, Password = "Test123"},
+                new UserHandlingModel() { Id = 2, userName = "replica", email = "replica@wallas.com", fullName = "Officer K", birthDate = new DateTime(2049, 01, 01), xpLevel = 0, moneyDollar = 1000, Password = "InterlinkedCells"}
+            );
         }
+
+        public static ApplicationDbContext AppDbContext { get; set; }
     }
 }
