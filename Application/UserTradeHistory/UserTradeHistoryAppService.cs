@@ -46,7 +46,8 @@ namespace Application.UserTradeHistory
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
-                .Include(e => e.userHandlingModel);
+                .Include(e => e.userHandlingModel)
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel);
 
             if (result == null)
             {
@@ -62,7 +63,7 @@ namespace Application.UserTradeHistory
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
-                .Include(h => h.userForGroupsModel)
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(f => f.Id == id);
 
             if (result == null)
@@ -95,7 +96,7 @@ namespace Application.UserTradeHistory
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
-                .Include(h => h.userForGroupsModel)
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId);
 
             if (result == null)
@@ -112,7 +113,7 @@ namespace Application.UserTradeHistory
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
-                .Include(h => h.userForGroupsModel)
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userHandlingModel.Id == userId);
 
             if (result == null)
@@ -129,7 +130,7 @@ namespace Application.UserTradeHistory
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
-                .Include(h => h.userForGroupsModel)
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.boughtCryptoCurrencyModel.Id == cryptoCurrencyId);
 
             if (result == null)
@@ -146,7 +147,7 @@ namespace Application.UserTradeHistory
                 .Include(f => f.boughtCryptoCurrencyModel)
                 .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
-                .Include(h => h.userForGroupsModel)
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoCurrencyModel.Id == cryptoCurrencyId);
 
             if (result == null)

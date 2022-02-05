@@ -21,7 +21,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel);
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel); 
 
             if (result == null)
             {
@@ -36,7 +36,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel)
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.Id == id);
 
             if (result == null)
@@ -53,7 +53,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel)
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.Id == userForGroupId);
 
             if (result == null)
@@ -70,7 +70,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel)
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId);
 
             if (result == null)
@@ -87,7 +87,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel)
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoCurrency.Id == cryptoId);
 
             if (result == null)
@@ -104,7 +104,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel)
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userForGroupsModel.Id == userId);
 
             if (result == null)
@@ -135,7 +135,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel)
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.Id == userForGroupId && x.cryptoCurrency.Id == cryptoId);
 
             if (result == null)
