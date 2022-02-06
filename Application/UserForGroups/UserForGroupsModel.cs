@@ -11,15 +11,18 @@ namespace Application.UserForGroups
 
         [Required]
         public UserHandlingModel userHandlingModel { get; set; }
+        [Required]
+        public int userHandlingModelId { get; set; }
 
         [Required]
         public GroupModel groupModel { get; set; }
+        [Required]
+        public int groupModelId { get; set; }
 
         [Required]
         [MaxLength(50)]
         public string accesLevel { get; set; }
 
-        [Required]
         [MaxLength(34)]
         public string groupWalletNumber { get; set; }
 

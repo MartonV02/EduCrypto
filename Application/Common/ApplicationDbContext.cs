@@ -49,6 +49,15 @@ namespace Application.Common
                 new UserHandlingModel() { Id = 1, userName = "test", email = "test@test.com", fullName = "Test Elek", birthDate = new DateTime(2000, 01, 01), xpLevel = 0, moneyDollar = 1000, Password = "Test123"},
                 new UserHandlingModel() { Id = 2, userName = "replica", email = "replica@wallas.com", fullName = "Officer K", birthDate = new DateTime(2049, 01, 01), xpLevel = 0, moneyDollar = 1000, Password = "InterlinkedCells"}
             );
+
+            modelBuilder.Entity<GroupModel>().HasData(
+                new GroupModel() { Id = 1, name = "test", startBudget = 100, finishDate = new DateTime(2022, 05, 01)}
+            );
+
+            modelBuilder.Entity<UserForGroupsModel>().HasData(
+                new UserForGroupsModel() { Id = 1, userHandlingModelId = 1, groupModelId = 1, accesLevel = "creator", money = 100},
+                new UserForGroupsModel() { Id = 2, userHandlingModelId = 2, groupModelId = 1, accesLevel = "member", money = 100}
+            );
         }
 
         public static ApplicationDbContext AppDbContext { get; set; }
