@@ -18,18 +18,16 @@ export class HomeCryptoListComponent implements OnInit, AfterViewInit
 
   ngAfterViewInit()
   {
-    this.dataSource.paginator = this.paginator;
   }
 
   displayedColumns: string[] =
   [
-    'id',
     'name',
     'symbol',
     //'date_added',
-    //'circulating_supply',
     //'percent_change_1h',
     //'percent_change_24h',
+    'price'
     //'percent_change_7d',
     //'percent_change_30d',
     //'percent_change_90d',
@@ -50,6 +48,8 @@ export class HomeCryptoListComponent implements OnInit, AfterViewInit
       {
         this.entities = data;
         this.dataSource = new MatTableDataSource<ImportedCryptoModel>(this.entities);
+        this.dataSource.paginator = this.paginator;
+
         console.log(this.entities);
       });
   }
