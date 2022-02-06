@@ -12,25 +12,35 @@ namespace Application.UserHandling
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string userName { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string email { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string fullName { get; set; }
+
         [Required]
         public DateTime birthDate { get; set; }
+
         [Required]
         public int xpLevel { get; set; }
+
         [MaxLength(34)]
         public string? walletNumber { get; set; }
+
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal moneyDollar { get; set; }
-        public ImageModel profilePicture { get; set; }
+
+        public ImageModel? profilePicture { get; set; }
+        public int? profilePictureId { get; set; }
+
         [MaxLength(100)]
         [Required]
         public string PasswordHash { get; set; }
