@@ -1,4 +1,4 @@
-using Application.Common;
+using Application.ImportCryptos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +25,7 @@ namespace EduCrypto
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasicAuth", Version = "v1" });
@@ -35,6 +36,20 @@ namespace EduCrypto
                     Scheme = "basic",
                     In = ParameterLocation.Header,
                     Description = "Basic Authorization header using the Bearer scheme."
+                });
+            });
+
+            services.AddScoped<ImportCryptosAppService, ImportCryptosAppService>();
+
+            services.AddCors(option =>
+            {
+                option.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.SetIsOriginAllowed(origin => origin.StartsWith("http://localhost:4200"))
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .Build();
                 });
             });
 
@@ -79,6 +94,8 @@ namespace EduCrypto
                 app.UseSpaStaticFiles();
                 
             }
+
+            app.UseCors("EnableCORS");
 
             app.UseRouting();
 
