@@ -1,3 +1,4 @@
+using Application.Common;
 using Application.ImportCryptos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
