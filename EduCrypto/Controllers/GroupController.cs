@@ -54,7 +54,7 @@ namespace EduCrypto.Controllers
 
                 userForGroupsAppService.Create(userForGroupsModel);
 
-                return Ok(groupAppService.Create(groupModel));
+                return Ok(groupModel);
             });
         }
 
