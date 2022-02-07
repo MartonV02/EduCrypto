@@ -397,6 +397,10 @@ namespace Application.Migrations
                         .WithMany()
                         .HasForeignKey("userForGroupsModelId");
 
+                    b.HasOne("Application.UserForGroups.UserForGroupsModel", "userForGroupsModel")
+                        .WithMany()
+                        .HasForeignKey("userForGroupsModelId");
+
                     b.HasOne("Application.UserHandling.UserHandlingModel", "userHandlingModel")
                         .WithMany()
                         .HasForeignKey("userHandlingModelId")
