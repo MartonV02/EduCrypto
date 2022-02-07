@@ -61,26 +61,36 @@ namespace EduCrypto.Controllers
             return this.Run(() =>
             {
                 string[] s = code.Split('#');
-                int id = Convert.ToInt32(s[1]);
-                string name = s[0];
-                GroupModel group = groupAppService.GetById(id);
-
-                if (group.name == name)
+                try
                 {
-                    UserForGroupsModel userForGroups = new UserForGroupsModel();
-                    UserHandlingModel user = userHandlingAppService.GetById(userId);
+                    int id = Convert.ToInt32(s[1]);
+                    string name = s[0];
+                    GroupModel group = groupAppService.GetById(id);
 
-                    userForGroups.userHandlingModel = user;
-                    userForGroups.groupModel = group;
-                    userForGroups.accesLevel = "member";
-                    userForGroups.money = group.startBudget;
+                    if (group.name == name)
+                    {
+                        UserHandlingModel user = userHandlingAppService.GetById(userId);
+                        UserForGroupsModel userForGroups = new UserForGroupsModel() { 
+                            userHandlingModelId = user.Id,
+                            groupModelId = group.Id,
+                            accesLevel = "member",
+                            money = group.startBudget,
+                        };
 
-                    return Ok(userForGroupsAppService.Create(userForGroups));
+                        return Ok(userForGroupsAppService.Create(userForGroups));
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
-                return BadRequest(new
+                catch
                 {
-                    ErrorMessage = "There is no such a goup with \"" + name + "\" name, and \"" + id + "\" id"
-                });
+                    return BadRequest(new
+                    {
+                        ErrorMessage = "There is no such a goup with \"" + s[0] + "\" name, and \"" + s[1] + "\" id"
+                    });
+                }
             });
         }
     }

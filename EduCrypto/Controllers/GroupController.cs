@@ -45,16 +45,20 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
+                GroupModel group = groupAppService.Create(groupModel);
                 UserHandlingModel user = userHandlingAppService.GetById(userId);
-                UserForGroupsModel userForGroupsModel = new UserForGroupsModel();
-                userForGroupsModel.userHandlingModel = user;
-                userForGroupsModel.groupModel = groupModel;
-                userForGroupsModel.accesLevel = "creator";
-                userForGroupsModel.money = groupModel.startBudget;
+                UserForGroupsModel userForGroupsModel = new UserForGroupsModel()
+                {
+                    userHandlingModelId = user.Id,
+                    groupModelId = group.Id,
+                    accesLevel = "creator",
+                    money = group.startBudget,
+                };
+                
 
                 userForGroupsAppService.Create(userForGroupsModel);
 
-                return Ok(groupModel);
+                return Ok(group);
             });
         }
 

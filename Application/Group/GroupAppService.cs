@@ -15,6 +15,7 @@ namespace Application.Group
         public override GroupModel Create(GroupModel groupModel)
         {
             groupModel.startDate = DateTime.Now;
+            groupModel.isFinished = false;
             return base.Create(groupModel);
         }
 
