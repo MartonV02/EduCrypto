@@ -75,3 +75,26 @@ mat-divider
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+.header
+{
+    width:100%;
+}
+
+.div_login
+{
+  display: flex;
+  margin: auto;
+}
+
+#img_login
+{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+#login_id
+{
+    margin: auto;
+}
