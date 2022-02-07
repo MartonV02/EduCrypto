@@ -8,11 +8,14 @@
     </mat-icon>
   </button>
   Responsive side navigation
+  
 
   <div class="div_login">
     <img id="img_login" class="mat-elevation-z8" src=""/>
     <a id="login_id">Log in</a>
   </div>
+  <div><mat-slide-toggle (change)="darkModeChange($event)">Dark mode</mat-slide-toggle></div>
+  
 </mat-toolbar>
 
 <mat-sidenav-container>
@@ -48,6 +51,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
       <home-crypto-list></home-crypto-list>
     </div>
   </mat-sidenav-content>
@@ -59,3 +63,4 @@
     <button (click)="opened=!opened">Toggle open</button>
   </mat-sidenav-content>
 </mat-sidenav-container>-->
+<!-- </mat-sidenav-content> -->

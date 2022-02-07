@@ -10,6 +10,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialModule } from './material/material.module';
 import { MenuSideBarTemplateComponent } from './components/menu-sidebar-template/component/menu-sidebar-template.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { QuizComponent } from './components/quiz/quiz.component';
 
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 
@@ -17,6 +20,9 @@ import { HomeCryptoListComponent } from './components/home-crypto-list/component
   declarations: [
     AppComponent,
     MenuSideBarTemplateComponent,
+    LoginComponent,
+    RegisterComponent,
+    QuizComponent,
     HomeCryptoListComponent
   ],
   imports: [
@@ -27,7 +33,7 @@ import { HomeCryptoListComponent } from './components/home-crypto-list/component
     HttpClientModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 
 @Component({
@@ -12,6 +13,9 @@ import { delay } from 'rxjs/operators';
 export class MenuSideBarTemplateComponent {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
+
+  @Output()
+  readonly modeSwitched = new EventEmitter<boolean>();
 
   constructor(private observer: BreakpointObserver) { }
 
@@ -29,4 +33,10 @@ export class MenuSideBarTemplateComponent {
         }
       });
   }
+
+  darkModeChange({ checked }: MatSlideToggleChange) {
+    this.modeSwitched.emit(checked);
+    console.log(checked);
+  }
+
 }
