@@ -1,5 +1,4 @@
 ﻿using Application.Common;
-using Application.UserFinance;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -11,7 +10,6 @@ namespace EduCrypto.Controllers
     public class UserHandlingController : Controller
     {
         readonly UserHandlingAppService userHandlingAppService;
-        readonly UserFinanceAppService userFinanceAppService;
 
         public UserHandlingController(ApplicationDbContext dbContext)
         {
@@ -19,7 +17,6 @@ namespace EduCrypto.Controllers
             dbContext.Database.EnsureCreated();
 #endif
             userHandlingAppService = new UserHandlingAppService(dbContext);
-            userFinanceAppService = new UserFinanceAppService(dbContext);
         }
 
         [HttpGet]
@@ -42,9 +39,6 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                UserFinanceModel userFinanceModel = new UserFinanceModel();
-                userFinanceModel.userHandling = user;
-                userFinanceAppService.Create(userFinanceModel);
                 return Ok(userHandlingAppService.Create(user));
             });
         }

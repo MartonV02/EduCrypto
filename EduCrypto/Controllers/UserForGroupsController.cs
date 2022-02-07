@@ -70,8 +70,8 @@ namespace EduCrypto.Controllers
                     UserForGroupsModel userForGroups = new UserForGroupsModel();
                     UserHandlingModel user = userHandlingAppService.GetById(userId);
 
-                    userForGroups.userHandling = user;
-                    userForGroups.group = group;
+                    userForGroups.userHandlingModel = user;
+                    userForGroups.groupModel = group;
                     userForGroups.accesLevel = "member";
                     userForGroups.money = group.startBudget;
 

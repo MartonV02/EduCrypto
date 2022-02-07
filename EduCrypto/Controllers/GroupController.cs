@@ -47,8 +47,8 @@ namespace EduCrypto.Controllers
             {
                 UserHandlingModel user = userHandlingAppService.GetById(userId);
                 UserForGroupsModel userForGroupsModel = new UserForGroupsModel();
-                userForGroupsModel.userHandling = user;
-                userForGroupsModel.group = groupModel;
+                userForGroupsModel.userHandlingModel = user;
+                userForGroupsModel.groupModel = groupModel;
                 userForGroupsModel.accesLevel = "creator";
                 userForGroupsModel.money = groupModel.startBudget;
 
