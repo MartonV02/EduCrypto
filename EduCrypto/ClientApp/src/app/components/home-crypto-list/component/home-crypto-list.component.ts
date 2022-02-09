@@ -49,8 +49,6 @@ export class HomeCryptoListComponent implements OnInit, AfterViewInit
         this.entities = data;
         this.dataSource = new MatTableDataSource<ImportedCryptoModel>(this.entities);
         this.dataSource.paginator = this.paginator;
-
-        console.log(this.entities);
       });
   }
 }
