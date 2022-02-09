@@ -242,6 +242,11 @@ namespace Application.UserTradeHistory
                     throw new Exception("Not maching users");
                 }
 
+                if (userForGroups.groupModel.isFinished)
+                {
+                    throw new Exception("Group already closed");
+                }
+
                 if (userForGroups.money < userTradeHystoryModel.spentValue)
                 {
                     throw new Exception("Not Enough Money");
@@ -289,6 +294,11 @@ namespace Application.UserTradeHistory
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {
                     throw new Exception("Not maching users");
+                }
+
+                if (userForGroups.groupModel.isFinished)
+                {
+                    throw new Exception("Group already closed");
                 }
 
                 try
