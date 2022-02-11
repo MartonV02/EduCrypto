@@ -1,5 +1,4 @@
-﻿using Application.CryptoCurrencies;
-using Application.UserForGroups;
+﻿using Application.UserForGroups;
 using Application.UserHandling;
 using System.ComponentModel.DataAnnotations;
 
@@ -15,9 +14,7 @@ namespace Application.UserCrypto
         public int userHandlingModelId { get; set; }
 
         [Required]
-        public CryptoCurrencyModel cryptoCurrency { get; set; }
-        [Required]
-        public int cryptoCurrencyId { get; set; }
+        public string cryptoSymbol { get; set; }
 
         [Required]
         [Range(0, 999999999999999.99)]

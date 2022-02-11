@@ -1,4 +1,3 @@
-using Application.CryptoCurrencies;
 using Application.UserForGroups;
 using Application.UserHandling;
 using Application.UserTradeHistory.Interfaces;
@@ -21,16 +20,14 @@ namespace Application.UserTradeHistory
         public DateTime tradeDate { get; set; } = DateTime.Now;
 
         [Required]
-        public CryptoCurrencyModel? spentCryptoCurrencyModel { get; set; }
-        public int? spentCryptoCurrencyModelId { get; set; }
+        public string? spentCryptoSymbol { get; set; }
 
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal spentValue { get; set; }
 
         [Required]
-        public CryptoCurrencyModel? boughtCryptoCurrencyModel { get; set; }
-        public int? boughtCryptoCurrencyModelId { get; set; }
+        public string? boughtCryptoSymbol { get; set; }
 
         [Required]
         [Range(0,999999999999999.99)]
