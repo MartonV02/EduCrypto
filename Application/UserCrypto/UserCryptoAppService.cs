@@ -19,7 +19,6 @@ namespace Application.UserCrypto
         public override IEnumerable<EntityClass> GetAll()
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel); 
 
@@ -34,7 +33,6 @@ namespace Application.UserCrypto
         public override EntityClass GetById(int id)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.Id == id);
@@ -51,7 +49,6 @@ namespace Application.UserCrypto
         public IEnumerable<EntityClass> GetByUserForGroupsId(int userForGroupId)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.Id == userForGroupId);
@@ -68,7 +65,6 @@ namespace Application.UserCrypto
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId);
@@ -82,13 +78,12 @@ namespace Application.UserCrypto
         }
 
         //Vissza adja egy adott grup adott cryptovaluta birtoklásokat
-        public IEnumerable<EntityClass> GetByGroupAndCryptoId(int groupId, int cryptoId)
+        public IEnumerable<EntityClass> GetByGroupAndCryptoSymbol(int groupId, string cryptoSymbol)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoCurrency.Id == cryptoId);
+                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoSymbol == cryptoSymbol);
 
             if (result == null)
             {
@@ -97,12 +92,10 @@ namespace Application.UserCrypto
 
             return result.ToList();
         }
-
         
         public IEnumerable<EntityClass> GetByGroupAndUserId(int groupId, int userId)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userForGroupsModel.Id == userId);
@@ -115,12 +108,11 @@ namespace Application.UserCrypto
             return result.ToList();
         }
 
-        public EntityClass GetByUserIdAndCryptoId(int userId, int cryptoId)
+        public EntityClass GetByUserIdAndCryptoSymbol(int userId, string cryptoSymbol)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
-                .Where(x => x.userHandlingModel.Id == userId && x.cryptoCurrency.Id == cryptoId && x.userForGroupsModel == null);
+                .Where(x => x.userHandlingModel.Id == userId && x.cryptoSymbol == cryptoSymbol && x.userForGroupsModel == null);
 
             if (result == null)
             {
@@ -130,13 +122,12 @@ namespace Application.UserCrypto
             return result.ToList().FirstOrDefault();
         }
 
-        public EntityClass GetByUserForGroupsIdAndCryptoId(int userForGroupId, int cryptoId)
+        public EntityClass GetByUserForGroupsIdAndCryptoSymbol(int userForGroupId, string cryptoSymbol)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.cryptoCurrency)
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.Id == userForGroupId && x.cryptoCurrency.Id == cryptoId);
+                .Where(x => x.userForGroupsModel.Id == userForGroupId && x.cryptoSymbol == cryptoSymbol);
 
             if (result == null)
             {
