@@ -1,5 +1,4 @@
 ﻿using Application.Common;
-using Application.CryptoCurrencies;
 using Application.UserCrypto;
 using Application.UserForGroups;
 using Application.UserHandling;
@@ -17,7 +16,6 @@ namespace EduCrypto.Controllers
         readonly UserHandlingAppService userHandlingAppService;
         readonly UserForGroupsAppService userForGroupsAppService;
         readonly UserCryptoAppService userCryptoAppService;
-        readonly CryptoCurrencyAppService cryptoCurrencyAppService;
 
         public UserTradeHistoryController(ApplicationDbContext dbContext)
         {
@@ -28,7 +26,6 @@ namespace EduCrypto.Controllers
             userHandlingAppService = new UserHandlingAppService(dbContext);
             userForGroupsAppService = new UserForGroupsAppService(dbContext);
             userCryptoAppService = new UserCryptoAppService(dbContext);
-            cryptoCurrencyAppService = new CryptoCurrencyAppService(dbContext);
         }
 
         [HttpGet]
@@ -70,7 +67,7 @@ namespace EduCrypto.Controllers
             return this.Run(() =>
             {
                 return Ok(userTradeHistoryAppService.CreateWithTransaction(userTradeHistoryModel, this.userHandlingAppService, 
-                    this.cryptoCurrencyAppService, this.userCryptoAppService, this.userForGroupsAppService));
+                    this.userCryptoAppService, this.userForGroupsAppService));
             });
         }
     }
