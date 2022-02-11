@@ -9,10 +9,10 @@ namespace EduCrypto.Controllers
     [Route("api/[controller]")]
     public class UserCryptoController : Controller
     {
-        private readonly UserCryptoAppService _userCryptoAppService;
+        private readonly UserCryptoAppService userCryptoAppService;
         public UserCryptoController(ApplicationDbContext dbContext)
         {
-            this._userCryptoAppService = new UserCryptoAppService(dbContext);
+            this.userCryptoAppService = new UserCryptoAppService(dbContext);
         }
 
         [HttpGet]
@@ -20,7 +20,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.GetAll();
+                var result = userCryptoAppService.GetAll();
 
                 return Ok(result);
             });
@@ -31,7 +31,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.GetById(id);
+                var result = userCryptoAppService.GetById(id);
 
                 return Ok(result);
             });
@@ -42,7 +42,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.GetByUserForGroupsId(userForGroupId);
+                var result = userCryptoAppService.GetByUserForGroupsId(userForGroupId);
 
                 return Ok(result);
             });
@@ -53,7 +53,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.GetByGroupId(groupId);
+                var result = userCryptoAppService.GetByGroupId(groupId);
 
                 return Ok(result);
             });
@@ -61,11 +61,11 @@ namespace EduCrypto.Controllers
 
         //Biztosan törölni kell ilyet nem lehet
         [HttpGet("Group/{groupId}/Crypto/{cryptoId}")]
-        public IActionResult GetByGroupAndCryptoId(int groupId, int cryptoId)
+        public IActionResult GetByGroupAndCryptoId(int groupId, string cryptoSymbol)
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.GetByGroupAndCryptoId(groupId, cryptoId);
+                var result = userCryptoAppService.GetByGroupAndCryptoSymbol(groupId, cryptoSymbol);
 
                 return Ok(result);
             });
@@ -77,7 +77,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.GetByGroupAndUserId(groupId, userId);
+                var result = userCryptoAppService.GetByGroupAndUserId(groupId, userId);
 
                 return Ok(result);
             });
@@ -88,7 +88,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.Create(entity);
+                var result = userCryptoAppService.Create(entity);
 
                 return Ok(result);
             });
@@ -99,7 +99,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                var result = _userCryptoAppService.Update(entity);
+                var result = userCryptoAppService.Update(entity);
 
                 return Ok(entity);
             });
@@ -110,7 +110,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                _userCryptoAppService.Delete(id);
+                userCryptoAppService.Delete(id);
 
                 return Ok();
             });
