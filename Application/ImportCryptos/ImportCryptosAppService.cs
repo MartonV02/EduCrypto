@@ -36,15 +36,5 @@ namespace Application.ImportCryptos
 
             return resultInnerProperties;
         }
-        
-        public static decimal ChangeToCrypto(CryptoPropertiesModel crypto, decimal spent)
-        {
-            return spent / crypto.quote.USD.price;
-        }
-
-        public static decimal ChangeToDollar(CryptoPropertiesModel crypto, decimal spent)
-        {
-            return spent * crypto.quote.USD.price;
-        }
     }
 }

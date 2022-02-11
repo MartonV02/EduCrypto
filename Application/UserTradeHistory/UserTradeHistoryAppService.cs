@@ -1,5 +1,5 @@
 ﻿using Application.Common;
-using Application.CryptoCurrencies;
+using Application.ImportCryptos.Entities;
 using Application.UserCrypto;
 using Application.UserForGroups;
 using Application.UserHandling;
@@ -27,16 +27,16 @@ namespace Application.UserTradeHistory
         }
 
         public EntityClass CreateWithTransaction(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
-            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
+            UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
-            if (userTradeHystoryModel.spentCryptoCurrencyModel == null && userTradeHystoryModel.boughtCryptoCurrencyModel != null && userTradeHystoryModel.userForGroupsModel == null)
-                this.TradeDollarToCrypto(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService);
-            else if (userTradeHystoryModel.spentCryptoCurrencyModel != null && userTradeHystoryModel.boughtCryptoCurrencyModel == null && userTradeHystoryModel.userForGroupsModel == null)
-                this.TradeCryptoToDollar(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService);
-            else if (userTradeHystoryModel.spentCryptoCurrencyModel == null && userTradeHystoryModel.boughtCryptoCurrencyModel != null && userTradeHystoryModel.userForGroupsModel != null)
-                this.TradeDollarToCryptoInGroup(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService, userForGroupsAppService);
-            else if (userTradeHystoryModel.spentCryptoCurrencyModel != null && userTradeHystoryModel.boughtCryptoCurrencyModel == null && userTradeHystoryModel.userForGroupsModel != null)
-                this.TradeCryptoToDollarInGroup(userTradeHystoryModel, userAppService, cryptoAppService, userCryptoAppService, userForGroupsAppService);
+            if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModel == null)
+                this.TradeDollarToCrypto(userTradeHystoryModel, userAppService, userCryptoAppService);
+            else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModel == null)
+                this.TradeCryptoToDollar(userTradeHystoryModel, userAppService, userCryptoAppService);
+            else if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModel != null)
+                this.TradeDollarToCryptoInGroup(userTradeHystoryModel, userAppService, userCryptoAppService, userForGroupsAppService);
+            else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModel != null)
+                this.TradeCryptoToDollarInGroup(userTradeHystoryModel, userAppService, userCryptoAppService, userForGroupsAppService);
 
             return this.Create(userTradeHystoryModel);
         }
@@ -44,8 +44,6 @@ namespace Application.UserTradeHistory
         public override IEnumerable<EntityClass> GetAll()
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel);
 
@@ -60,8 +58,6 @@ namespace Application.UserTradeHistory
         public override EntityClass GetById(int id)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(f => f.Id == id);
@@ -77,8 +73,6 @@ namespace Application.UserTradeHistory
         public IEnumerable<EntityClass> GetByUserId(int userId)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Where(x => x.userHandlingModel.Id == userId && x.userForGroupsModel == null);
 
@@ -93,8 +87,6 @@ namespace Application.UserTradeHistory
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId);
@@ -110,8 +102,6 @@ namespace Application.UserTradeHistory
         public IEnumerable<EntityClass> GetByUserAndGroupId(int userId, int groupId)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userHandlingModel.Id == userId);
@@ -124,14 +114,12 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        public IEnumerable<EntityClass> GetByCryptoCurrencyId(int cryptoCurrencyId)
+        public IEnumerable<EntityClass> GetByCryptoCurrencySymbol(string cryptoSymbol)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.boughtCryptoCurrencyModel.Id == cryptoCurrencyId);
+                .Where(x => x.boughtCryptoSymbol == cryptoSymbol);
 
             if (result == null)
             {
@@ -141,14 +129,12 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        public IEnumerable<EntityClass> GetByUserIdAndCryptoCurrencyId(int userId, int cryptoCurrencyId)
+        public IEnumerable<EntityClass> GetByUserIdAndCryptoCurrencySymbol(int userId, string cryptoSymbol)
         {
             var result = dbContext.Set<EntityClass>()
-                .Include(f => f.boughtCryptoCurrencyModel)
-                .Include(g => g.spentCryptoCurrencyModel)
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoCurrencyModel.Id == cryptoCurrencyId);
+                .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoSymbol == cryptoSymbol);
 
             if (result == null)
             {
@@ -159,12 +145,12 @@ namespace Application.UserTradeHistory
         }
 
         private UserCryptoModel TradeDollarToCrypto(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
-            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService)
+            UserCryptoAppService userCryptoAppService)
         {
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.boughtCryptoCurrencyModel.Id);
+                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
                 if (user.moneyDollar < userTradeHystoryModel.spentValue)
                 {
                     throw new Exception("Not Enough Money");
@@ -173,7 +159,7 @@ namespace Application.UserTradeHistory
                 {
                     try
                     {
-                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
                         this.DecreaseDollar(userTradeHystoryModel.spentValue, user);
                         return userCryptoAppService.Update(userCryptoModel);
@@ -184,7 +170,7 @@ namespace Application.UserTradeHistory
                         {
                             Id = 0,
                             userHandlingModel = user,
-                            cryptoCurrency = crypto,
+                            cryptoSymbol = crypto.symbol,
                             cryptoValue = userTradeHystoryModel.boughtValue,
                             isFavourite = false
                         };
@@ -200,15 +186,15 @@ namespace Application.UserTradeHistory
         }
 
         private UserCryptoModel TradeCryptoToDollar(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
-            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService)
+            UserCryptoAppService userCryptoAppService)
         {
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.spentCryptoCurrencyModel.Id);
+                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
                 try
                 {
-                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserIdAndCryptoId(user.Id, crypto.Id);
+                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
                     if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
                     {
                         throw new KeyNotFoundException();
@@ -229,25 +215,23 @@ namespace Application.UserTradeHistory
         }
 
         private UserCryptoModel TradeDollarToCryptoInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
-            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
+            UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
                 UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
-                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.boughtCryptoCurrencyModel.Id);
+                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {
                     throw new Exception("Not maching users");
                 }
-
-                if (userForGroups.groupModel.isFinished)
+                else if (userForGroups.groupModel.isFinished)
                 {
                     throw new Exception("Group already closed");
                 }
-
-                if (userForGroups.money < userTradeHystoryModel.spentValue)
+                else if (userForGroups.money < userTradeHystoryModel.spentValue)
                 {
                     throw new Exception("Not Enough Money");
                 }
@@ -255,7 +239,7 @@ namespace Application.UserTradeHistory
                 {
                     try
                     {
-                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoId(userForGroups.Id, crypto.Id);
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
                         this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
                         return userCryptoAppService.Update(userCryptoModel);
@@ -266,7 +250,7 @@ namespace Application.UserTradeHistory
                         {
                             Id = 0,
                             userHandlingModel = user,
-                            cryptoCurrency = crypto,
+                            cryptoSymbol = crypto.symbol,
                             cryptoValue = userTradeHystoryModel.boughtValue,
                             userForGroupsModel = userForGroups,
                             isFavourite = false
@@ -283,27 +267,26 @@ namespace Application.UserTradeHistory
         }
 
         private UserCryptoModel TradeCryptoToDollarInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
-            CryptoCurrencyAppService cryptoAppService, UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
+            UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                CryptoCurrencyModel crypto = cryptoAppService.GetById(userTradeHystoryModel.spentCryptoCurrencyModel.Id);
+                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
                 UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {
                     throw new Exception("Not maching users");
                 }
-
-                if (userForGroups.groupModel.isFinished)
+                else if (userForGroups.groupModel.isFinished)
                 {
                     throw new Exception("Group already closed");
                 }
 
                 try
                 {
-                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserForGroupsIdAndCryptoId(userForGroups.Id, crypto.Id);
+                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
                     if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
                     {
                         throw new KeyNotFoundException();
