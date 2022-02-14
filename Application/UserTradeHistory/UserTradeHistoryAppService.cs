@@ -155,6 +155,10 @@ namespace Application.UserTradeHistory
                 {
                     throw new Exception("Not Enough Money");
                 }
+                else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue))
+                {
+                    throw new Exception("Invalid Change");
+                }
                 else
                 {
                     try
@@ -192,12 +196,17 @@ namespace Application.UserTradeHistory
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
                 CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
+
                 try
                 {
                     UserCryptoModel userCrypto = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
                     if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
                     {
                         throw new KeyNotFoundException();
+                    }
+                    else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue))
+                    {
+                        throw new Exception("Invalid Change");
                     }
                     userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                     this.IncreaseDollar(userTradeHystoryModel.boughtValue, user);
@@ -234,6 +243,10 @@ namespace Application.UserTradeHistory
                 else if (userForGroups.money < userTradeHystoryModel.spentValue)
                 {
                     throw new Exception("Not Enough Money");
+                }
+                else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue))
+                {
+                    throw new Exception("Invalid Change");
                 }
                 else
                 {
@@ -290,6 +303,10 @@ namespace Application.UserTradeHistory
                     if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
                     {
                         throw new KeyNotFoundException();
+                    }
+                    else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue))
+                    {
+                        throw new Exception("Invalid Change");
                     }
                     userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                     this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups);
