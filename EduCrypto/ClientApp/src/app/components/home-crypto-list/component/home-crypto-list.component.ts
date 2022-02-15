@@ -3,6 +3,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ImportedCryptoModel } from '../model/imported-crypto.model';
 import { ImportCryptoCurrenciesService } from '../service/import-crypto-currencies.service';
+//https://stackblitz.com/run?file=src/app/table-expandable-rows-example.ts -- Extend with that
 
 @Component({
   selector: 'home-crypto-list',
@@ -16,22 +17,17 @@ export class HomeCryptoListComponent implements OnInit, AfterViewInit
   public entities: ImportedCryptoModel[];
   public dataSource: any;
 
-  ngAfterViewInit()
-  {
-  }
-
   displayedColumns: string[] =
   [
     'name',
     'symbol',
-    //'date_added',
-    //'percent_change_1h',
-    //'percent_change_24h',
-    'price'
-    //'percent_change_7d',
-    //'percent_change_30d',
-    //'percent_change_90d',
-    //'market_cap_dominance',
+    'date_added',
+    'max_supply',
+    'circulating_supply',
+    'percent_change_24h',
+    'percent_change_30d',
+    'percent_change_90d',
+    'price',
   ];
 
   constructor(private _importCryptoCurrenciesService: ImportCryptoCurrenciesService) { }
