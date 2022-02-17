@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { map, take, tap } from 'rxjs/operators';
 import { BackendUrlEnum } from '../../../shared/BackendUrlEnum.constant';
 import { GenericUrlGenerator } from '../../../shared/GenericUrlGenerator.service';
 import { QuizModel } from '../model/quiz.model';
@@ -16,6 +16,12 @@ export class QuizService
 
   constructor(private http: HttpClient) { }
 
+  private refreshRequired = new Subject<void>();
+
+  get Refreshrequired() {
+    return this.refreshRequired;
+  }
+
   public getQuiz(id:number): Observable<QuizModel>
   {
     var HttpURI = this._uriGenerator.GetUrlWithParam(id);
@@ -25,7 +31,12 @@ export class QuizService
   public sendAnswer(answerId: number, userId: number): Observable<QuizModel>
   {
     var HttpURI = this._uriGenerator.GetUrlWithParam(answerId);
-    return this.http.put<QuizModel>(HttpURI + '?userId=' + userId, answerId);
+    return this.http.put<QuizModel>(HttpURI + '?userId=' + userId, answerId)
+    .pipe(
+      tap(() => {
+      this.Refreshrequired.next();
+    }));
+
   }
 
 }

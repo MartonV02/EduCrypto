@@ -14,7 +14,7 @@
     <img id="img_login" class="mat-elevation-z8" src=""/>
     <a id="login_id">Log in</a>
   </div>
-  <div><mat-slide-toggle (change)="darkModeChange($event)">Dark mode</mat-slide-toggle></div>
+  <div class="switcher"><mat-icon>light_mode</mat-icon><mat-slide-toggle (change)="darkModeChange($event)"></mat-slide-toggle><mat-icon>dark_mode</mat-icon></div>
   
 </mat-toolbar>
 
@@ -54,10 +54,10 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
+    <!-- <div class="content mat-elevation-z8"> -->
       <router-outlet></router-outlet>
-      <home-crypto-list></home-crypto-list>
-    </div>
+      <!-- <home-crypto-list></home-crypto-list> -->
+    <!-- </div> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
 
