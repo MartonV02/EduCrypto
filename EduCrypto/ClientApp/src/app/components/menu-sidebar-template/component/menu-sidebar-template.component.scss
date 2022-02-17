@@ -1,4 +1,4 @@
-@import "/src/themes.scss";
+@import "/src/styles.scss";
 
 $primary: map-get($my-theme, primary);
 $accent: map-get($my-theme, accent);
@@ -45,7 +45,7 @@ $accent: map-get($my-theme, accent);
   align-items: center;
   justify-content: flex-start;
   font-size: 1rem;
-
+  background:  mat-color($primary);
   .mat-icon
   {
     margin-right: 8px;
@@ -77,7 +77,7 @@ $accent: map-get($my-theme, accent);
 {
   margin-top: 16px;
   margin-bottom: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background: mat-color($primary);
 }
 
 .header
@@ -105,4 +105,10 @@ $accent: map-get($my-theme, accent);
 
 body {
   filter: blur(1000rem);
+}
+
+.switcher{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
