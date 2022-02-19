@@ -10,7 +10,7 @@ import { ImportCryptoCurrenciesService } from '../service/import-crypto-currenci
   templateUrl: './home-crypto-list.component.html',
   styleUrls: ['./home-crypto-list.component.scss']
 })
-export class HomeCryptoListComponent implements OnInit, AfterViewInit
+export class HomeCryptoListComponent implements OnInit
 {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
