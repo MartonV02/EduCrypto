@@ -13,7 +13,8 @@ $accent: map-get($my-theme, accent);
 }
 
 .container{
-    display: flex;
+    display: block;
+    margin: auto;
     justify-content: space-around;
 }
 

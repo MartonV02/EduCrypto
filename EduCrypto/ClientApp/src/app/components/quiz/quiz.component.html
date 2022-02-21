@@ -3,13 +3,19 @@
             <mat-card-title class="title">Válassza ki a helyes megoldást</mat-card-title>
             <mat-card-content>
               <p class="question">{{this.quizModel.question}}</p>
+
             </mat-card-content>
             <mat-divider inset></mat-divider>
-            <mat-card-actions class="container">
-              <button mat-button (click)="checkAnswer(1)" class="button">{{this.quizModel.answers[0]}}</button>
-              <button mat-button (click)="checkAnswer(2)" class="button">{{this.quizModel.answers[1]}}</button>
-              <button mat-button (click)="checkAnswer(3)" class="button">{{this.quizModel.answers[2]}}</button>
-              <button mat-button (click)="checkAnswer(4)" class="button">{{this.quizModel.answers[3]}}</button>
+            <mat-card-actions>
+              <div class="container">
+                <button mat-button (click)="checkAnswer(1)" class="button">{{this.quizModel.answers[0]}}</button>
+                <button mat-button (click)="checkAnswer(2)" class="button">{{this.quizModel.answers[1]}}</button>
+              </div>
+              
+                <div class="container"> 
+                  <button mat-button (click)="checkAnswer(3)" class="button">{{this.quizModel.answers[2]}}</button>
+                  <button mat-button (click)="checkAnswer(4)" class="button">{{this.quizModel.answers[3]}}</button>
+                </div>
             </mat-card-actions>
         <mat-card-footer>
             <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
