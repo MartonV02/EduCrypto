@@ -10,8 +10,17 @@ export class AppComponent {
 
   constructor(@Inject(DOCUMENT) private document: Document, private renderer: Renderer2) {}
 
+  public isDarkRecaptcha: boolean;
+
   switchMode(isDarkMode: boolean) {
     const baseClass = isDarkMode ? 'theme-dark' : 'theme-light';
     this.renderer.setAttribute(this.document.body, 'class', baseClass);
+    if (isDarkMode)
+    {
+      this.isDarkRecaptcha =true;
+    }
+    else {
+      this.isDarkRecaptcha = false;
+    }
   }
 }

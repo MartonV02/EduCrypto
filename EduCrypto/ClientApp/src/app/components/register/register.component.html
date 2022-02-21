@@ -58,7 +58,7 @@
         </div>
         <div class="captcha-div">
           <div class="recaptcha">
-            <re-captcha (resolved)="resolved($event)" siteKey="6Le__UQeAAAAAFhBU7JBFCzGp9n6ON8I-x0p7oCu"></re-captcha>
+            <re-captcha (resolved)="resolved($event)" [theme] = "captchaColor ? 'dark' : 'light'" siteKey="6Le__UQeAAAAAFhBU7JBFCzGp9n6ON8I-x0p7oCu"></re-captcha>
           </div>
         </div>
         <button mat-flat-button color="primary" [disabled]="!key">Create new account</button>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-register',
@@ -9,11 +10,23 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   key : string;
   hide: boolean = false;
-  constructor(private fb: FormBuilder) {
+  public captchaColor: boolean;
+
+  constructor(
+    private fb: FormBuilder,
+    private appComp: AppComponent) {
     this.key = '';
    }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.appComp.isDarkRecaptcha)
+    {
+      this.captchaColor= true
+    }
+    else {
+      this.captchaColor = false
+    }
+  }
   registerForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
