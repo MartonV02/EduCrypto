@@ -23,6 +23,7 @@ $accent: map-get($my-theme, accent);
 .content
 {
   height: calc(100vh - 98px);
+  min-width: 900px;
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
