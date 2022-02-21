@@ -3,16 +3,26 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ImportedCryptoModel } from '../model/imported-crypto.model';
 import { ImportCryptoCurrenciesService } from '../service/import-crypto-currencies.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 //https://stackblitz.com/run?file=src/app/table-expandable-rows-example.ts -- Extend with that
 
 @Component({
   selector: 'home-crypto-list',
   templateUrl: './home-crypto-list.component.html',
-  styleUrls: ['./home-crypto-list.component.scss']
+  styleUrls: ['./home-crypto-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class HomeCryptoListComponent implements OnInit
 {
   @ViewChild(MatPaginator) paginator: MatPaginator;
+
+  public expandedElement: PeriodicElement | null;
 
   public entities: ImportedCryptoModel[];
   public dataSource: any;
@@ -47,4 +57,12 @@ export class HomeCryptoListComponent implements OnInit
         this.dataSource.paginator = this.paginator;
       });
   }
+}
+
+export interface PeriodicElement {
+  name: string;
+  position: number;
+  weight: number;
+  symbol: string;
+  description: string;
 }
