@@ -34,7 +34,7 @@ export class HomeCryptoListComponent implements OnInit
     'date_added',
     'max_supply',
     'circulating_supply',
-    'percent_change_24h',
+    'quote.usd.percent_change_24h',
     'percent_change_30d',
     'percent_change_90d',
     'price',

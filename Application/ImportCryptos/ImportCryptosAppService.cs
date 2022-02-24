@@ -1,6 +1,7 @@
 ﻿using Application.ImportCryptos.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Text.Json;
 using System.Web;
@@ -28,13 +29,24 @@ namespace Application.ImportCryptos
             return client.DownloadString(URL.ToString());
         }
 
-        public IEnumerable<CryptoPropertiesModel> GetList()
+        public IEnumerable<dynamic> GetList()
         {
             var resultData = JsonSerializer.Deserialize<ImportedCryptos>(this.GetCryptoList());
             
             var resultInnerProperties = resultData.data;
 
-            return resultInnerProperties;
+            return resultInnerProperties.Select(r => new 
+            { 
+                r.id,
+                r.name,
+                r.symbol,
+                r.date_added,
+                r.max_supply,
+                r.circulating_supply,
+                r.last_updated,
+                //r.quote,
+                actualUSDPrice = r.quote.USD.price
+            });
         }
     }
 }
