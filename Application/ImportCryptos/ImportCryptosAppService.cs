@@ -45,7 +45,10 @@ namespace Application.ImportCryptos
                 r.circulating_supply,
                 r.last_updated,
                 //r.quote,
-                actualUSDPrice = r.quote.USD.price
+                percent_Change24h = r.quote.USD.percent_change_24h,
+                percent_Change30d = r.quote.USD.percent_change_30d,
+                percent_Change90d = r.quote.USD.percent_change_90d,
+                actual_USD_Price = r.quote.USD.price
             });
         }
     }

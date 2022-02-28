@@ -4,7 +4,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ImportedCryptoModel } from '../model/imported-crypto.model';
 import { ImportCryptoCurrenciesService } from '../service/import-crypto-currencies.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-//https://stackblitz.com/run?file=src/app/table-expandable-rows-example.ts -- Extend with that
 
 @Component({
   selector: 'home-crypto-list',
@@ -34,10 +33,10 @@ export class HomeCryptoListComponent implements OnInit
     'date_added',
     'max_supply',
     'circulating_supply',
-    'quote.usd.percent_change_24h',
-    'percent_change_30d',
-    'percent_change_90d',
-    'price',
+    'percent_Change24h',
+    'percent_Change30d',
+    'percent_Change90d',
+    'actual_USD_Price',
   ];
 
   constructor(private _importCryptoCurrenciesService: ImportCryptoCurrenciesService) { }
