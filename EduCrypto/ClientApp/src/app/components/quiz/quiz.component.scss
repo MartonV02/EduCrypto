@@ -3,17 +3,12 @@
 $primary: map-get($my-theme, primary);
 $accent: map-get($my-theme, accent);
 
-
-.quiz1 {
-    min-width: 100%;
-}
-
 .title{
     text-align: center;
 }
 
 .container{
-    display: block;
+    display: flex;
     margin: auto;
     justify-content: space-around;
 }
@@ -25,5 +20,15 @@ $accent: map-get($my-theme, accent);
 .question{
     text-align: center;
     font-size: large;
+}
+
+.base{
+    margin: auto;
+    width: 80vh;
+}
+
+.img{
+    display: flex;
+    justify-content: center;
 }
 
