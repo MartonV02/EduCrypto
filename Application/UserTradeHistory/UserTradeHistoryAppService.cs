@@ -150,7 +150,7 @@ namespace Application.UserTradeHistory
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
+                FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
                 if (user.moneyDollar < userTradeHystoryModel.spentValue)
                 {
                     throw new Exception("Not Enough Money");
@@ -195,7 +195,7 @@ namespace Application.UserTradeHistory
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
+                FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
 
                 try
                 {
@@ -230,7 +230,7 @@ namespace Application.UserTradeHistory
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
                 UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
-                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
+                FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {
@@ -285,7 +285,7 @@ namespace Application.UserTradeHistory
             try
             {
                 UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                CryptoPropertiesModel crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
+                FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
                 UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
 
                 if (user.Id != userForGroups.userHandlingModel.Id)

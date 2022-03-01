@@ -8,7 +8,7 @@ namespace Application.Common
 {
     public static class CryptoData
     {
-        private static List<CryptoPropertiesModel> lastResponse { get; set; } = null;
+        private static List<FinalCryptoData> lastResponse { get; set; } = null;
         public static DateTime expirationDate
         {
             get
@@ -21,7 +21,7 @@ namespace Application.Common
             } 
         }
 
-        public static List<CryptoPropertiesModel> Check()
+        public static List<FinalCryptoData> Check()
         {
             if (lastResponse == null || expirationDate < DateTime.Now)
             {
@@ -31,7 +31,7 @@ namespace Application.Common
             return lastResponse;
         }
 
-        public static CryptoPropertiesModel GetByCryptoSymbol(string cryptoSymbol)
+        public static FinalCryptoData GetByCryptoSymbol(string cryptoSymbol)
         {
             var result = Check().Where(e => e.symbol == cryptoSymbol).FirstOrDefault();
             if (result == null)
@@ -41,14 +41,14 @@ namespace Application.Common
             return result;
         }
 
-        public static decimal ChangeToCrypto(CryptoPropertiesModel crypto, decimal spent)
+        public static decimal ChangeToCrypto(FinalCryptoData crypto, decimal spent)
         {
-            return spent / crypto.quote.USD.price;
+            return spent / crypto.actual_USD_Price;
         }
 
-        public static decimal ChangeToDollar(CryptoPropertiesModel crypto, decimal spent)
+        public static decimal ChangeToDollar(FinalCryptoData crypto, decimal spent)
         {
-            return spent * crypto.quote.USD.price;
+            return spent * crypto.actual_USD_Price;
         }
     }
 }
