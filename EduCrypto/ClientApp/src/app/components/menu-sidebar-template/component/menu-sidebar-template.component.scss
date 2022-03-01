@@ -1,15 +1,19 @@
-mat-toolbar
+@import "/src/themes.scss";
+
+$primary: map-get($my-theme, primary);
+$accent: map-get($my-theme, accent);
+.mat-toolbar
 {
-  background: #004a9f;
+  background: mat-color($primary);
   color: white;
 }
 
-mat-sidenav
+.mat-sidenav
 {
   margin: 16px;
   width: 200px;
   border-right: none;
-  background: #002b5c;
+  background:  mat-color($primary);
   color: white;
   border-radius: 10px;
   padding: 16px;
@@ -19,6 +23,7 @@ mat-sidenav
 .content
 {
   height: calc(100vh - 98px);
+  min-width: 900px;
   border-radius: 10px;
   margin: 16px;
   margin-left: 32px;
@@ -29,7 +34,7 @@ mat-sidenav
   color: lightgray;
 }
 
-mat-sidenav-container
+.mat-sidenav-container
 {
   height: calc(100vh - 65px);
 }
@@ -42,7 +47,7 @@ mat-sidenav-container
   justify-content: flex-start;
   font-size: 1rem;
 
-  mat-icon
+  .mat-icon
   {
     margin-right: 8px;
   }
@@ -69,7 +74,7 @@ mat-sidenav-container
   color: lightgrey;
 }
 
-mat-divider
+.mat-divider
 {
   margin-top: 16px;
   margin-bottom: 16px;
@@ -97,4 +102,8 @@ mat-divider
 #login_id
 {
     margin: auto;
+}
+
+body {
+  filter: blur(1000rem);
 }

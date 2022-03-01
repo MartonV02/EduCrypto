@@ -1,0 +1,47 @@
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <p>Sign in to your account</p>
+    </div>
+    <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+      <div class="usernameInput bg-accent">
+        <mat-form-field class="full-width" appearance="outline" >
+          <mat-label>Username</mat-label>
+          <input formControlName="username" matInput placeholder="Enter username">
+          <mat-error *ngIf="!loginForm.controls['username'].valid">
+            Username is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="passwordInput">
+        <span>
+          <a class="text-link aLink" routerLink="/auth/forgot-password">Forgot Password?</a>
+        </span>
+        <mat-form-field class="full-width" appearance="outline" >
+          <mat-label>Enter your password</mat-label>
+            <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="!loginForm.controls['password'].valid">
+              Password is required
+            </mat-error>
+        </mat-form-field>
+      </div>
+      
+      <div class="captcha-div">
+        <div class="recaptcha">
+          <re-captcha (resolved)="resolved($event)" siteKey="6Le__UQeAAAAAFhBU7JBFCzGp9n6ON8I-x0p7oCu"></re-captcha>
+        </div>
+      </div>
+      
+      <button mat-flat-button color="primary" [disabled]="!key">Login</button>
+      <div class="button-row">
+        <a routerLink="/register" routerLinkActive="active">Create New Account</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+  
+
