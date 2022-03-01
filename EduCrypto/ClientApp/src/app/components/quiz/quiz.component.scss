@@ -1,3 +1,29 @@
+@import "/src/styles.scss";
+
+$primary: map-get($my-theme, primary);
+$accent: map-get($my-theme, accent);
+
+
 .quiz1 {
     min-width: 100%;
 }
+
+.title{
+    text-align: center;
+}
+
+.container{
+    display: block;
+    margin: auto;
+    justify-content: space-around;
+}
+
+.button{
+    background: mat-color($primary);
+}
+
+.question{
+    text-align: center;
+    font-size: large;
+}
+

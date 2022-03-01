@@ -4,6 +4,7 @@ import { MenuSideBarTemplateComponent } from './components/menu-sidebar-template
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent} from './components/register/register.component';
 import { QuizComponent } from './components/quiz/quiz.component';
+import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 
 const routes: Routes = [
   { path: 'app-menu-sidebar-template', component: MenuSideBarTemplateComponent },

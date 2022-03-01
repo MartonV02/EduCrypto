@@ -20,6 +20,19 @@ export class GenericUrlGenerator
   GetUrlWithParam(id?: number, action?: string): string
   {
 
-    return "";
+
+    var HttpUri = this._UriPrefix + this._backendUrlEnum;
+
+    
+    if (action)
+    {
+      HttpUri += "/"+ action;
+    }
+    if (id)
+    {
+      HttpUri +="/"+ id;
+    }
+    
+    return HttpUri;
   }
 }
