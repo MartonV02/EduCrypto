@@ -29,13 +29,13 @@ namespace Application.UserTradeHistory
         public EntityClass CreateWithTransaction(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
             UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
-            if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModel == null)
+            if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModelId == null)
                 this.TradeDollarToCrypto(userTradeHystoryModel, userAppService, userCryptoAppService);
-            else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModel == null)
+            else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModelId == null)
                 this.TradeCryptoToDollar(userTradeHystoryModel, userAppService, userCryptoAppService);
-            else if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModel != null)
+            else if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModelId != null)
                 this.TradeDollarToCryptoInGroup(userTradeHystoryModel, userAppService, userCryptoAppService, userForGroupsAppService);
-            else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModel != null)
+            else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModelId != null)
                 this.TradeCryptoToDollarInGroup(userTradeHystoryModel, userAppService, userCryptoAppService, userForGroupsAppService);
 
             return this.Create(userTradeHystoryModel);
@@ -149,7 +149,7 @@ namespace Application.UserTradeHistory
         {
             try
             {
-                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModelId);
                 FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
                 if (user.moneyDollar < userTradeHystoryModel.spentValue)
                 {
@@ -194,7 +194,7 @@ namespace Application.UserTradeHistory
         {
             try
             {
-                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModelId);
                 FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
 
                 try
@@ -228,8 +228,8 @@ namespace Application.UserTradeHistory
         {
             try
             {
-                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
-                UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModelId);
+                UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModelId.GetValueOrDefault());
                 FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.boughtCryptoSymbol);
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
@@ -284,9 +284,9 @@ namespace Application.UserTradeHistory
         {
             try
             {
-                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModel.Id);
+                UserHandlingModel user = userAppService.GetById(userTradeHystoryModel.userHandlingModelId);
                 FinalCryptoData crypto = CryptoData.GetByCryptoSymbol(userTradeHystoryModel.spentCryptoSymbol);
-                UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModel.Id);
+                UserForGroupsModel userForGroups = userForGroupsAppService.GetById(userTradeHystoryModel.userForGroupsModelId.GetValueOrDefault());
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {

@@ -11,10 +11,9 @@ namespace Application.UserTradeHistory
         [Key]
         public int Id { get; set; }
 
-        [Required]
         public UserHandlingModel userHandlingModel { get; set; }
         [Required]
-        public int? userHandlingModelId { get; set; }
+        public int userHandlingModelId { get; set; }
 
         [Required]
         public DateTime tradeDate { get; set; } = DateTime.Now;
