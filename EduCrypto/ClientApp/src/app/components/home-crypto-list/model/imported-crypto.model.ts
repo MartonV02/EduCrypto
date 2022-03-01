@@ -1,4 +1,4 @@
-import { ImportedCryptosQuote } from "./imported-cryptos-quote.model";
+//import { ImportedCryptosQuote } from "./imported-cryptos-quote.model";
 
 export class ImportedCryptoModel
 {
@@ -9,5 +9,9 @@ export class ImportedCryptoModel
   max_supply: number;
   circulating_supply: number;
   last_updated: Date;
-  quote: ImportedCryptosQuote;
+  percent_Change24h: number;
+  percent_Change30d: number;
+  percent_Change90d: number;
+  actual_USD_Price: number;
+  //quote: ImportedCryptosQuote;
 }
