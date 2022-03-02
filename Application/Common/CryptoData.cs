@@ -9,23 +9,14 @@ namespace Application.Common
     public static class CryptoData
     {
         private static List<FinalCryptoData> lastResponse { get; set; } = null;
-        public static DateTime expirationDate
-        {
-            get
-            {
-                return expirationDate;
-            }
-            set
-            {
-                expirationDate = value.AddMinutes(5);
-            } 
-        }
+        public static DateTime expirationDate { get; set; }
 
         public static List<FinalCryptoData> Check()
         {
-            if (lastResponse == null || expirationDate < DateTime.Now)
+            if (lastResponse == null || expirationDate.AddMinutes(1) < DateTime.Now)
             {
                 ImportCryptosAppService importCryptosAppService = new ImportCryptosAppService();
+                expirationDate = DateTime.Now;
                 lastResponse = importCryptosAppService.GetList().ToList();
             }
             return lastResponse;
