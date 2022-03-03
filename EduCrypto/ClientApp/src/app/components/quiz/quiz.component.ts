@@ -1,11 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  ChangeDetectorRef,
-} from '@angular/core';
+import {Component,OnInit,Input,OnChanges,ChangeDetectorRef,} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
 import { QuizModel } from './model/quiz.model';
