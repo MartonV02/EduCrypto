@@ -144,7 +144,7 @@ namespace Application.UserTradeHistory
             return result.ToList();
         }
 
-        private UserCryptoModel TradeDollarToCrypto(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+        private UserCryptoModel TradeDollarToCrypto(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
             UserCryptoAppService userCryptoAppService)
         {
             try
@@ -157,20 +157,20 @@ namespace Application.UserTradeHistory
                 }
                 else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue))
                 {
-                    throw new Exception("Invalid Change");
+                    throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue)}");
                 }
                 else
                 {
-                    try
+                    UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
+                    if (userCryptoModel != null)
                     {
-                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
-                        this.DecreaseDollar(userTradeHystoryModel.spentValue, user);
+                        this.DecreaseDollar(userTradeHystoryModel.spentValue, user, userAppService);
                         return userCryptoAppService.Update(userCryptoModel);
                     }
-                    catch (KeyNotFoundException)
+                    else
                     {
-                        UserCryptoModel userCryptoModel = new UserCryptoModel
+                        userCryptoModel = new UserCryptoModel
                         {
                             Id = 0,
                             userHandlingModel = user,
@@ -178,7 +178,7 @@ namespace Application.UserTradeHistory
                             cryptoValue = userTradeHystoryModel.boughtValue,
                             isFavourite = false
                         };
-                        this.DecreaseDollar(userTradeHystoryModel.spentValue, user);
+                        this.DecreaseDollar(userTradeHystoryModel.spentValue, user, userAppService);
                         return userCryptoAppService.Create(userCryptoModel);
                     }
                 }
@@ -189,7 +189,7 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeCryptoToDollar(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+        private UserCryptoModel TradeCryptoToDollar(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
             UserCryptoAppService userCryptoAppService)
         {
             try
@@ -223,7 +223,7 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeDollarToCryptoInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+        private UserCryptoModel TradeDollarToCryptoInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
             UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
             try
@@ -279,7 +279,7 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private UserCryptoModel TradeCryptoToDollarInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService, 
+        private UserCryptoModel TradeCryptoToDollarInGroup(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
             UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
             try
@@ -323,10 +323,9 @@ namespace Application.UserTradeHistory
             }
         }
 
-        private void DecreaseDollar(decimal dollar, UserHandlingModel user)
+        private void DecreaseDollar(decimal dollar, UserHandlingModel user, UserHandlingAppService userAppService)
         {
             user.moneyDollar -= dollar;
-            UserHandlingAppService userAppService = new UserHandlingAppService();
             userAppService.Update(user);
         }
 
