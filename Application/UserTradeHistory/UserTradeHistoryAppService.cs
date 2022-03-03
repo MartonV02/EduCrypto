@@ -200,16 +200,16 @@ namespace Application.UserTradeHistory
                 try
                 {
                     UserCryptoModel userCrypto = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
-                    if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
+                    if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue || userCrypto == null)
                     {
                         throw new KeyNotFoundException();
                     }
                     else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue))
                     {
-                        throw new Exception("Invalid Change");
+                        throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue)}");
                     }
                     userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
-                    this.IncreaseDollar(userTradeHystoryModel.boughtValue, user);
+                    this.IncreaseDollar(userTradeHystoryModel.boughtValue, user, userAppService);
                     return userCryptoAppService.Update(userCrypto);
                 }
                 catch (KeyNotFoundException)
@@ -329,10 +329,9 @@ namespace Application.UserTradeHistory
             userAppService.Update(user);
         }
 
-        private void IncreaseDollar(decimal dollar, UserHandlingModel user)
+        private void IncreaseDollar(decimal dollar, UserHandlingModel user, UserHandlingAppService userAppService)
         {
             user.moneyDollar += dollar;
-            UserHandlingAppService userAppService = new UserHandlingAppService();
             userAppService.Update(user);
         }
 
