@@ -4,18 +4,18 @@ table
   position: sticky;
 }
 
-.main-item
-{
-  mat-card
-  {
-    background-image: linear-gradient ( 45deg, rgb(78,78,78) 0%, rgb(78,78,78) 63%,rgb(133,201,211) 63%, rgb(133,201,211) 75%,rgb(80,178,192) 75%, rgb(80,178,192) 81%, rgb(80,178,192) 81%, rgb(80,178,192) 85%,rgb(64,162,178) 85%, rgb(64,162,178) 90%,rgb(39,138,156) 90%, rgb(39,138,156) 100% );
-    img
-    {
+.main-item {
+  mat-card {
+    background-image: linear-gradient(45deg, rgb(77,77,77) 0%, rgb(77,77,77) 63%,rgb(133,201,211) 63%, rgb(133,201,211) 75%,rgb(80,178,192) 75%, rgb(80,178,192) 81%,rgb(80,178,192) 81%, rgb(80,178,192) 85%,rgb(64,162,178) 85%, rgb(64,162,178) 90%,rgb(39,138,156) 90%, rgb(39,138,156) 100%);
+    background-size: auto;
+
+    img {
       width: 25%;
       height: 25%;
     }
 
-    width: 80%;
+    width: 140vh;
+    height: 80vh;
     margin: auto;
     margin-top: 20px;
     margin-bottom: 70px;
