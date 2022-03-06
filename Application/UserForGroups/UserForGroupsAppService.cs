@@ -19,14 +19,15 @@ namespace Application.UserForGroups
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
-                .Include(e => e.userHandlingModel);
+                .Include(e => e.userHandlingModel)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public override EntityClass GetById(int id)
@@ -34,14 +35,15 @@ namespace Application.UserForGroups
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
                 .Include(e => e.userHandlingModel)
-                .Where(f => f.Id == id);
+                .Where(f => f.Id == id)
+                .FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.FirstOrDefault();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
@@ -49,14 +51,15 @@ namespace Application.UserForGroups
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
                 .Include(e => e.userHandlingModel)
-                .Where(x => x.userHandlingModel.Id == userId);
+                .Where(x => x.userHandlingModel.Id == userId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
@@ -64,14 +67,15 @@ namespace Application.UserForGroups
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
                 .Include(e => e.userHandlingModel).ThenInclude(g => g.profilePicture)
-                .Where(x => x.groupModel.Id == groupId);
+                .Where(x => x.groupModel.Id == groupId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
     }
 }

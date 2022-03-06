@@ -27,14 +27,16 @@ namespace Application.Common
 
         public virtual T GetById(int id)
         {
-            var result = dbContext.Set<T>().Where(x => x.Id == id);
+            var result = dbContext.Set<T>()
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.FirstOrDefault();
+            return result;
         }
 
         public virtual T Create(T entity)

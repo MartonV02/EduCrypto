@@ -20,14 +20,15 @@ namespace Application.UserCrypto
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel); 
+                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
+                .ToList(); 
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public override EntityClass GetById(int id)
@@ -35,14 +36,15 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.Id == id);
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.FirstOrDefault();
+            return result;
         }
 
         //Vissza adja egy adott user adott grupphoz tartozó valutáit
@@ -51,14 +53,15 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.Id == userForGroupId);
+                .Where(x => x.userForGroupsModel.Id == userForGroupId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         //Viszza adja egy adott gruphoz tartozó összes birtokolt valutát
@@ -67,14 +70,15 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId);
+                .Where(x => x.userForGroupsModel.groupModel.Id == groupId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         //Vissza adja egy adott grup adott cryptovaluta birtoklásokat
@@ -83,14 +87,15 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoSymbol == cryptoSymbol);
+                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoSymbol == cryptoSymbol)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
         
         public IEnumerable<EntityClass> GetByGroupAndUserId(int groupId, int userId)
@@ -98,28 +103,30 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userForGroupsModel.Id == userId);
+                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userForGroupsModel.Id == userId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public EntityClass GetByUserIdAndCryptoSymbol(int userId, string cryptoSymbol)
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
-                .Where(x => x.userHandlingModel.Id == userId && x.cryptoSymbol == cryptoSymbol && x.userForGroupsModel == null);
+                .Where(x => x.userHandlingModel.Id == userId && x.cryptoSymbol == cryptoSymbol && x.userForGroupsModel == null)
+                .FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList().FirstOrDefault();
+            return result;
         }
 
         public EntityClass GetByUserForGroupsIdAndCryptoSymbol(int userForGroupId, string cryptoSymbol)
@@ -127,14 +134,15 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.Id == userForGroupId && x.cryptoSymbol == cryptoSymbol);
+                .Where(x => x.userForGroupsModel.Id == userForGroupId && x.cryptoSymbol == cryptoSymbol)
+                .FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList().FirstOrDefault();
+            return result;
         }
     }
 }
