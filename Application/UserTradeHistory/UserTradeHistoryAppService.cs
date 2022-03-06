@@ -45,14 +45,15 @@ namespace Application.UserTradeHistory
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
-                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel);
+                .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public override EntityClass GetById(int id)
@@ -60,28 +61,30 @@ namespace Application.UserTradeHistory
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(f => f.Id == id);
+                .Where(f => f.Id == id)
+                .FirstOrDefault();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.FirstOrDefault();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByUserId(int userId)
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
-                .Where(x => x.userHandlingModel.Id == userId && x.userForGroupsModel == null);
+                .Where(x => x.userHandlingModel.Id == userId && x.userForGroupsModel == null)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
@@ -89,14 +92,15 @@ namespace Application.UserTradeHistory
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId);
+                .Where(x => x.userForGroupsModel.groupModel.Id == groupId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByUserAndGroupId(int userId, int groupId)
@@ -104,14 +108,15 @@ namespace Application.UserTradeHistory
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userHandlingModel.Id == userId);
+                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userHandlingModel.Id == userId)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByCryptoCurrencySymbol(string cryptoSymbol)
@@ -119,14 +124,15 @@ namespace Application.UserTradeHistory
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.boughtCryptoSymbol == cryptoSymbol);
+                .Where(x => x.boughtCryptoSymbol == cryptoSymbol)
+                .ToList();
 
             if (result == null)
             {
                 throw new KeyNotFoundException();
             }
 
-            return result.ToList();
+            return result;
         }
 
         public IEnumerable<EntityClass> GetByUserIdAndCryptoCurrencySymbol(int userId, string cryptoSymbol)
@@ -134,7 +140,8 @@ namespace Application.UserTradeHistory
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoSymbol == cryptoSymbol);
+                .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoSymbol == cryptoSymbol)
+                .ToList();
 
             if (result == null)
             {
