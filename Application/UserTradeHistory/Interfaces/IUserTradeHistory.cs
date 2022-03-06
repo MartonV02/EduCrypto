@@ -8,7 +8,7 @@ namespace Application.UserTradeHistory.Interfaces
     public interface IUserTradeHistory : IIdentity
     {
         public UserHandlingModel userHandlingModel { get; set; }
-        public DateTime tradeDate { get; set; }
+        public DateTime? tradeDate { get; set; }
         public string? spentCryptoSymbol { get; set; }
         public decimal spentValue { get; set; }
         public string? boughtCryptoSymbol { get; set; }

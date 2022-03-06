@@ -15,8 +15,7 @@ namespace Application.UserTradeHistory
         [Required]
         public int userHandlingModelId { get; set; }
 
-        [Required]
-        public DateTime tradeDate { get; set; } = DateTime.Now;
+        public DateTime? tradeDate { get; set; } = DateTime.Now;
 
         public string? spentCryptoSymbol { get; set; }
 
