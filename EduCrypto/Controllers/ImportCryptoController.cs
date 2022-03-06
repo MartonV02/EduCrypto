@@ -9,12 +9,21 @@ namespace EduCrypto.Controllers
     public class ImportCryptoController : Controller
     {
         [HttpGet]
-        public IActionResult GetAll()
+        public ActionResult GetAll()
         {
             return this.Run(() =>
             {
                 var result = CryptoData.Check();
                 return Ok(result);
+            });
+        }
+
+        [HttpGet("{cryptoSymbol}")]
+        public ActionResult GetBySymbol(string cryptoSymbol)
+        {
+            return this.Run(() =>
+            {
+                return Ok(CryptoData.GetByCryptoSymbol(cryptoSymbol));
             });
         }
     }

@@ -208,9 +208,12 @@ namespace Application.UserTradeHistory
                     {
                         throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue)}");
                     }
-                    userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
-                    this.IncreaseDollar(userTradeHystoryModel.boughtValue, user, userAppService);
-                    return userCryptoAppService.Update(userCrypto);
+                    else
+                    {
+                        userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
+                        this.IncreaseDollar(userTradeHystoryModel.boughtValue, user, userAppService);
+                        return userCryptoAppService.Update(userCrypto);
+                    }
                 }
                 catch (KeyNotFoundException)
                 {
@@ -246,20 +249,20 @@ namespace Application.UserTradeHistory
                 }
                 else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue))
                 {
-                    throw new Exception("Invalid Change");
+                    throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue)}");
                 }
                 else
                 {
-                    try
+                    UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
+                    if (userCryptoModel != null)
                     {
-                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
-                        this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
+                        this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups, userForGroupsAppService);
                         return userCryptoAppService.Update(userCryptoModel);
                     }
-                    catch (KeyNotFoundException)
+                    else
                     {
-                        UserCryptoModel userCryptoModel = new UserCryptoModel
+                        userCryptoModel = new UserCryptoModel
                         {
                             Id = 0,
                             userHandlingModel = user,
@@ -268,7 +271,7 @@ namespace Application.UserTradeHistory
                             userForGroupsModel = userForGroups,
                             isFavourite = false
                         };
-                        this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups);
+                        this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups, userForGroupsAppService);
                         return userCryptoAppService.Create(userCryptoModel);
                     }
                 }
@@ -296,25 +299,30 @@ namespace Application.UserTradeHistory
                 {
                     throw new Exception("Group already closed");
                 }
-
-                try
+                else
                 {
-                    UserCryptoModel userCrypto = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
-                    if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue)
+                    try
                     {
-                        throw new KeyNotFoundException();
+                        UserCryptoModel userCrypto = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
+                        if (userCrypto.cryptoValue < userTradeHystoryModel.spentValue || userCrypto == null)
+                        {
+                            throw new KeyNotFoundException();
+                        }
+                        else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue))
+                        {
+                            throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue)}");
+                        }
+                        else
+                        {
+                            userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
+                            this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups, userForGroupsAppService);
+                            return userCryptoAppService.Update(userCrypto);
+                        }
                     }
-                    else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue))
+                    catch (KeyNotFoundException)
                     {
-                        throw new Exception("Invalid Change");
+                        throw new Exception("Not enough Crypto currency");
                     }
-                    userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
-                    this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups);
-                    return userCryptoAppService.Update(userCrypto);
-                }
-                catch (KeyNotFoundException)
-                {
-                    throw new Exception("Not enough Crypto currency");
                 }
             }
             catch (KeyNotFoundException)
@@ -335,17 +343,15 @@ namespace Application.UserTradeHistory
             userAppService.Update(user);
         }
 
-        private void DecreaseDollarInGroup(decimal dollar, UserForGroupsModel userForGroups)
+        private void DecreaseDollarInGroup(decimal dollar, UserForGroupsModel userForGroups, UserForGroupsAppService userForGroupsAppService)
         {
             userForGroups.money -= dollar;
-            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
             userForGroupsAppService.Update(userForGroups);
         }
 
-        private void IncreaseDollarInGroup(decimal dollar, UserForGroupsModel userForGroups)
+        private void IncreaseDollarInGroup(decimal dollar, UserForGroupsModel userForGroups, UserForGroupsAppService userForGroupsAppService)
         {
             userForGroups.money += dollar;
-            UserForGroupsAppService userForGroupsAppService = new UserForGroupsAppService();
             userForGroupsAppService.Update(userForGroups);
         }
     }
