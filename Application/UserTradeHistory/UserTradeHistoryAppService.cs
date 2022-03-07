@@ -252,12 +252,9 @@ namespace Application.UserTradeHistory
                 {
                     throw new Exception("Not Enough Money");
                 }
-                else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue))
-                {
-                    throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue)}");
-                }
                 else
                 {
+                    userTradeHystoryModel.boughtValue = CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue);
                     try
                     {
                         UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
@@ -313,12 +310,9 @@ namespace Application.UserTradeHistory
                         {
                             throw new KeyNotFoundException();
                         }
-                        else if (userTradeHystoryModel.boughtValue != CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue))
-                        {
-                            throw new Exception($"Invalid Change -> Correct: {CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue)}");
-                        }
                         else
                         {
+                            userTradeHystoryModel.boughtValue = CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue);
                             userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                             this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups, userForGroupsAppService);
                             return userCryptoAppService.Update(userCrypto);
