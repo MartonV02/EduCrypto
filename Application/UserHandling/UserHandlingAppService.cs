@@ -1,4 +1,4 @@
-﻿using Application.Common;
+using Application.Common;
 using Application.UserHandling.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;

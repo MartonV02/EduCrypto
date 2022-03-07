@@ -30,7 +30,7 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpPut("{answer}")]
+        [HttpPut("{answer}/user/{userId}")]
         public ActionResult CheckQuestion(int answer, int userId)
         {
             return this.Run(() =>

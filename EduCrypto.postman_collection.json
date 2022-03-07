@@ -1,0 +1,485 @@
+{
+	"info": {
+		"_postman_id": "35b4191b-08ff-4db8-b72f-dc52116b14aa",
+		"name": "EduCrypto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quiz Calls",
+			"item": [
+				{
+					"name": "Get Next Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/quiz/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"quiz",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Question",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/quiz/0/user/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"quiz",
+								"0",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trades",
+			"item": [
+				{
+					"name": "Dollar to Crypto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 100,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Dollar to Crypto in Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 5,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crypto to Dollar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.5,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"boughtValue\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crypto to Dollar in Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 2,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.01,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CryptoCurrencyData",
+			"item": [
+				{
+					"name": "GetCryptos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/ImportCrypto",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"ImportCrypto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCryptoBySymbol",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/ImportCrypto/LUNA",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"ImportCrypto",
+								"LUNA"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Get All Groups",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/Group",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 0,\r\n    \"name\": \"Győr\",\r\n    \"startBudget\": 1000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/Group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 10,\r\n    \"name\": \"Győr\",\r\n    \"startBudget\": 2000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/Group",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/Group/11",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/Group/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Handling",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling/8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"userName\": \"ron\",\r\n    \"email\": \"kitudja@gmail.com\",\r\n    \"fullName\": \"Sokadik\",\r\n    \"birthDate\": \"2003-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"titkos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modify User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 8,\r\n    \"userName\": \"ron555\",\r\n    \"email\": \"kitudja@gmail.com\",\r\n    \"fullName\": \"Sokadik\",\r\n    \"birthDate\": \"2003-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"titkos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling/8W",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling",
+								"8W"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
