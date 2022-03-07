@@ -29,8 +29,12 @@
             <div class="example-element-weight"> {{element.weight}} </div>
           </div>
           <div class="example-element-description">
-            {{element.description}}
-            <span class="example-element-description-attribution"> -- Wikipedia </span>
+              {{element.description}}
+              <span class="example-element-description-attribution"> -- Wikipedia </span>
+              <mat-form-field appearance="fill">
+                  <mat-label>Amount of money</mat-label>
+                  <input matInput placeholder="From your budget" value="100">
+              </mat-form-field>
           </div>
         </div>
       </td>

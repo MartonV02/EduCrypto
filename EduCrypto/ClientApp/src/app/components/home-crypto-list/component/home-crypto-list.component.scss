@@ -42,11 +42,12 @@ table {
     max-width: 400px;
     font-size: 40px;
     color: #e3e3e3;
+    position: relative;
     line-height: 30pt;
     top: 50%;
     left: 25%;
     -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, 75%);
+    transform: translate(-50%, 50%);
   }
 }
 
