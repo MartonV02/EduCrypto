@@ -4,11 +4,10 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
-
 @Component({
   selector: 'app-menu-sidebar-template',
   templateUrl: './menu-sidebar-template.component.html',
-  styleUrls: ['./menu-sidebar-template.component.scss']
+  styleUrls: ['./menu-sidebar-template.component.scss'],
 })
 export class MenuSideBarTemplateComponent {
   @ViewChild(MatSidenav)
@@ -17,7 +16,8 @@ export class MenuSideBarTemplateComponent {
   @Output()
   readonly modeSwitched = new EventEmitter<boolean>();
 
-  constructor(private observer: BreakpointObserver) { }
+  isDark: boolean;
+  constructor(private observer: BreakpointObserver) {}
 
   ngAfterViewInit() {
     this.observer
@@ -37,6 +37,7 @@ export class MenuSideBarTemplateComponent {
   darkModeChange({ checked }: MatSlideToggleChange) {
     this.modeSwitched.emit(checked);
     console.log(checked);
+    if (checked) this.isDark = true;
+    else this.isDark = false;
   }
-
 }
