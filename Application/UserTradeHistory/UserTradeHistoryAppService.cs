@@ -29,7 +29,9 @@ namespace Application.UserTradeHistory
         public EntityClass CreateWithTransaction(EntityClass userTradeHystoryModel, UserHandlingAppService userAppService,
             UserCryptoAppService userCryptoAppService, UserForGroupsAppService userForGroupsAppService)
         {
-            if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModelId == null)
+            if (userTradeHystoryModel.spentValue == 0)
+                throw new Exception("There is no exchange");
+            else if (userTradeHystoryModel.spentCryptoSymbol == null && userTradeHystoryModel.boughtCryptoSymbol != null && userTradeHystoryModel.userForGroupsModelId == null)
                 this.TradeDollarToCrypto(userTradeHystoryModel, userAppService, userCryptoAppService);
             else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModelId == null)
                 this.TradeCryptoToDollar(userTradeHystoryModel, userAppService, userCryptoAppService);
