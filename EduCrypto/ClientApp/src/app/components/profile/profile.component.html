@@ -1,20 +1,19 @@
-<mat-sidenav-container>
-  <mat-sidenav-content>
-    <mat-card>
-      <div class="container">
-        <mat-card-content>
-          <div class="valami">
-            <ngx-charts-pie-chart
-              [results]="Cryptos"
-              [doughnut]="true"
-              [legend]="legend"
-              [legendPosition]="legendPosition"
-              [legendTitle]="legendTitle"
-              [customColors]="customColors"
-            ></ngx-charts-pie-chart>
-          </div>
-        </mat-card-content>
+<mat-card>
+  <div class="container">
+    <mat-card-content>
+      balance
+      <div class="chart">
+        <ngx-charts-pie-chart
+          [results]="Cryptos"
+          [doughnut]="true"
+          [legend]="legend"
+          [legendPosition]="legendPosition"
+          [legendTitle]="legendTitle"
+          [customColors]="customColors"
+        ></ngx-charts-pie-chart>
       </div>
-    </mat-card>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    </mat-card-content>
+
+    <mat-card-content> valami szöveg vagy kép nem tudom </mat-card-content>
+  </div>
+</mat-card>

@@ -1,8 +1,7 @@
 @use "~@angular/material/" as mat;
-@use "palette-helper";
+@use "./palette-helper";
 @import "./palettes";
 
-/* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/theming";
 @include mat.core();
 
@@ -32,7 +31,7 @@ $my-theme: mat.define-light-theme(
     ),
   )
 );
-// $my-theme: palette-helper.modify-background($my-theme, $md-mywhite);
+$my-theme: palette-helper.modify-background($my-theme, $mywhite);
 
 $my-theme-dark: mat.define-dark-theme(
   (
@@ -43,14 +42,52 @@ $my-theme-dark: mat.define-dark-theme(
     ),
   )
 );
-// $my-theme-dark: palette-helper.modify-background($my-theme-dark, $md-myblack);
+$my-theme-dark: palette-helper.modify-background($my-theme-dark, $myblack);
+
+
+$light-theme-foreground-palette: (
+  base:              $myblack,
+  divider:           $myblack,
+  dividers:          $myblack,
+  disabled:          $myblack,
+  disabled-button:   $myblack,
+  disabled-text:     $myblack,
+  elevation:         $myblack,
+  hint-text:         $myblack,
+  secondary-text:    $myblack,
+  icon:              $myblack,
+  icons:             $myblack,
+  text:              $myblack,
+  slider-min:        $myblack,
+  slider-off:        $myblack,
+  slider-off-active: $myblack,
+);
+
+$mat-dark-theme-foreground: (
+  base:              $mywhite,
+  divider:           $mywhite,
+  dividers:          $mywhite,
+  disabled:          $mywhite,
+  disabled-button:   $mywhite,
+  disabled-text:     $mywhite,
+  hint-text:         $mywhite,
+  secondary-text:    $mywhite,
+  icon:              $mywhite,
+  icons:             $mywhite,
+  text:              $mywhite,
+  slider-min:        $mywhite,
+  slider-off:        $mywhite,
+  slider-off-active: $mywhite,
+);
 
 .theme-dark {
-  @include mat.all-component-colors($my-theme-dark);
+  @include mat.all-component-themes($my-theme-dark);
+  background-color: $myblack;
 }
 
 .theme-light {
   @include mat.all-component-themes($my-theme);
+  background-color: $mywhite;
 }
 
 @include mat-slide-toggle-theme($my-theme);
