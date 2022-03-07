@@ -282,7 +282,7 @@ namespace Application.UserTradeHistory
             }
             catch (KeyNotFoundException)
             {
-                throw new Exception("No such a user or crypto value");
+                throw new Exception("No such a user, crypto value or group");
             }
         }
 
@@ -297,7 +297,7 @@ namespace Application.UserTradeHistory
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {
-                    throw new Exception("Not maching users");
+                    throw new Exception("You don't have access to that group");
                 }
                 else if (userForGroups.groupModel.isFinished)
                 {
