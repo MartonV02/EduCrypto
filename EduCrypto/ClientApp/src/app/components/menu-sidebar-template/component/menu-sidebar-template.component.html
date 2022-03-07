@@ -18,7 +18,7 @@
   
 </mat-toolbar>
 
-<mat-sidenav-container>
+<mat-sidenav-container [ngClass]="isDark ? 'dark' : 'light'" >
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
     <img class="avatar mat-elevation-z8" src="" />
@@ -32,7 +32,7 @@
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLink="profile">
       <mat-icon>person</mat-icon>
       <span>Profile</span>
     </button>
@@ -54,17 +54,9 @@
 
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- <div class="content mat-elevation-z8"> -->
       <router-outlet></router-outlet>
+
       <home-crypto-list></home-crypto-list>
     <!-- </div> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
-
- <!--<mat-sidenav-container>
-  <mat-sidenav mode="over" [(opened)] = "opened">Sidenav</mat-sidenav>
-  <mat-sidenav-content>Main
-    <button (click)="opened=!opened">Toggle open</button>
-  </mat-sidenav-content>
-</mat-sidenav-container>-->
-<!-- </mat-sidenav-content> -->

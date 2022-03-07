@@ -15,6 +15,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { QuizComponent } from './components/quiz/quiz.component';
 
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import { HomeCryptoListComponent } from './components/home-crypto-list/component
     LoginComponent,
     RegisterComponent,
     QuizComponent,
-    HomeCryptoListComponent
+    HomeCryptoListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +37,7 @@ import { HomeCryptoListComponent } from './components/home-crypto-list/component
     MatNativeDateModule,
     ReactiveFormsModule,
     MaterialModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
