@@ -37,6 +37,8 @@ namespace Application.UserTradeHistory
                 this.TradeDollarToCryptoInGroup(userTradeHystoryModel, userAppService, userCryptoAppService, userForGroupsAppService);
             else if (userTradeHystoryModel.spentCryptoSymbol != null && userTradeHystoryModel.boughtCryptoSymbol == null && userTradeHystoryModel.userForGroupsModelId != null)
                 this.TradeCryptoToDollarInGroup(userTradeHystoryModel, userAppService, userCryptoAppService, userForGroupsAppService);
+            else
+                throw new Exception("Wrong crypto symbol combination");
 
             return this.Create(userTradeHystoryModel);
         }
@@ -168,16 +170,16 @@ namespace Application.UserTradeHistory
                 }
                 else
                 {
-                    UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
-                    if (userCryptoModel != null)
+                    try
                     {
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
                         this.DecreaseDollar(userTradeHystoryModel.spentValue, user, userAppService);
                         return userCryptoAppService.Update(userCryptoModel);
                     }
-                    else
+                    catch (KeyNotFoundException)
                     {
-                        userCryptoModel = new UserCryptoModel
+                        UserCryptoModel userCryptoModel = new UserCryptoModel
                         {
                             Id = 0,
                             userHandlingModel = user,
@@ -229,7 +231,7 @@ namespace Application.UserTradeHistory
             }
             catch (KeyNotFoundException)
             {
-                throw new Exception("No such a user or crypto value");
+                throw new Exception("No such a user");
             }
         }
 
@@ -244,7 +246,7 @@ namespace Application.UserTradeHistory
 
                 if (user.Id != userForGroups.userHandlingModel.Id)
                 {
-                    throw new Exception("Not maching users");
+                    throw new Exception("You don't have access to that group");
                 }
                 else if (userForGroups.groupModel.isFinished)
                 {
@@ -260,16 +262,16 @@ namespace Application.UserTradeHistory
                 }
                 else
                 {
-                    UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
-                    if (userCryptoModel != null)
+                    try
                     {
+                        UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
                         userCryptoModel.cryptoValue += userTradeHystoryModel.boughtValue;
                         this.DecreaseDollarInGroup(userTradeHystoryModel.spentValue, userForGroups, userForGroupsAppService);
                         return userCryptoAppService.Update(userCryptoModel);
                     }
-                    else
+                    catch (KeyNotFoundException)
                     {
-                        userCryptoModel = new UserCryptoModel
+                        UserCryptoModel userCryptoModel = new UserCryptoModel
                         {
                             Id = 0,
                             userHandlingModel = user,

@@ -13,7 +13,7 @@ namespace Application.Common
 
         public static List<FinalCryptoData> Check()
         {
-            if (lastResponse == null || expirationDate.AddMinutes(2) < DateTime.Now)
+            if (lastResponse == null || expirationDate.AddMinutes(5) < DateTime.Now)
             {
                 ImportCryptosAppService importCryptosAppService = new ImportCryptosAppService();
                 expirationDate = DateTime.Now;
