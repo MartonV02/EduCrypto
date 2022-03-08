@@ -6,15 +6,14 @@ import { BackendUrlEnum } from '../../../shared/BackendUrlEnum.constant';
 import { GenericUrlGenerator } from '../../../shared/GenericUrlGenerator.service';
 import { QuizModel } from '../model/quiz.model';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
+export class QuizService {
+  private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(
+    BackendUrlEnum.Quiz
+  );
 
-export class QuizService
-{
-    
-    private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.Quiz);
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   private refreshRequired = new Subject<void>();
 
@@ -22,21 +21,19 @@ export class QuizService
     return this.refreshRequired;
   }
 
-  public getQuiz(id:number): Observable<QuizModel>
-  {
+  public getQuiz(id: number): Observable<QuizModel> {
     var HttpURI = this._uriGenerator.GetUrlWithParam(id);
-    return this.http.get<QuizModel>(HttpURI);  
+    return this.http.get<QuizModel>(HttpURI);
   }
 
-  public sendAnswer(answerId: number, userId: number): Observable<QuizModel>
-  {
+  public sendAnswer(answerId: number, userId: number): Observable<QuizModel> {
     var HttpURI = this._uriGenerator.GetUrlWithParam(answerId);
-    return this.http.put<QuizModel>(HttpURI + '?userId=' + userId, answerId)
-    .pipe(
-      tap(() => {
-      this.Refreshrequired.next();
-    }));
-
+    return this.http
+      .put<QuizModel>(HttpURI + '?userId=' + userId, answerId)
+      .pipe(
+        tap(() => {
+          this.Refreshrequired.next();
+        })
+      );
   }
-
 }

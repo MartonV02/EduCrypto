@@ -46,13 +46,5 @@ export class LoginComponent implements OnInit {
       this.key = captchaResponse;
     }
 
-    // componentDidMount() {
-    //   const darkmode = document.querySelector('html').classList.contains('dark');
-    //   if (darkmode) {
-    //     this.setState({ theme: 'dark' });
-    //   } else {
-    //     this.setState({ theme: 'light' });
-    //   }
-    // }
 
 }

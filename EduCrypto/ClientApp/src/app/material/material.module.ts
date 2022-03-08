@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 const Material = [
   CommonModule,
@@ -32,6 +33,7 @@ const Material = [
   MatProgressBarModule,
   MatTableModule,
   MatPaginatorModule,
+  MatDatepickerModule
 ];
 
 @NgModule({

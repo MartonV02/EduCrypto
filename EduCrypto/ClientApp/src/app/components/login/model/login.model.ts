@@ -1,5 +1,5 @@
 export class loginModel {
-    public email = '';
+    public username = '';
     public name = '';
     public token = '';
 }
