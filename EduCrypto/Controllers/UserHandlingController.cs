@@ -39,6 +39,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
+				//TODO is it good to send back the password
                 return Ok(userHandlingAppService.Create(user));
             });
         }
@@ -48,17 +49,18 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
+                //TODO disable modifing some fields
                 return Ok(userHandlingAppService.Update(user));
             });
         }
 
-        [HttpDelete]
-        public ActionResult Delete(UserHandlingModel user)
+        [HttpDelete("{userId}")]
+        public ActionResult Delete(int userId)
         {
             return this.Run(() =>
             {
-                userHandlingAppService.Delete(user.Id);
-                return Ok();
+                userHandlingAppService.Delete(userId);
+                return Ok("Succesfull delete");
             });
         }
 
