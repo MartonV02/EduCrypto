@@ -4,6 +4,7 @@ using Application.UserForGroups;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 
 namespace EduCrypto.Controllers
 {
@@ -52,22 +53,27 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpPut("{code}/{userId}")]
+        [HttpPut("join/{code}/{userId}")]
         public ActionResult Join(string code, int userId)
         {
             return this.Run(() =>
             {
-                string[] s = code.Split('#');
+
+                string[] s = code.Split('-');
                 try
                 {
                     int id = Convert.ToInt32(s[1]);
                     string name = s[0];
                     GroupModel group = groupAppService.GetById(id);
+                    if (userForGroupsAppService.GetByUserId(userId).Where(e => e.groupModelId == id).FirstOrDefault() != null)
+                    {
+                        throw new Exception();
+                    }
 
                     if (group.name == name)
                     {
                         UserHandlingModel user = userHandlingAppService.GetById(userId);
-                        UserForGroupsModel userForGroups = new UserForGroupsModel() { 
+                        UserForGroupsModel userForGroups = new() { 
                             userHandlingModelId = user.Id,
                             groupModelId = group.Id,
                             accesLevel = "member",
@@ -85,7 +91,7 @@ namespace EduCrypto.Controllers
                 {
                     return BadRequest(new
                     {
-                        ErrorMessage = "There is no such a goup with \"" + s[0] + "\" name, and \"" + s[1] + "\" id"
+                        ErrorMessage = "There is no such a goup with that name and Id, or you have already joint that group"
                     });
                 }
             });

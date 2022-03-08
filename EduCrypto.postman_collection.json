@@ -34,8 +34,17 @@
 					"request": {
 						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "2",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "https://localhost:44336/api/quiz/0/user/1",
+							"raw": "https://localhost:44336/api/quiz/1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -44,8 +53,6 @@
 							"path": [
 								"api",
 								"quiz",
-								"0",
-								"user",
 								"1"
 							]
 						}
@@ -93,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 5,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 5,\r\n  \"boughtCryptoSymbol\": \"BTC\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -407,7 +414,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 0,\r\n    \"userName\": \"ron\",\r\n    \"email\": \"kitudja@gmail.com\",\r\n    \"fullName\": \"Sokadik\",\r\n    \"birthDate\": \"2003-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"titkos\"\r\n}",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"userName\": \"walaki\",\r\n    \"email\": \"wala@gmail.com\",\r\n    \"fullName\": \"Sokadik\",\r\n    \"birthDate\": \"2003-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"titkos\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -474,6 +481,213 @@
 								"api",
 								"UserHandling",
 								"8W"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User Crypto",
+			"item": [
+				{
+					"name": "Get All UserCryptos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCrypto by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCryptos by GroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"group",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCryptos by userForGroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/userForGroup/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"userForGroup",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCryptos by GroupAndUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/group/1/user/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"group",
+								"1",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User For Groups",
+			"item": [
+				{
+					"name": "Get UFG by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get UFG by UserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/user/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"user",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get UFG by GroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"group",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Join a Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/join/Berlin-4/9",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"join",
+								"Berlin-4",
+								"9"
 							]
 						}
 					},
