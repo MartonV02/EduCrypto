@@ -10,8 +10,8 @@ namespace EduCrypto.Controllers
     [Route("api/[controller]")]
     public class QuizController : Controller
     {
-        QuizAppService quizAppService = new QuizAppService();
-        readonly UserHandlingAppService userHandlingAppService = new UserHandlingAppService();
+        readonly QuizAppService quizAppService = new();
+        readonly UserHandlingAppService userHandlingAppService = new();
 
         public QuizController(ApplicationDbContext dbContext)
         {

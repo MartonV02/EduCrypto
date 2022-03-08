@@ -37,7 +37,7 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpGet("{userForGroupId:int}")]
+        [HttpGet("userForGroup/{userForGroupId:int}")]
         public IActionResult GetByUserForGroupsId(int userForGroupId)
         {
             return this.Run(() =>
@@ -48,7 +48,7 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpGet("{groupId:int}")]
+        [HttpGet("group/{groupId:int}")]
         public IActionResult GetByGroupId(int groupId)
         {
             return this.Run(() =>
@@ -59,19 +59,6 @@ namespace EduCrypto.Controllers
             });
         }
 
-        //Biztosan törölni kell ilyet nem lehet
-        [HttpGet("Group/{groupId}/Crypto/{cryptoId}")]
-        public IActionResult GetByGroupAndCryptoId(int groupId, string cryptoSymbol)
-        {
-            return this.Run(() =>
-            {
-                var result = userCryptoAppService.GetByGroupAndCryptoSymbol(groupId, cryptoSymbol);
-
-                return Ok(result);
-            });
-        }
-
-        //Group Controllerbe kell
         [HttpGet("Group/{groupId}/User/{userId}")]
         public IActionResult GetByGroupAndUserId(int groupId, int userId)
         {
@@ -80,39 +67,6 @@ namespace EduCrypto.Controllers
                 var result = userCryptoAppService.GetByGroupAndUserId(groupId, userId);
 
                 return Ok(result);
-            });
-        }
-
-        [HttpPost]
-        public IActionResult Create([FromQuery] EntityClass entity)
-        {
-            return this.Run(() =>
-            {
-                var result = userCryptoAppService.Create(entity);
-
-                return Ok(result);
-            });
-        }
-
-        [HttpPut]
-        public IActionResult Update([FromQuery] EntityClass entity)
-        {
-            return this.Run(() =>
-            {
-                var result = userCryptoAppService.Update(entity);
-
-                return Ok(entity);
-            });
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            return this.Run(() =>
-            {
-                userCryptoAppService.Delete(id);
-
-                return Ok();
             });
         }
     }
