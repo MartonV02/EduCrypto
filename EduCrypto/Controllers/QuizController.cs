@@ -2,6 +2,7 @@
 using Application.Quiz;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace EduCrypto.Controllers
 {
@@ -30,7 +31,7 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpPut("{answer}/user/{userId}")]
+        [HttpPut("{answer}")]
         public ActionResult CheckQuestion(int answer, int userId)
         {
             return this.Run(() =>
