@@ -39,8 +39,16 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-				//TODO is it good to send back the password
-                return Ok(userHandlingAppService.Create(user));
+                UserHandlingModel result = userHandlingAppService.Create(user);
+                return Ok(new
+                {
+                    result.Id,
+                    result.userName,
+                    result.email,
+                    result.fullName,
+                    result.birthDate,
+                    result.moneyDollar
+                });
             });
         }
 
