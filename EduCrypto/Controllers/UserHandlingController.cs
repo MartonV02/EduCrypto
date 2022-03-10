@@ -39,8 +39,17 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-				//TODO is it good to send back the password
-                return Ok(userHandlingAppService.Create(user));
+                UserHandlingModel result = userHandlingAppService.Create(user);
+                return Ok(new
+                {
+                    result.Id,
+                    result.userName,
+                    result.email,
+                    result.fullName,
+                    result.birthDate,
+                    result.moneyDollar,
+                    result.xpLevel,
+                });
             });
         }
 
@@ -50,7 +59,24 @@ namespace EduCrypto.Controllers
             return this.Run(() =>
             {
                 //TODO disable modifing some fields
-                return Ok(userHandlingAppService.Update(user));
+                UserHandlingModel modified = userHandlingAppService.GetById(user.Id);
+                modified.Id = user.Id;
+                modified.userName = user.userName;
+                modified.email = user.email;
+                modified.fullName = user.fullName;
+                modified.birthDate = user.birthDate;
+                modified.Password = user.Password;
+                UserHandlingModel result = userHandlingAppService.Update(modified);
+                return Ok(new
+                {
+                    result.Id,
+                    result.userName,
+                    result.email,
+                    result.fullName,
+                    result.birthDate,
+                    result.moneyDollar,
+                    result.xpLevel,
+                });
             });
         }
 
