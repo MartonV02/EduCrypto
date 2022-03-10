@@ -1,11 +1,11 @@
-@import "/src/themes.scss";
+@import "/src/styles.scss";
 
 $primary: map-get($my-theme, primary);
 $accent: map-get($my-theme, accent);
 .mat-toolbar
 {
   background: mat-color($primary);
-  color: white;
+  color: #feefdd;
 }
 
 .mat-sidenav
@@ -14,7 +14,7 @@ $accent: map-get($my-theme, accent);
   width: 200px;
   border-right: none;
   background:  mat-color($primary);
-  color: white;
+  color: #feefdd;
   border-radius: 10px;
   padding: 16px;
   text-align: center;
@@ -31,7 +31,7 @@ $accent: map-get($my-theme, accent);
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  color: lightgray;
+  color: #feefdd;
 }
 
 .mat-sidenav-container
@@ -46,7 +46,7 @@ $accent: map-get($my-theme, accent);
   align-items: center;
   justify-content: flex-start;
   font-size: 1rem;
-
+  background:  mat-color($primary);
   .mat-icon
   {
     margin-right: 8px;
@@ -71,14 +71,14 @@ $accent: map-get($my-theme, accent);
 {
   margin-top: 2px;
   font-size: 0.7rem;
-  color: lightgrey;
+  color: #feefdd;
 }
 
 .mat-divider
 {
   margin-top: 16px;
   margin-bottom: 16px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background: mat-color($primary);
 }
 
 .header
@@ -106,4 +106,20 @@ $accent: map-get($my-theme, accent);
 
 body {
   filter: blur(1000rem);
+}
+
+.switcher{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.dark {
+
+  background-image: linear-gradient(148deg, rgba(15, 15, 15,0.04) 0%, rgba(15, 15, 15,0.04) 35%,rgba(113, 113, 113,0.04) 35%, rgba(113, 113, 113,0.04) 42%,rgba(210, 210, 210,0.04) 42%, rgba(210, 210, 210,0.04) 100%),linear-gradient(70deg, rgba(15, 15, 15,0.04) 0%, rgba(15, 15, 15,0.04) 25%,rgba(113, 113, 113,0.04) 25%, rgba(113, 113, 113,0.04) 30%,rgba(210, 210, 210,0.04) 30%, rgba(210, 210, 210,0.04) 100%),linear-gradient(65deg, rgba(15, 15, 15,0.04) 0%, rgba(15, 15, 15,0.04) 13%,rgba(113, 113, 113,0.04) 13%, rgba(113, 113, 113,0.04) 27%,rgba(210, 210, 210,0.04) 27%, rgba(210, 210, 210,0.04) 100%),linear-gradient(90deg, rgb(37,37,37),rgb(37,37,37));
+}
+  
+
+.light {
+  background-image: linear-gradient(112.5deg, rgb(214, 214, 214) 0%, rgb(214, 214, 214) 10%,rgb(195, 195, 195) 10%, rgb(195, 195, 195) 53%,rgb(176, 176, 176) 53%, rgb(176, 176, 176) 55%,rgb(157, 157, 157) 55%, rgb(157, 157, 157) 60%,rgb(137, 137, 137) 60%, rgb(137, 137, 137) 88%,rgb(118, 118, 118) 88%, rgb(118, 118, 118) 91%,rgb(99, 99, 99) 91%, rgb(99, 99, 99) 100%),linear-gradient(157.5deg, rgb(214, 214, 214) 0%, rgb(214, 214, 214) 10%,rgb(195, 195, 195) 10%, rgb(195, 195, 195) 53%,rgb(176, 176, 176) 53%, rgb(176, 176, 176) 55%,rgb(157, 157, 157) 55%, rgb(157, 157, 157) 60%,rgb(137, 137, 137) 60%, rgb(137, 137, 137) 88%,rgb(118, 118, 118) 88%, rgb(118, 118, 118) 91%,rgb(99, 99, 99) 91%, rgb(99, 99, 99) 100%),linear-gradient(135deg, rgb(214, 214, 214) 0%, rgb(214, 214, 214) 10%,rgb(195, 195, 195) 10%, rgb(195, 195, 195) 53%,rgb(176, 176, 176) 53%, rgb(176, 176, 176) 55%,rgb(157, 157, 157) 55%, rgb(157, 157, 157) 60%,rgb(137, 137, 137) 60%, rgb(137, 137, 137) 88%,rgb(118, 118, 118) 88%, rgb(118, 118, 118) 91%,rgb(99, 99, 99) 91%, rgb(99, 99, 99) 100%),linear-gradient(90deg, rgb(195, 195, 195),rgb(228, 228, 228)); background-blend-mode:overlay,overlay,overlay,normal;
 }

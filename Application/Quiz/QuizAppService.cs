@@ -21,7 +21,7 @@ namespace Application.Quiz
             }
         }
 
-        public QuizModel GetQuestion(int  xp)
+        public QuizModel GetQuestion(int xp)
         {
             return Questions[xp];
         }
