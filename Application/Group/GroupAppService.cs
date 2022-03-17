@@ -15,13 +15,14 @@ namespace Application.Group
         public override GroupModel Create(GroupModel groupModel)
         {
             groupModel.startDate = DateTime.Now;
+            groupModel.isFinished = false;
             return base.Create(groupModel);
         }
 
         public override GroupModel GetById(int id)
         {
             GroupModel group = base.GetById(id);
-            if (!group.isFinished && group.finishDate >= DateTime.Now)
+            if (!group.isFinished && group.finishDate <= DateTime.Now)
             {
                 group.isFinished = true;
                 base.Update(group);

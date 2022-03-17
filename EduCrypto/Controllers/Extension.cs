@@ -23,15 +23,25 @@ namespace EduCrypto.Controllers
             }
             catch (Exception ex)
             {
+#if DEBUG
+                var errorMessage = ex.Message;
+                while (ex.InnerException != null)
+                {
+                    errorMessage += $"\n {ex.InnerException.Message}";
+                    ex = ex.InnerException;
+                }
                 return controller.BadRequest(new
                 {
-#if DEBUG
-                    ErrorMessage = ex.Message,
+                    ErrorMessage = errorMessage,
                     StackTrace = ex.StackTrace
-#else
-                    ErrorMessage = "Unexpected Error"
-#endif
+
                 });
+#else
+                return controller.BadRequest(new 
+                {
+                    ErrorMessage = "Unexpected Error"
+                });
+#endif
             }
         }
     }

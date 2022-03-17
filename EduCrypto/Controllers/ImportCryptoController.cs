@@ -1,4 +1,5 @@
-﻿using Application.ImportCryptos;
+﻿using Application.Common;
+using Application.ImportCryptos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EduCrypto.Controllers
@@ -7,18 +8,23 @@ namespace EduCrypto.Controllers
     [Route("api/[controller]")]
     public class ImportCryptoController : Controller
     {
-        private ImportCryptosAppService _importCryptoAppService;
-        public ImportCryptoController(ImportCryptosAppService importCryptoAppService)
+        [HttpGet]
+        public ActionResult GetAll()
         {
-            this._importCryptoAppService = importCryptoAppService;
+            return this.Run(() =>
+            {
+                var result = CryptoData.Check();
+                return Ok(result);
+            });
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [HttpGet("{cryptoSymbol}")]
+        public ActionResult GetBySymbol(string cryptoSymbol)
         {
-            var result = this._importCryptoAppService.GetList();
-
-            return Ok(result);
+            return this.Run(() =>
+            {
+                return Ok(CryptoData.GetByCryptoSymbol(cryptoSymbol));
+            });
         }
     }
 }

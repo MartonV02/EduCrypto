@@ -31,7 +31,7 @@ namespace EduCrypto.Controllers
             return groupAppService.GetAll();
         }
 
-        [HttpGet("groupId")]
+        [HttpGet("{groupId}")]
         public ActionResult GetById(int groupId)
         {
             return this.Run(() =>
@@ -45,16 +45,20 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
+                GroupModel group = groupAppService.Create(groupModel);
                 UserHandlingModel user = userHandlingAppService.GetById(userId);
-                UserForGroupsModel userForGroupsModel = new UserForGroupsModel();
-                userForGroupsModel.userHandlingModel = user;
-                userForGroupsModel.groupModel = groupModel;
-                userForGroupsModel.accesLevel = "creator";
-                userForGroupsModel.money = groupModel.startBudget;
+                UserForGroupsModel userForGroupsModel = new UserForGroupsModel()
+                {
+                    userHandlingModelId = user.Id,
+                    groupModelId = group.Id,
+                    accesLevel = "creator",
+                    money = group.startBudget,
+                };
+
 
                 userForGroupsAppService.Create(userForGroupsModel);
 
-                return Ok(groupAppService.Create(groupModel));
+                return Ok(group);
             });
         }
 
@@ -67,13 +71,13 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpDelete]
-        public ActionResult Delete(GroupModel groupModel)
+        [HttpDelete("{groupId}")]
+        public ActionResult Delete(int groupId)
         {
             return this.Run(() =>
             {
-                groupAppService.Delete(groupModel.Id);
-                return Ok();
+                groupAppService.Delete(groupId);
+                return Ok("Group Succesfuly deleted");
             });
         }
     }

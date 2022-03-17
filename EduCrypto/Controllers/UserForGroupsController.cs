@@ -4,9 +4,7 @@ using Application.UserForGroups;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduCrypto.Controllers
 {
@@ -55,32 +53,47 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpPut("{code}/{userId}")]
+        [HttpPut("join/{code}/{userId}")]
         public ActionResult Join(string code, int userId)
         {
             return this.Run(() =>
             {
-                string[] s = code.Split('#');
-                int id = Convert.ToInt32(s[1]);
-                string name = s[0];
-                GroupModel group = groupAppService.GetById(id);
 
-                if (group.name == name)
+                string[] s = code.Split('-');
+                try
                 {
-                    UserForGroupsModel userForGroups = new UserForGroupsModel();
-                    UserHandlingModel user = userHandlingAppService.GetById(userId);
+                    int id = Convert.ToInt32(s[1]);
+                    string name = s[0];
+                    GroupModel group = groupAppService.GetById(id);
+                    if (userForGroupsAppService.GetByUserId(userId).Where(e => e.groupModelId == id).FirstOrDefault() != null)
+                    {
+                        throw new Exception();
+                    }
 
-                    userForGroups.userHandlingModel = user;
-                    userForGroups.groupModel = group;
-                    userForGroups.accesLevel = "member";
-                    userForGroups.money = group.startBudget;
+                    if (group.name == name)
+                    {
+                        UserHandlingModel user = userHandlingAppService.GetById(userId);
+                        UserForGroupsModel userForGroups = new() { 
+                            userHandlingModelId = user.Id,
+                            groupModelId = group.Id,
+                            accesLevel = "member",
+                            money = group.startBudget,
+                        };
 
-                    return Ok(userForGroupsAppService.Create(userForGroups));
+                        return Ok(userForGroupsAppService.Create(userForGroups));
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
-                return BadRequest(new
+                catch
                 {
-                    ErrorMessage = "There is no such a goup with \"" + name + "\" name, and \"" + id + "\" id"
-                });
+                    return BadRequest(new
+                    {
+                        ErrorMessage = "There is no such a goup with that name and Id, or you have already joint that group"
+                    });
+                }
             });
         }
     }
