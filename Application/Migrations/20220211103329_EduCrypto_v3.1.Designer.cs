@@ -3,14 +3,16 @@ using System;
 using Application.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Application.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220211103329_EduCrypto_v3.1")]
+    partial class EduCrypto_v31
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,13 +263,14 @@ namespace Application.Migrations
                     b.Property<decimal>("spentValue")
                         .HasColumnType("decimal(65,30)");
 
-                    b.Property<DateTime?>("tradeDate")
+                    b.Property<DateTime>("tradeDate")
                         .HasColumnType("datetime");
 
                     b.Property<int?>("userForGroupsModelId")
                         .HasColumnType("int");
 
-                    b.Property<int>("userHandlingModelId")
+                    b.Property<int?>("userHandlingModelId")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.HasKey("Id");

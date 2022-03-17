@@ -1,5 +1,4 @@
-﻿using Application.CryptoCurrencies;
-using Application.UserForGroups;
+﻿using Application.UserForGroups;
 using Application.UserHandling;
 using System.ComponentModel.DataAnnotations;
 
@@ -11,22 +10,19 @@ namespace Application.UserCrypto
 
         [Required]
         public UserHandlingModel userHandlingModel { get; set; }
-        public int? userId { get; set; }
-        [MaxLength(34)]
-        public string? walletNumber { get; set; }
+        [Required]
+        public int userHandlingModelId { get; set; }
 
         [Required]
-        public CryptoCurrencyModel cryptoCurrency { get; set; }
-        public int? cryptoId { get; set; }
+        public string cryptoSymbol { get; set; }
 
         [Required]
         [Range(0, 999999999999999.99)]
-        public double cryptoValue { get; set; }
+        public decimal cryptoValue { get; set; }
 
         public UserForGroupsModel? userForGroupsModel { get; set; }
-        public int? userForGroupId { get; set; }
-        [StringLength(34)]
-        public string? groupWalletNumber { get; set; }
+        public int? userForGroupsModelId { get; set; }
+
         public bool isFavourite { get; set; }
     }
 }

@@ -1,7 +1,8 @@
+using Application.UserForGroups;
+using Application.UserHandling;
 using Application.UserTradeHistory.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Application.UserTradeHistory
 {
@@ -9,24 +10,26 @@ namespace Application.UserTradeHistory
     {
         [Key]
         public int Id { get; set; }
+
+        public UserHandlingModel userHandlingModel { get; set; }
         [Required]
-        public UserHandling.UserHandlingModel userHandlingModel { get; set; }
-        public int? userId { get; set; }
-        [Required]
-        public DateTime tradeDate { get; set; } = DateTime.Now;
-        [Required]
-        public CryptoCurrencies.CryptoCurrencyModel spentCryptoCurrencyModel { get; set; }
-        public int? spentId { get; set; }
+        public int userHandlingModelId { get; set; }
+
+        public DateTime? tradeDate { get; set; } = DateTime.Now;
+
+        public string? spentCryptoSymbol { get; set; }
+
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal spentValue { get; set; }
-        [Required]
-        public CryptoCurrencies.CryptoCurrencyModel boughtCryptoCurrencyModel { get; set; }
-        public int? boughtId { get; set; }
+
+        public string? boughtCryptoSymbol { get; set; }
+
         [Required]
         [Range(0,999999999999999.99)]
         public decimal boughtValue { get; set; }
-        public Group.GroupModel? groupModel { get; set; }
-        public int? groupId { get; set; }
+
+        public UserForGroupsModel? userForGroupsModel { get; set; }
+        public int? userForGroupsModelId { get; set; }
     }
 }
