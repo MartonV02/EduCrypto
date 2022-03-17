@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "35b4191b-08ff-4db8-b72f-dc52116b14aa",
+		"_postman_id": "12c6ea37-590f-45c2-b186-21921a74b0ab",
 		"name": "EduCrypto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -694,6 +694,35 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"wala@gmail.com\",\r\n    \"password\": \"titkos\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44336/api/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44336",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

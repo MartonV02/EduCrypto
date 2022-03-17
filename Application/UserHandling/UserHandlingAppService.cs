@@ -49,5 +49,15 @@ namespace Application.UserHandling
             entity.xpLevel = 0;
             return base.Create(entity);
         }
+
+        public UserHandlingModel GetByEmail(string email)
+        {
+            var result = dbContext.Set<UserHandlingModel>()
+                .Include(f => f.profilePicture)
+                .Where(x => x.email == email)
+                .FirstOrDefault();
+
+            return result;
+        }
     }
 }
