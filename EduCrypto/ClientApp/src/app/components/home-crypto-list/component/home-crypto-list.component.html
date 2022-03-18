@@ -30,7 +30,6 @@
           </div>
           <div class="example-element-description">
             {{element.description}}
-            <span class="example-element-description-attribution"> -- Wikipedia </span>
 
             <mat-accordion>
               <mat-expansion-panel (opened)="panelOpenState = true"
@@ -48,24 +47,22 @@
               </mat-expansion-panel>
             </mat-accordion>
 
-              <mat-accordion>
-                <mat-expansion-panel (opened)="panelOpenState = true"
-                                     (closed)="panelOpenState = false">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      Sell crypto
-                    </mat-panel-title>
-                  </mat-expansion-panel-header>
-                  <mat-form-field appearance="fill">
-                    <mat-label>Amount of money</mat-label>
-                    <input matInput placeholder="From your budget" value="100">
-                  </mat-form-field>
-                  <button mat-raised-button>Sell</button>
-                </mat-expansion-panel>
-              </mat-accordion>
-
-                
-</div>
+            <mat-accordion>
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                   (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Sell crypto
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-form-field appearance="fill">
+                  <mat-label>Amount of money</mat-label>
+                  <input matInput placeholder="From your crypto" value="100">
+                </mat-form-field>
+                <button mat-raised-button>Sell</button>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
         </div>
       </td>
     </ng-container>
