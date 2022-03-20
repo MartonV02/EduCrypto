@@ -17,9 +17,10 @@ namespace EduCrypto.Controllers
     {
         private IConfiguration config;
         private readonly UserHandlingAppService userAppService;
-        public LoginController(ApplicationDbContext dbContext)
+        public LoginController(ApplicationDbContext dbContext, IConfiguration configuration)
         {
             userAppService = new UserHandlingAppService(dbContext);
+            config = configuration;
         }
 
         [HttpPost]
@@ -35,7 +36,7 @@ namespace EduCrypto.Controllers
                     return Forbid();
 
                 var jwt = new JwtService(config);
-                var token = jwt.GenerateSecurityToken(email);
+                var token = jwt.GenerateSecurityToken(email, user.Id);
                 return Ok(new
                 {
                     token

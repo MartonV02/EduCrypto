@@ -21,12 +21,13 @@ namespace Application.Common.Auth
             _expDate = config.GetSection("JwtConfig").GetSection("expirationInMinutes").Value;
         }
 
-        public string GenerateSecurityToken(string email)
+        public string GenerateSecurityToken(string email, int userId)
         {
             var key = Encoding.ASCII.GetBytes(_secret);
             var claims = new List<Claim>()
             {
-                new Claim(ClaimTypes.Email, email)
+                new Claim("email", email),
+                new Claim("userId", userId.ToString())
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();
