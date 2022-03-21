@@ -1,5 +1,6 @@
 ﻿using Application.Common;
 using Application.UserHandling;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -7,6 +8,7 @@ namespace EduCrypto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserHandlingController : Controller
     {
         readonly UserHandlingAppService userHandlingAppService;
@@ -19,11 +21,13 @@ namespace EduCrypto.Controllers
             userHandlingAppService = new UserHandlingAppService(dbContext);
         }
 
+#if DEBUG
         [HttpGet]
         public IEnumerable<UserHandlingModel> GetAll()
         {
             return userHandlingAppService.GetAll();
         }
+#endif
 
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
