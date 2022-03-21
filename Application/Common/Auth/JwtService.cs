@@ -36,7 +36,7 @@ namespace Application.Common.Auth
                 audience: "federation",
                 expires: DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
                 claims: claims,
-                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             );
             return tokenHandler.WriteToken(jwt);
         }

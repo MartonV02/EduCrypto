@@ -702,7 +702,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"wala@gmail.com\",\r\n    \"password\": \"titkos\"\r\n}",
+					"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"titkos\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

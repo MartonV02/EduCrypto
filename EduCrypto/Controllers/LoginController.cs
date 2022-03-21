@@ -17,10 +17,10 @@ namespace EduCrypto.Controllers
     {
         private IConfiguration config;
         private readonly UserHandlingAppService userAppService;
-        public LoginController(ApplicationDbContext dbContext, IConfiguration configuration)
+        public LoginController(ApplicationDbContext dbContext, IConfiguration config)
         {
             userAppService = new UserHandlingAppService(dbContext);
-            config = configuration;
+            this.config = config;
         }
 
         [HttpPost]
