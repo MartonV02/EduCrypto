@@ -22,6 +22,7 @@ export class HomeCryptoListComponent implements OnInit
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public expandedElement: PeriodicElement | null;
+  panelOpenState = false;
 
   public entities: ImportedCryptoModel[];
   public dataSource: any;
