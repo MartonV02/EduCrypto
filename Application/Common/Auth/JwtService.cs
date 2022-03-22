@@ -27,7 +27,7 @@ namespace Application.Common.Auth
             var claims = new List<Claim>()
             {
                 new Claim("email", email),
-                new Claim("userId", userId.ToString())
+                new Claim(ClaimTypes.Role, userId.ToString())
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

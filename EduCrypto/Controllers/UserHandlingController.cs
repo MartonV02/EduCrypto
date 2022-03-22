@@ -30,6 +30,7 @@ namespace EduCrypto.Controllers
 #endif
 
         [HttpGet("{id}")]
+        [Authorize(Roles = )]
         public ActionResult GetById(int id)
         {
             return this.Run(() =>
