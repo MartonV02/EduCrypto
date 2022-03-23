@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,28 @@ namespace Application.Common.Auth
             });
 
             return services;
+        }
+
+        public static int getUserIdFromToken(IConfiguration config, string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var secret = config.GetSection("JwtConfig").GetSection("secret").Value;
+            var key = Encoding.ASCII.GetBytes(secret);
+            string[] withBearer = token.Split(' ');
+            token = withBearer[1];
+
+            tokenHandler.ValidateToken(token, new TokenValidationParameters
+            {
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidIssuer = "trader",
+                ValidAudience = "federation",
+                RequireExpirationTime = true
+            }, out SecurityToken validatedToken);
+
+            var jwtToken = (JwtSecurityToken)validatedToken;
+            return int.Parse(jwtToken.Claims.First(x => x.Type == "userId").Value);
         }
     }
 }
