@@ -1,19 +1,22 @@
-<mat-card>
-  <div class="container">
-    <mat-card-content>
-      balance
-      <div class="chart">
-        <ngx-charts-pie-chart
-          [results]="Cryptos"
-          [doughnut]="true"
-          [legend]="legend"
-          [legendPosition]="legendPosition"
-          [legendTitle]="legendTitle"
-          [customColors]="customColors"
-        ></ngx-charts-pie-chart>
-      </div>
-    </mat-card-content>
+<div class="main-item">
+  <mat-card>
+    <div class="div-img">
+      <img class="left-img-content" src="/../assets/images/financialdata.png"/>
+    </div>
+    <div class="div-text">
+      <p class="right-text-content">
+        Welcome to your dashboard. Here you can review your investments and buy new cryptocurrencies.
+      </p>
+    </div>
+  </mat-card>
+</div>
 
-    <mat-card-content> valami szöveg vagy kép nem tudom </mat-card-content>
+<div fxLayout="row" fxLayoutAlign="space-between center"  class="container mat-elevation-z8">
+  <div>
+    Account balance:
+    
   </div>
-</mat-card>
+  <div id="chart">
+    <app-pie></app-pie>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z8 header">
+<mat-toolbar class="mat-elevation-z8 header" [ngClass]="isDark ? 'darktool' : 'lighttool'">
   <button mat-icon-button (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
       menu
