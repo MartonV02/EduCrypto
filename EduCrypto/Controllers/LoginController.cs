@@ -15,7 +15,7 @@ namespace EduCrypto.Controllers
     [ApiController]
     public class LoginController : Controller
     {
-        private IConfiguration config;
+        private readonly IConfiguration config;
         private readonly UserHandlingAppService userAppService;
         public LoginController(ApplicationDbContext dbContext, IConfiguration config)
         {

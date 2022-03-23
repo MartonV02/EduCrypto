@@ -13,8 +13,8 @@ namespace EduCrypto.Controllers
     [Authorize]
     public class UserHandlingController : Controller
     {
-        private IConfiguration config;
-        readonly UserHandlingAppService userHandlingAppService;
+        private readonly IConfiguration config;
+        private readonly UserHandlingAppService userHandlingAppService;
 
         public UserHandlingController(ApplicationDbContext dbContext, IConfiguration config)
         {
@@ -27,6 +27,7 @@ namespace EduCrypto.Controllers
 
 #if DEBUG
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<UserHandlingModel> GetAll()
         {
             return userHandlingAppService.GetAll();
@@ -41,11 +42,12 @@ namespace EduCrypto.Controllers
                 return Forbid();
             return this.Run(() =>
             {
-                return Ok(userHandlingAppService.GetById(id));
+                return Ok(userHandlingAppService.GetById(userId));
             });
         }
 
         [HttpPut]
+        [AllowAnonymous]
         public ActionResult Create(UserHandlingModel user)
         {
             return this.Run(() =>
