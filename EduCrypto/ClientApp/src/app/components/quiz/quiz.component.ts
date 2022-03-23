@@ -12,7 +12,7 @@ import { QuizService } from './service/quiz.service';
 export class QuizComponent implements OnInit {
   public quizModel: QuizModel;
   public progressValue = 0;
-  public userId = 2;
+  public userId = 1;
   public isRight: boolean;
 
   constructor(

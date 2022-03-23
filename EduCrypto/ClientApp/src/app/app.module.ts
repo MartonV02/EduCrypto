@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,10 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { PieComponent } from './shared/pie/pie.component';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     RegisterComponent,
     QuizComponent,
     HomeCryptoListComponent,
-    ProfileComponent
+    ProfileComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MatNativeDateModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxChartsModule
+    NgxChartsModule,
+    FlexLayoutModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

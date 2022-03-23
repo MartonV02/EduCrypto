@@ -1,17 +1,53 @@
-mat-sidenav-container {
-    margin-left: 20px;
-}
-
-.chart {
-    width: 50vh;
-}
-
 .container {
-    display: flex;
-    justify-content: center;
-}
-
-.mat-card{
+    margin-left: 20px;
+    width: 81vw;
     margin: auto;
 }
 
+.main-item {
+  mat-card {
+    background-image: linear-gradient(45deg, rgb(77,77,77) 0%, rgb(77,77,77) 63%,rgb(133,201,211) 63%, rgb(133,201,211) 75%,rgb(80,178,192) 75%, rgb(80,178,192) 81%,rgb(80,178,192) 81%, rgb(80,178,192) 85%,rgb(64,162,178) 85%, rgb(64,162,178) 90%,rgb(39,138,156) 90%, rgb(39,138,156) 100%);
+    background-size: auto;
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    overflow-y: auto;
+    overflow-x: auto;
+
+    .div-img {
+      display: block;
+      float: left;
+    }
+
+    .div-text {
+      display: block;
+      float: right;
+    }
+  }
+
+  .left-img-content {
+    border-radius: 2000px;
+    height: 60%;
+    width: auto;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .right-text-content {
+    margin: auto;
+    max-width: 400px;
+    font-size: 40px;
+    color: #e3e3e3;
+    position: relative;
+    line-height: 30pt;
+    top: 50%;
+    left: 25%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, 50%);
+  }
+}
