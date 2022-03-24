@@ -40,6 +40,7 @@ namespace EduCrypto.Controllers
             var token = HttpContext.Request.Headers["Authorization"];
             if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
                 return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userHandlingAppService.GetById(userId));
@@ -72,6 +73,7 @@ namespace EduCrypto.Controllers
             var token = HttpContext.Request.Headers["Authorization"];
             if (AuthenticationExtension.getUserIdFromToken(config, token) != user.Id)
                 return Forbid();
+
             return this.Run(() =>
             {
                 UserHandlingModel modified = userHandlingAppService.GetById(user.Id);
@@ -101,6 +103,7 @@ namespace EduCrypto.Controllers
             var token = HttpContext.Request.Headers["Authorization"];
             if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
                 return Forbid();
+
             return this.Run(() =>
             {
                 userHandlingAppService.Delete(userId);

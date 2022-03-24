@@ -49,24 +49,33 @@ namespace EduCrypto.Controllers
             var token = HttpContext.Request.Headers["Authorization"];
             if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
                 return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userTradeHistoryAppService.GetByUserId(userId));
             });
         }
 
-        [HttpGet("group/{groupId}")] //TODO check is the user a group member
+        [HttpGet("group/{groupId}")]
         public ActionResult GetByGroupId(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(userTradeHistoryAppService.GetByGroupId(groupId));
             });
         }
 
-        [HttpGet("{userId}/{groupId}")] //TODO check is the user a group member
+        [HttpGet("{userId}/{groupId}")]
         public ActionResult GetByUserAndGroupId(int userId, int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
+                return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userTradeHistoryAppService.GetByUserAndGroupId(userId, groupId));
@@ -79,6 +88,7 @@ namespace EduCrypto.Controllers
             var token = HttpContext.Request.Headers["Authorization"];
             if (AuthenticationExtension.getUserIdFromToken(config, token) != userTradeHistoryModel.userHandlingModelId)
                 return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userTradeHistoryAppService.CreateWithTransaction(userTradeHistoryModel, this.userHandlingAppService, 

@@ -1,8 +1,11 @@
 ﻿using Application.Common;
+using Application.Common.Auth;
 using Application.Group;
 using Application.UserForGroups;
 using Application.UserHandling;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 
@@ -10,13 +13,15 @@ namespace EduCrypto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserForGroupsController : Controller
     {
-        readonly UserForGroupsAppService userForGroupsAppService;
-        readonly GroupAppService groupAppService;
-        readonly UserHandlingAppService userHandlingAppService;
+        private readonly IConfiguration config;
+        private readonly UserForGroupsAppService userForGroupsAppService;
+        private readonly GroupAppService groupAppService;
+        private readonly UserHandlingAppService userHandlingAppService;
 
-        public UserForGroupsController(ApplicationDbContext dbContext)
+        public UserForGroupsController(ApplicationDbContext dbContext, IConfiguration config)
         {
 #if DEBUG
             dbContext.Database.EnsureCreated();
@@ -24,20 +29,42 @@ namespace EduCrypto.Controllers
             userHandlingAppService = new UserHandlingAppService(dbContext);
             groupAppService = new GroupAppService(dbContext);
             userForGroupsAppService = new UserForGroupsAppService(dbContext);
+            this.config = config;
         }
+
+#if DEBUG
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult GetAll()
+        {
+            return this.Run(() =>
+            {
+                return Ok(userForGroupsAppService.GetAll());
+            });
+        }
+#endif
 
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
             return this.Run(() =>
             {
-                return Ok(userForGroupsAppService.GetById(id));
+                var userForGrooups = userForGroupsAppService.GetById(id);
+
+                if (AuthenticationExtension.getUserIdFromToken(config, token) != userForGrooups.userHandlingModelId)
+                    return Forbid();
+                return Ok(userForGrooups);
             });
         }
 
         [HttpGet("user/{userId}")]
         public ActionResult GetByUserId(int userId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
+                return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userForGroupsAppService.GetByUserId(userId));
@@ -47,6 +74,10 @@ namespace EduCrypto.Controllers
         [HttpGet("group/{groupId}")]
         public ActionResult GetByGroupId(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
+                return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userForGroupsAppService.GetByGroupId(groupId));

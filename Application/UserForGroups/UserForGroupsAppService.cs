@@ -77,5 +77,29 @@ namespace Application.UserForGroups
 
             return result;
         }
+
+        public bool IsCreator(int groupId, int userId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Where(r => r.groupModel.Id == groupId && r.userHandlingModel.Id == userId && r.accesLevel == "creator")
+                .ToList();
+
+            if (result == null)
+                return false;
+            else
+                return true;
+        }
+
+        public bool IsMember(int groupId, int userId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Where(r => r.groupModel.Id == groupId && r.userHandlingModel.Id == userId)
+                .ToList();
+
+            if (result == null)
+                return false;
+            else
+                return true;
+        }
     }
 }
