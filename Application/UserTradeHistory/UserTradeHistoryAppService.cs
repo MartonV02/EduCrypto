@@ -52,7 +52,7 @@ namespace Application.UserTradeHistory
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -83,7 +83,7 @@ namespace Application.UserTradeHistory
                 .Where(x => x.userHandlingModel.Id == userId && x.userForGroupsModel == null)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -99,7 +99,7 @@ namespace Application.UserTradeHistory
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -115,7 +115,7 @@ namespace Application.UserTradeHistory
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userHandlingModel.Id == userId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -131,7 +131,7 @@ namespace Application.UserTradeHistory
                 .Where(x => x.boughtCryptoSymbol == cryptoSymbol)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -147,7 +147,7 @@ namespace Application.UserTradeHistory
                 .Where(x => x.userHandlingModel.Id == userId && x.boughtCryptoSymbol == cryptoSymbol)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }

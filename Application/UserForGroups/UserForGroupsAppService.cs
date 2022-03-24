@@ -22,7 +22,7 @@ namespace Application.UserForGroups
                 .Include(e => e.userHandlingModel)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -54,7 +54,7 @@ namespace Application.UserForGroups
                 .Where(x => x.userHandlingModel.Id == userId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -66,11 +66,11 @@ namespace Application.UserForGroups
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
-                .Include(e => e.userHandlingModel).ThenInclude(g => g.profilePicture)
+                .Include(e => e.userHandlingModel)
                 .Where(x => x.groupModel.Id == groupId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -84,7 +84,7 @@ namespace Application.UserForGroups
                 .Where(r => r.groupModel.Id == groupId && r.userHandlingModel.Id == userId && r.accesLevel == "creator")
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
                 return false;
             else
                 return true;
@@ -96,7 +96,7 @@ namespace Application.UserForGroups
                 .Where(r => r.groupModel.Id == groupId && r.userHandlingModel.Id == userId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
                 return false;
             else
                 return true;

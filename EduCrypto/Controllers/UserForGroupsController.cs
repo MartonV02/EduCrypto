@@ -52,7 +52,7 @@ namespace EduCrypto.Controllers
             {
                 var userForGrooups = userForGroupsAppService.GetById(id);
 
-                if (AuthenticationExtension.getUserIdFromToken(config, token) != userForGrooups.userHandlingModelId)
+                if (AuthenticationExtension.GetUserIdFromToken(config, token) != userForGrooups.userHandlingModelId)
                     return Forbid();
                 return Ok(userForGrooups);
             });
@@ -62,7 +62,7 @@ namespace EduCrypto.Controllers
         public ActionResult GetByUserId(int userId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
                 return Forbid();
 
             return this.Run(() =>
@@ -75,11 +75,11 @@ namespace EduCrypto.Controllers
         public ActionResult GetByGroupId(int groupId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
-                return Forbid();
 
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(userForGroupsAppService.GetByGroupId(groupId));
             });
         }
@@ -87,6 +87,10 @@ namespace EduCrypto.Controllers
         [HttpPut("join/{code}/{userId}")]
         public ActionResult Join(string code, int userId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
+                return Forbid();
+
             return this.Run(() =>
             {
 

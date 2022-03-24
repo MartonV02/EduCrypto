@@ -47,7 +47,7 @@ namespace EduCrypto.Controllers
         public ActionResult GetByUserId(int userId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
                 return Forbid();
 
             return this.Run(() =>
@@ -63,7 +63,7 @@ namespace EduCrypto.Controllers
 
             return this.Run(() =>
             {
-                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
                     return Forbid();
                 return Ok(userTradeHistoryAppService.GetByGroupId(groupId));
             });
@@ -73,7 +73,7 @@ namespace EduCrypto.Controllers
         public ActionResult GetByUserAndGroupId(int userId, int groupId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
+            if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
                 return Forbid();
 
             return this.Run(() =>
@@ -86,7 +86,7 @@ namespace EduCrypto.Controllers
         public ActionResult Create(UserTradeHistoryModel userTradeHistoryModel)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (AuthenticationExtension.getUserIdFromToken(config, token) != userTradeHistoryModel.userHandlingModelId)
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userTradeHistoryModel.userHandlingModelId)
                 return Forbid();
 
             return this.Run(() =>

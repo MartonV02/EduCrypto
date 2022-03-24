@@ -2,12 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Common.Auth
 {
@@ -39,7 +36,7 @@ namespace Application.Common.Auth
             return services;
         }
 
-        public static int getUserIdFromToken(IConfiguration config, string token)
+        public static int GetUserIdFromToken(IConfiguration config, string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var secret = config.GetSection("JwtConfig").GetSection("secret").Value;

@@ -23,7 +23,7 @@ namespace Application.UserCrypto
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .ToList(); 
 
-            if (result == null)
+            if (result.Count == null)
             {
                 throw new KeyNotFoundException();
             }
@@ -56,7 +56,7 @@ namespace Application.UserCrypto
                 .Where(x => x.userForGroupsModel.Id == userForGroupId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -73,7 +73,7 @@ namespace Application.UserCrypto
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -90,7 +90,7 @@ namespace Application.UserCrypto
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoSymbol == cryptoSymbol)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -106,7 +106,7 @@ namespace Application.UserCrypto
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.userForGroupsModel.Id == userId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }

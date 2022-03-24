@@ -20,7 +20,7 @@ namespace Application.UserHandling
                 .Include(f => f.profilePicture)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -56,6 +56,11 @@ namespace Application.UserHandling
                 .Include(f => f.profilePicture)
                 .Where(x => x.email == email)
                 .FirstOrDefault();
+
+            if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
 
             return result;
         }

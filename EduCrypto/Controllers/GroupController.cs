@@ -44,11 +44,11 @@ namespace EduCrypto.Controllers
         public ActionResult GetById(int groupId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
-                return Forbid();
 
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(groupAppService.GetById(groupId));
             });
         }
@@ -57,7 +57,7 @@ namespace EduCrypto.Controllers
         public ActionResult Create(int userId, GroupModel groupModel)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
                 return Forbid();
 
             return this.Run(() =>
@@ -82,11 +82,11 @@ namespace EduCrypto.Controllers
         public ActionResult Modify(GroupModel groupModel)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (!userForGroupsAppService.IsCreator(groupModel.Id, AuthenticationExtension.getUserIdFromToken(config, token)))
-                return Forbid();
 
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsCreator(groupModel.Id, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(groupAppService.Update(groupModel));
             });
         }
@@ -95,11 +95,11 @@ namespace EduCrypto.Controllers
         public ActionResult Delete(int groupId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (!userForGroupsAppService.IsCreator(groupId, AuthenticationExtension.getUserIdFromToken(config, token)))
-                return Forbid();
 
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsCreator(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 groupAppService.Delete(groupId);
                 return Ok("Group Succesfuly deleted");
             });

@@ -2,14 +2,15 @@
 using Application.Common.Auth;
 using Application.Quiz;
 using Application.UserHandling;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
 
 namespace EduCrypto.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class QuizController : Controller
     {
         private readonly IConfiguration config;
@@ -29,8 +30,9 @@ namespace EduCrypto.Controllers
         public ActionResult GetNextQuestion(int userId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
                 return Forbid();
+
             return this.Run(() =>
             {
                 int xp = userHandlingAppService.GetById(userId).xpLevel;
@@ -42,8 +44,9 @@ namespace EduCrypto.Controllers
         public ActionResult CheckQuestion(int answer, int userId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
-            if (AuthenticationExtension.getUserIdFromToken(config, token) != userId)
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
                 return Forbid();
+
             return this.Run(() =>
             {
                 int xp = userHandlingAppService.GetById(userId).xpLevel;
