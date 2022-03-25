@@ -23,7 +23,7 @@ namespace Application.UserCrypto
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .ToList(); 
 
-            if (result.Count == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -53,7 +53,7 @@ namespace Application.UserCrypto
             var result = dbContext.Set<EntityClass>()
                 .Include(e => e.userHandlingModel)
                 .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.Id == userForGroupId)
+                .Where(x => x.userForGroupsModelId == userForGroupId)
                 .ToList();
 
             if (result.Count == 0)

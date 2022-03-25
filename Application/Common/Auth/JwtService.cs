@@ -32,7 +32,7 @@ namespace Application.Common.Auth
             var jwt = new JwtSecurityToken(
                 issuer: "trader",
                 audience: "federation",
-                expires: DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(_expDate)),
                 claims: claims,
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             );

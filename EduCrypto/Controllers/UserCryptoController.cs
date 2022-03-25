@@ -64,7 +64,7 @@ namespace EduCrypto.Controllers
             return this.Run(() =>
             {
                 var userForGroup = userForGroupsAppService.GetById(userForGroupId);
-                if (userForGroupsAppService.IsMember(userForGroup.groupModelId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                if (!userForGroupsAppService.IsMember(userForGroup.groupModelId, AuthenticationExtension.GetUserIdFromToken(config, token)))
                     return Forbid();
 
                 return Ok(userCryptoAppService.GetByUserForGroupsId(userForGroupId));
@@ -78,7 +78,7 @@ namespace EduCrypto.Controllers
 
             return this.Run(() =>
             {
-                if (userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
                     return Forbid();
 
                 return Ok(userCryptoAppService.GetByGroupId(groupId));
@@ -92,7 +92,7 @@ namespace EduCrypto.Controllers
 
             return this.Run(() =>
             {
-                if (userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
                     return Forbid();
 
                 return Ok(userCryptoAppService.GetByGroupAndUserId(groupId, userId));

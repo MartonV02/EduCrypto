@@ -86,7 +86,7 @@ namespace EduCrypto.Controllers
 
         [HttpPut("join/{code}/{userId}")]
         public ActionResult Join(string code, int userId)
-        {
+            {
             var token = HttpContext.Request.Headers["Authorization"];
             if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
                 return Forbid();
@@ -100,7 +100,7 @@ namespace EduCrypto.Controllers
                     int id = Convert.ToInt32(s[1]);
                     string name = s[0];
                     GroupModel group = groupAppService.GetById(id);
-                    if (userForGroupsAppService.GetByUserId(userId).Where(e => e.groupModelId == id).FirstOrDefault() != null)
+                    if (userForGroupsAppService.IsMember(id, userId))
                     {
                         throw new Exception();
                     }
