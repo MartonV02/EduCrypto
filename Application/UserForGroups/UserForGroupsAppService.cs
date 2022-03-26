@@ -22,7 +22,7 @@ namespace Application.UserForGroups
                 .Include(e => e.userHandlingModel)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -54,7 +54,7 @@ namespace Application.UserForGroups
                 .Where(x => x.userHandlingModel.Id == userId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
@@ -66,16 +66,40 @@ namespace Application.UserForGroups
         {
             var result = dbContext.Set<EntityClass>()
                 .Include(f => f.groupModel)
-                .Include(e => e.userHandlingModel).ThenInclude(g => g.profilePicture)
+                .Include(e => e.userHandlingModel)
                 .Where(x => x.groupModel.Id == groupId)
                 .ToList();
 
-            if (result == null)
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }
 
             return result;
+        }
+
+        public bool IsCreator(int groupId, int userId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Where(r => r.groupModel.Id == groupId && r.userHandlingModel.Id == userId && r.accesLevel == "creator")
+                .ToList();
+
+            if (result.Count == 0)
+                return false;
+            else
+                return true;
+        }
+
+        public bool IsMember(int groupId, int userId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Where(r => r.groupModel.Id == groupId && r.userHandlingModel.Id == userId)
+                .ToList();
+
+            if (result.Count == 0)
+                return false;
+            else
+                return true;
         }
     }
 }

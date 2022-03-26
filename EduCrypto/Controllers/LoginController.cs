@@ -3,11 +3,7 @@ using Application.Common.Auth;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace EduCrypto.Controllers
 {
@@ -15,7 +11,7 @@ namespace EduCrypto.Controllers
     [ApiController]
     public class LoginController : Controller
     {
-        private IConfiguration config;
+        private readonly IConfiguration config;
         private readonly UserHandlingAppService userAppService;
         public LoginController(ApplicationDbContext dbContext, IConfiguration config)
         {

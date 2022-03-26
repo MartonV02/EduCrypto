@@ -3,10 +3,8 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Common.Auth
 {
@@ -34,7 +32,7 @@ namespace Application.Common.Auth
             var jwt = new JwtSecurityToken(
                 issuer: "trader",
                 audience: "federation",
-                expires: DateTime.UtcNow.AddMinutes(double.Parse(_expDate)),
+                expires: DateTime.UtcNow.AddMinutes(int.Parse(_expDate)),
                 claims: claims,
                 signingCredentials: new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256)
             );
