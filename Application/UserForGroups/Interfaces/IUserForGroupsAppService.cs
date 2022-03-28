@@ -12,5 +12,7 @@ namespace Application.UserForGroups.Interfaces
         public EntityClass Create(EntityClass entity);
         public EntityClass Update(EntityClass entity);
         public void Delete(int id);
+        public bool IsCreator(int groupId, int userId);
+        public bool IsMember(int groupId, int userId);
     }
 }

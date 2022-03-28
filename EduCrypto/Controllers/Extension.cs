@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduCrypto.Controllers
 {
@@ -33,7 +31,7 @@ namespace EduCrypto.Controllers
                 return controller.BadRequest(new
                 {
                     ErrorMessage = errorMessage,
-                    StackTrace = ex.StackTrace
+                    ex.StackTrace
 
                 });
 #else

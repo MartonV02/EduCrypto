@@ -1,21 +1,26 @@
 ﻿using Application.Common;
+using Application.Common.Auth;
 using Application.Group;
 using Application.UserForGroups;
 using Application.UserHandling;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 
 namespace EduCrypto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GroupController : Controller
     {
-        readonly GroupAppService groupAppService;
-        readonly UserForGroupsAppService userForGroupsAppService;
-        readonly UserHandlingAppService userHandlingAppService;
+        private readonly IConfiguration config;
+        private readonly GroupAppService groupAppService;
+        private readonly UserForGroupsAppService userForGroupsAppService;
+        private readonly UserHandlingAppService userHandlingAppService;
 
-        public GroupController(ApplicationDbContext dbContext)
+        public GroupController(ApplicationDbContext dbContext, IConfiguration config)
         {
 #if DEBUG
             dbContext.Database.EnsureCreated();
@@ -23,19 +28,27 @@ namespace EduCrypto.Controllers
             groupAppService = new GroupAppService(dbContext);
             userForGroupsAppService = new UserForGroupsAppService(dbContext);
             userHandlingAppService = new UserHandlingAppService(dbContext);
+            this.config = config;
         }
 
+#if DEBUG
         [HttpGet]
+        [AllowAnonymous]
         public IEnumerable<GroupModel> GetAll()
         {
             return groupAppService.GetAll();
         }
+#endif
 
         [HttpGet("{groupId}")]
         public ActionResult GetById(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(groupAppService.GetById(groupId));
             });
         }
@@ -43,18 +56,21 @@ namespace EduCrypto.Controllers
         [HttpPut("{userId}")]
         public ActionResult Create(int userId, GroupModel groupModel)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
+                return Forbid();
+
             return this.Run(() =>
             {
                 GroupModel group = groupAppService.Create(groupModel);
                 UserHandlingModel user = userHandlingAppService.GetById(userId);
-                UserForGroupsModel userForGroupsModel = new UserForGroupsModel()
+                UserForGroupsModel userForGroupsModel = new()
                 {
                     userHandlingModelId = user.Id,
                     groupModelId = group.Id,
                     accesLevel = "creator",
                     money = group.startBudget,
                 };
-
 
                 userForGroupsAppService.Create(userForGroupsModel);
 
@@ -65,8 +81,12 @@ namespace EduCrypto.Controllers
         [HttpPost]
         public ActionResult Modify(GroupModel groupModel)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsCreator(groupModel.Id, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(groupAppService.Update(groupModel));
             });
         }
@@ -74,8 +94,12 @@ namespace EduCrypto.Controllers
         [HttpDelete("{groupId}")]
         public ActionResult Delete(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsCreator(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 groupAppService.Delete(groupId);
                 return Ok("Group Succesfuly deleted");
             });

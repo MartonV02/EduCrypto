@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "35b4191b-08ff-4db8-b72f-dc52116b14aa",
+		"_postman_id": "12c6ea37-590f-45c2-b186-21921a74b0ab",
 		"name": "EduCrypto",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -100,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 5,\r\n  \"boughtCryptoSymbol\": \"BTC\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 5,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -129,7 +129,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.5,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"boughtValue\": 0\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 3,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.5,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"boughtValue\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -158,7 +158,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 2,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.01,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 2\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 3,\r\n  \"spentCryptoSymbol\": \"BTC\",\r\n  \"spentValue\": 0.0000001,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 3\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -175,6 +175,96 @@
 							"path": [
 								"api",
 								"UserTradeHistory"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Trade History",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By User Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Group Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory/group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory",
+								"group",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By User & Group Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory/3/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory",
+								"3",
+								"1"
 							]
 						}
 					},
@@ -258,7 +348,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 0,\r\n    \"name\": \"Győr\",\r\n    \"startBudget\": 1000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
+							"raw": "{\r\n    \"id\" : 0,\r\n    \"name\": \"JWT oligarchia\",\r\n    \"startBudget\": 1000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -266,7 +356,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44336/api/Group/1",
+							"raw": "https://localhost:44336/api/Group/16",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -275,7 +365,7 @@
 							"path": [
 								"api",
 								"Group",
-								"1"
+								"16"
 							]
 						}
 					},
@@ -288,7 +378,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 10,\r\n    \"name\": \"Győr\",\r\n    \"startBudget\": 2000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
+							"raw": "{\r\n    \"id\" : 15,\r\n    \"name\": \"JWT city\",\r\n    \"startBudget\": 2000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -325,7 +415,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:44336/api/Group/11",
+							"raw": "https://localhost:44336/api/Group/15",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -334,7 +424,7 @@
 							"path": [
 								"api",
 								"Group",
-								"11"
+								"15"
 							]
 						}
 					},
@@ -346,7 +436,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/Group/7",
+							"raw": "https://localhost:44336/api/Group/15",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -355,11 +445,31 @@
 							"path": [
 								"api",
 								"Group",
-								"7"
+								"15"
 							]
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -392,7 +502,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/UserHandling/8",
+							"raw": "https://localhost:44336/api/UserHandling/16",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -401,7 +511,7 @@
 							"path": [
 								"api",
 								"UserHandling",
-								"8"
+								"16"
 							]
 						}
 					},
@@ -414,7 +524,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 0,\r\n    \"userName\": \"walaki\",\r\n    \"email\": \"wala@gmail.com\",\r\n    \"fullName\": \"Sokadik\",\r\n    \"birthDate\": \"2003-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"titkos\"\r\n}",
+							"raw": "{\r\n    \"id\": 0,\r\n    \"userName\": \"MrJWT\",\r\n    \"email\": \"JWT@gmail.com\",\r\n    \"fullName\": \"Mr JWT János\",\r\n    \"birthDate\": \"2001-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"JWTtoken\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -443,7 +553,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\": 8,\r\n    \"userName\": \"ron555\",\r\n    \"email\": \"kitudja@gmail.com\",\r\n    \"fullName\": \"Sokadik\",\r\n    \"birthDate\": \"2003-01-03T00:00:00\",\r\n    \"xpLevel\": 0,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 0,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"titkos\"\r\n}",
+							"raw": "{\r\n    \"id\": 15,\r\n    \"userName\": \"MrJWT\",\r\n    \"email\": \"jwt@gmail.com\",\r\n    \"fullName\": \"MrJWT Béla\",\r\n    \"birthDate\": \"2002-01-03T00:00:00\",\r\n    \"xpLevel\": 10,\r\n    \"walletNumber\": null,\r\n    \"moneyDollar\": 2000000,\r\n    \"profilePicture\": null,\r\n    \"profilePictureId\": null,\r\n    \"Password\": \"JWTtoken\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -471,7 +581,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/UserHandling/8W",
+							"raw": "https://localhost:44336/api/UserHandling/15",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -480,11 +590,31 @@
 							"path": [
 								"api",
 								"UserHandling",
-								"8W"
+								"15"
 							]
 						}
 					},
 					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -560,7 +690,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/usercrypto/userForGroup/1",
+							"raw": "https://localhost:44336/api/usercrypto/userForGroup/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -570,7 +700,7 @@
 								"api",
 								"usercrypto",
 								"userForGroup",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -582,7 +712,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/usercrypto/group/1/user/1",
+							"raw": "https://localhost:44336/api/usercrypto/group/1/user/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -594,7 +724,7 @@
 								"group",
 								"1",
 								"user",
-								"1"
+								"3"
 							]
 						}
 					},
@@ -611,7 +741,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/userforgroups/1",
+							"raw": "https://localhost:44336/api/userforgroups/22",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -620,7 +750,28 @@
 							"path": [
 								"api",
 								"userforgroups",
-								"1"
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All UFG",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								""
 							]
 						}
 					},
@@ -632,7 +783,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/userforgroups/user/3",
+							"raw": "https://localhost:44336/api/userforgroups/user/16",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -642,7 +793,7 @@
 								"api",
 								"userforgroups",
 								"user",
-								"3"
+								"16"
 							]
 						}
 					},
@@ -676,7 +827,7 @@
 						"method": "PUT",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:44336/api/userforgroups/join/Berlin-4/9",
+							"raw": "https://localhost:44336/api/userforgroups/join/Viena-7/16",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -686,14 +837,96 @@
 								"api",
 								"userforgroups",
 								"join",
-								"Berlin-4",
-								"9"
+								"Viena-7",
+								"16"
 							]
 						}
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"JWT@gmail.com\",\r\n    \"password\": \"JWTtoken\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44336/api/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44336",
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkpXVEBnbWFpbC5jb20iLCJ1c2VySWQiOiIxNiIsImV4cCI6MTY0ODI4NTg3MywiaXNzIjoidHJhZGVyIiwiYXVkIjoiZmVkZXJhdGlvbiJ9.lyccipuEL1S14_ZD2cymynI8qj2I1K9R9HFL3O7mS0o",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
