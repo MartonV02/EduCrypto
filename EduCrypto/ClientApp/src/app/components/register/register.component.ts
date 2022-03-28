@@ -16,13 +16,15 @@ export class RegisterComponent implements OnInit {
   public captchaColor: boolean;
   public registerModel: RegisterModel[] = [];
   form: FormGroup;
-
+  minDate = new Date(1950, 0, 1);
+  maxDate = new Date();
   constructor(
     private fb: FormBuilder,
     private appComp: AppComponent,
     private registerService: RegisterService,
     private router: Router) {
     this.key = '';
+    this.maxDate.setFullYear(this.maxDate.getFullYear()-18);
    }
 
   //  this.form = this.fb.group({
