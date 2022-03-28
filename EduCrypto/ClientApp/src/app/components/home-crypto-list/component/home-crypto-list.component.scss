@@ -39,21 +39,11 @@ table
     .div-img {
       width: 50%;
       height: auto;
-      // position: absolute;
-      // top: 50%;
-      // left: 30%;
-      // -ms-transform: translate(-50%, -50%);
-      // transform: translate(-50%, -50%);
     }
 
     .div-text {
       width: 50%;
       height: auto;
-      // position: absolute;
-      // top: 50%;
-      // left: 75%;
-      // -ms-transform: translate(-50%, -50%);
-      // transform: translate(-50%, -50%);
     }
   }
 
@@ -143,22 +133,15 @@ tr.example-element-row:not(.example-expanded-row):active {
   {
     mat-card
     {
+        display: grid;
+        align-items:center;
     }
   }
 
-  .left-img-content 
+  .div-text
   {
-    border-radius: 2000px;
-    height: 30vh;
-    float: left;
-    display: block;
-  }
-
-  .right-text-content {
-    max-width: 35vw;
-    font-size: 20px;
-    color: #e3e3e3;
-    line-height: 1;
-    clear: both;
+      margin: auto;
+      text-align:center;
+      width: 30vw;
   }
 }
