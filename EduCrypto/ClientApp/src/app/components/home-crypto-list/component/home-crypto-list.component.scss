@@ -142,6 +142,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   {
       margin: auto;
       text-align:center;
-      width: 30vw;
+      min-width: 40vw !important;
   }
 }
