@@ -15,7 +15,7 @@ namespace Application.Common
         {
             if (lastResponse == null || expirationDate.AddMinutes(5) < DateTime.Now)
             {
-                ImportCryptosAppService importCryptosAppService = new ImportCryptosAppService();
+                ImportCryptosAppService importCryptosAppService = new();
                 expirationDate = DateTime.Now;
                 lastResponse = importCryptosAppService.GetList().ToList();
             }
