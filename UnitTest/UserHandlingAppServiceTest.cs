@@ -15,9 +15,9 @@ namespace UnitTest
         {
             using (var context = TestDbContext.GenerateTestDbContext())
             {
-                UserHandlingAppService sut = new(context);
+                UserHandlingAppService service = new(context);
 
-                UserHandlingModel user = sut.GetById(1);
+                UserHandlingModel user = service.GetById(1);
 
                 Assert.Equal("test", user.userName);
                 Assert.Equal("test@test.com", user.email);
@@ -32,9 +32,9 @@ namespace UnitTest
         {
             using (var context = TestDbContext.GenerateTestDbContext())
             {
-                UserHandlingAppService sut = new(context);
+                UserHandlingAppService service = new(context);
 
-                UserHandlingModel user = sut.GetByEmail("replica@wallas.com");
+                UserHandlingModel user = service.GetByEmail("replica@wallas.com");
 
                 Assert.Equal("replica", user.userName);
                 Assert.Equal("replica@wallas.com", user.email);
@@ -45,15 +45,15 @@ namespace UnitTest
         }
 
         [Fact]
-        public void GetByNotExists()
+        public void NotFound()
         {
             using (var context = TestDbContext.GenerateTestDbContext())
             {
-                UserHandlingAppService sut = new(context);
+                UserHandlingAppService service = new(context);
 
 
 
-                Assert.Throws<KeyNotFoundException>(() => sut.GetById(3));
+                Assert.Throws<KeyNotFoundException>(() => service.GetById(3));
             }
         }
 
@@ -62,7 +62,7 @@ namespace UnitTest
         {
             using (var context = TestDbContext.GenerateTestDbContext())
             {
-                UserHandlingAppService sut = new(context);
+                UserHandlingAppService service = new(context);
                 UserHandlingModel user = new()
                 {
                     userName = "Darth Vader",
@@ -74,7 +74,7 @@ namespace UnitTest
                     xpLevel = 11,
                 };
 
-                var result = sut.Create(user);
+                var result = service.Create(user);
 
                 Assert.Equal("Darth Vader", result.userName);
                 Assert.Equal("vader@empire.emp", result.email);
@@ -90,11 +90,11 @@ namespace UnitTest
         {
             using (var context = TestDbContext.GenerateTestDbContext())
             {
-                UserHandlingAppService sut = new(context);
-                UserHandlingModel user = sut.GetById(1);
+                UserHandlingAppService service = new(context);
+                UserHandlingModel user = service.GetById(1);
                 user.email = "gamer@jedlik.eu";
 
-                var result = sut.Update(user);
+                var result = service.Update(user);
 
                 Assert.Equal("test", result.userName);
                 Assert.Equal("gamer@jedlik.eu", result.email);
@@ -110,11 +110,11 @@ namespace UnitTest
         {
             using (var context = TestDbContext.GenerateTestDbContext())
             {
-                UserHandlingAppService sut = new(context);
+                UserHandlingAppService service = new(context);
 
-                sut.Delete(1);
+                service.Delete(1);
 
-                Assert.Throws<KeyNotFoundException>(() => sut.GetById(1));
+                Assert.Throws<KeyNotFoundException>(() => service.GetById(1));
             }
         }
     }
