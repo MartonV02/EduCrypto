@@ -93,8 +93,6 @@ namespace UnitTest
                 UserHandlingAppService sut = new(context);
                 UserHandlingModel user = sut.GetById(1);
                 user.email = "gamer@jedlik.eu";
-                user.moneyDollar = 2000;
-                user.xpLevel = 2;
 
                 var result = sut.Update(user);
 
@@ -104,6 +102,19 @@ namespace UnitTest
                 Assert.Equal(1000, result.moneyDollar);
                 Assert.Equal(0, result.xpLevel);
                 Assert.Equal(1, result.Id);
+            }
+        }
+
+        [Fact]
+        public void Delete()
+        {
+            using (var context = TestDbContext.GenerateTestDbContext())
+            {
+                UserHandlingAppService sut = new(context);
+
+                sut.Delete(1);
+
+                Assert.Throws<KeyNotFoundException>(() => sut.GetById(1));
             }
         }
     }

@@ -47,7 +47,7 @@ namespace Application.Common
             return entity;
         }
 
-        public virtual T Update(T entity)
+        public T Update(T entity)
         {
             dbContext.Entry(entity).State = EntityState.Modified;
             dbContext.SaveChanges();

@@ -50,28 +50,6 @@ namespace Application.UserHandling
             return base.Create(entity);
         }
 
-        public override UserHandlingModel Update(UserHandlingModel user)
-        {
-            UserHandlingModel modified = this.GetById(user.Id);
-            modified.Id = user.Id;
-            modified.userName = user.userName;
-            modified.email = user.email;
-            modified.fullName = user.fullName;
-            modified.birthDate = user.birthDate;
-            modified.Password = user.Password;
-            UserHandlingModel result = base.Update(modified);
-            return new UserHandlingModel()
-            {
-                Id = result.Id,
-                userName = result.userName,
-                email = result.email,
-                fullName = result.fullName,
-                birthDate = result.birthDate,
-                moneyDollar = result.moneyDollar,
-                xpLevel = result.xpLevel,
-            };
-        }
-
         public UserHandlingModel GetByEmail(string email)
         {
             var result = dbContext.Set<UserHandlingModel>()
