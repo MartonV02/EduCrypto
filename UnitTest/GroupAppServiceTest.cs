@@ -80,7 +80,13 @@ namespace UnitTest
             using (var context = TestDbContext.GenerateTestDbContext())
             {
                 GroupAppService service = new (context);
-                GroupModel group = service.GetById(1);
+                GroupModel group = new GroupModel()
+                {
+                    Id = 1,
+                    name = "test",
+                    startBudget = 100,
+                    finishDate = new DateTime(2022, 05, 01)
+                };
                 group.finishDate = new DateTime(2022, 03, 27);
                 group.name = "Space X";
                 group.startBudget = 200;
