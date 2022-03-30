@@ -1,13 +1,6 @@
 ﻿using Application.Common;
-using Application.Group;
-using Application.UserForGroups;
-using Application.UserHandling;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTest
 {
