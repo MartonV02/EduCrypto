@@ -1,5 +1,4 @@
 ﻿using Application.Common;
-using Application.Images;
 using System;
 
 namespace Application.UserHandling.Interfaces
@@ -13,7 +12,7 @@ namespace Application.UserHandling.Interfaces
         public int xpLevel { get; set; }
         public decimal moneyDollar { get; set; }
         public string? walletNumber { get; set; }
-        public ImageModel? profilePicture { get; set; }
+        public string? profilePictureUrl { get; set; }
         public string PasswordHash { get; set; }
         public string Password { get; set; }
 

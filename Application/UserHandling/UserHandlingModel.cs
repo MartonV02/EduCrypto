@@ -1,4 +1,3 @@
-using Application.Images;
 using Application.UserHandling.Interfaces;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -34,12 +33,12 @@ namespace Application.UserHandling
         [MaxLength(34)]
         public string? walletNumber { get; set; }
 
+        public string? profilePictureUrl { get; set; }
+
         [Required]
         [Range(0, 999999999999999.99)]
         public decimal moneyDollar { get; set; }
 
-        public ImageModel? profilePicture { get; set; }
-        public int? profilePictureId { get; set; }
 
         [MaxLength(100)]
         [Required]
@@ -59,6 +58,7 @@ namespace Application.UserHandling
                 this.PasswordHash = HashPassword(password);
             }
         }
+
 
         public bool CheckPassword(string pwd)
         {

@@ -1,6 +1,5 @@
 ﻿using Application.Common;
 using Application.Group.Interfaces;
-using Application.UserForGroups;
 using System;
 
 namespace Application.Group

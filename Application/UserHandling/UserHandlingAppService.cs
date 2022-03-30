@@ -1,6 +1,5 @@
 using Application.Common;
 using Application.UserHandling.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +16,6 @@ namespace Application.UserHandling
         public override IEnumerable<UserHandlingModel> GetAll()
         {
             var result = dbContext.Set<UserHandlingModel>()
-                .Include(f => f.profilePicture)
                 .ToList();
 
             if (result.Count == 0)
@@ -31,7 +29,6 @@ namespace Application.UserHandling
         public override UserHandlingModel GetById(int id)
         {
             var result =  dbContext.Set<UserHandlingModel>()
-                .Include(f => f.profilePicture)
                 .Where(x => x.Id == id)
                 .FirstOrDefault();
 
@@ -53,7 +50,6 @@ namespace Application.UserHandling
         public UserHandlingModel GetByEmail(string email)
         {
             var result = dbContext.Set<UserHandlingModel>()
-                .Include(f => f.profilePicture)
                 .Where(x => x.email == email)
                 .FirstOrDefault();
 
