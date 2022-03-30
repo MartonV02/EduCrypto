@@ -13,13 +13,13 @@ export class ImportCryptoCurrenciesService
 {
   private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.ImportCrypto);
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
   public getListOfCryptos(): Observable<ImportedCryptoModel[]>
   {
     var HttpURI = this._uriGenerator.GetBasicUrl();
 
-    return this.http.get<ImportedCryptoModel[]>(HttpURI)
+    return this._http.get<ImportedCryptoModel[]>(HttpURI)
       .pipe(
         take(1),
         map((data: ImportedCryptoModel[]) =>
