@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { ImportedCryptoModel } from '../model/imported-crypto.model';
 import { ImportCryptoCurrenciesService } from '../service/import-crypto-currencies.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { HomeCryptoListModel } from '../model/home-crypto-list.model';
 
 @Component({
   selector: 'home-crypto-list',
@@ -22,10 +23,13 @@ export class HomeCryptoListComponent implements OnInit
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public expandedElement: PeriodicElement | null;
-  panelOpenState = false;
+  buyPanelOpenState = false;
+  sellPanelOpenState = false;
 
   public entities: ImportedCryptoModel[];
   public dataSource: any;
+
+  public transactionModel: HomeCryptoListModel = new HomeCryptoListModel();
 
   displayedColumns: string[] =
   [
@@ -45,6 +49,12 @@ export class HomeCryptoListComponent implements OnInit
   ngOnInit(): void
   {
     this.getList();
+  }
+
+  public createTransaction(symbol: string): void
+  {
+    this.transactionModel.spentCryptoSymbol = symbol;
+    console.log(this.transactionModel.spentCryptoSymbol);
   }
 
   private getList(): void

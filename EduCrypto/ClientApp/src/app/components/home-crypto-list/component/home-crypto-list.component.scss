@@ -69,7 +69,6 @@ table
   max-width: 100%;
   overflow-y: auto;
   overflow-x: auto;
-  /*overflow: auto;*/
 }
 
 .mat-cell,
@@ -122,6 +121,24 @@ tr.example-element-row:not(.example-expanded-row):active {
   opacity: 0.5;
 }
 /* Expanded rows end */
+
+.expansion-panel-buy
+{
+  margin-bottom: 20px;
+}
+
+.input-field
+{
+  margin-right: 20px;
+}
+
+.input-content
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+}
 
 @media only screen and (max-width: 1500px) {
   .mat-table-size 

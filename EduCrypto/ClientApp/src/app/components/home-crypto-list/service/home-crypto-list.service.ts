@@ -20,7 +20,7 @@ export class HomeCryptoListService
   {
     var HttpURI = this._uriGenerator.GetBasicUrl();
 
-    return this._http.put<HomeCryptoListModel[]>(HttpURI)
+    return this._http.put<HomeCryptoListModel[]>(HttpURI, homeCryptoListModel)
       .pipe(
         take(1),
         map((data: HomeCryptoListModel[]) =>
@@ -29,4 +29,18 @@ export class HomeCryptoListService
         })
       );
   }
+
+  public GetByUserId(userId: number): Observable<HomeCryptoListModel[]>
+  {
+      var HttpURI = this._uriGenerator.GetUrlWithParam(userId);
+
+      return this._http.get<HomeCryptoListModel[]>(HttpURI)
+        .pipe(
+          take(1),
+          map((data: HomeCryptoListModel[]) =>
+          {
+              return data;
+          })
+        );
+    }
 }

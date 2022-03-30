@@ -32,34 +32,38 @@
             {{element.description}}
 
             <mat-accordion>
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                   (closed)="panelOpenState = false">
+              <mat-expansion-panel class="expansion-panel-buy" *ngIf="sellPanelOpenState == false" (opened)="buyPanelOpenState = true"
+                                   (closed)="buyPanelOpenState = false">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
-                    Sell crypto
+                    Buy crypto
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <mat-form-field appearance="fill">
-                  <mat-label>Amount of money</mat-label>
-                  <input matInput placeholder="From your budget" value="100">
-                </mat-form-field>
-                <button mat-raised-button>Buy</button>
+                <div class="input-content">
+                  <mat-form-field appearance="fill" class="input-field">
+                    <mat-label>Amount of money</mat-label>
+                    <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your budget" value="100">
+                  </mat-form-field>
+                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Buy</button>
+                </div>
               </mat-expansion-panel>
             </mat-accordion>
 
             <mat-accordion>
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                   (closed)="panelOpenState = false">
+              <mat-expansion-panel class="expansion-panel-sell" *ngIf="buyPanelOpenState == false" (opened)="sellPanelOpenState = true"
+                                   (closed)="sellPanelOpenState = false">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
                     Sell crypto
                   </mat-panel-title>
                 </mat-expansion-panel-header>
-                <mat-form-field appearance="fill">
-                  <mat-label>Amount of money</mat-label>
-                  <input matInput placeholder="From your crypto" value="100">
-                </mat-form-field>
-                <button mat-raised-button>Sell</button>
+                <div class="input-content">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Amount of money</mat-label>
+                    <input matInput placeholder="From your crypto" value="100" class="input-field">
+                  </mat-form-field>
+                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Sell</button>
+                </div>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
