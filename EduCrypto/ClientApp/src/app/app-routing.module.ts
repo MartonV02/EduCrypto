@@ -9,6 +9,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: 'app-menu-sidebar-template', component: MenuSideBarTemplateComponent },
+  { path: '', component: HomeCryptoListComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'quiz', component: QuizComponent},
