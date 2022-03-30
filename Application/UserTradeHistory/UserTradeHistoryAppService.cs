@@ -93,7 +93,7 @@ namespace Application.UserTradeHistory
 
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
         {
-            var result = dbContext.Set<EntityClass>()
+            var result = dbContext.Set<EntityClass>() 
                 .Include(e => e.userHandlingModel)
                 .Include(h => h.userForGroupsModel).ThenInclude(i => i.groupModel)
                 .Where(x => x.userForGroupsModel.groupModel.Id == groupId)

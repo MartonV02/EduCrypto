@@ -1,38 +1,29 @@
-import { BackendUrlEnum } from "./BackendUrlEnum.constant";
+import { BackendUrlEnum } from './BackendUrlEnum.constant';
 
-export class GenericUrlGenerator
-{
-  private _UriPrefix = "api/";
+export class GenericUrlGenerator {
+  private _UriPrefix = 'api/';
   private _backendUrlEnum: BackendUrlEnum;
-  
-  constructor(backendUrlEnum: BackendUrlEnum)
-  {
+
+  constructor(backendUrlEnum: BackendUrlEnum) {
     this._backendUrlEnum = backendUrlEnum;
   }
 
-  GetBasicUrl(): string
-  {
+  GetBasicUrl(): string {
     var HttpUri = this._UriPrefix + this._backendUrlEnum;
 
     return HttpUri;
   }
 
-  GetUrlWithParam(id?: number, action?: string): string
-  {
-
-
+  GetUrlWithParam(id?: number, action?: string): string {
     var HttpUri = this._UriPrefix + this._backendUrlEnum;
 
-    
-    if (action)
-    {
-      HttpUri += "/"+ action;
+    if (action) {
+      HttpUri += '/' + action;
     }
-    if (id)
-    {
-      HttpUri +="/"+ id;
+    if (id) {
+      HttpUri += '/' + id;
     }
-    
+
     return HttpUri;
   }
 }
