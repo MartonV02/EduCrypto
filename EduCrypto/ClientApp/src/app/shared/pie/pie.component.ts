@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as apex from 'ng-apexcharts';
+import { ProfileService } from 'src/app/components/profile/service/profile.service';
 
 export type ChartOptions = {
   series: apex.ApexNonAxisChartSeries;
@@ -19,6 +20,7 @@ export type ChartOptions = {
 })
 export class PieComponent implements OnInit {
   @ViewChild('chart') chart: PieComponent;
+  public tradeService: ProfileService;
   public chartOptions: Partial<ChartOptions> | any;
   public data = [23, 45, 34];
   public cryptos = ['Bitcoin', 'Ethereum', 'LiteCoin'];

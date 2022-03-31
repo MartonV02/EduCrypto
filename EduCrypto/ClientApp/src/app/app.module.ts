@@ -17,7 +17,6 @@ import { QuizComponent } from './components/quiz/quiz.component';
 
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { PieComponent } from './shared/pie/pie.component';
 
@@ -43,7 +42,6 @@ import { PieComponent } from './shared/pie/pie.component';
     MatNativeDateModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxChartsModule,
     FlexLayoutModule,
     NgApexchartsModule
   ],
