@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AppComponent } from 'src/app/app.component';
 import { UserHandlingModel } from 'src/app/shared/user-handling.model';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private appComp: AppComponent) {
+    private appComp: AppComponent,
+    private _loginServe: LoginService) {
     this.key = '';
   }
 
@@ -37,8 +39,13 @@ export class LoginComponent implements OnInit {
   })
 
   onLogin() {
-    if (!this.loginForm.valid) {
-      return;
+    if (!this.loginForm.valid) 
+    {
+      this._loginServe.sendLogIn(this.userHandlingModel)
+        .subscribe((jwt: string) => 
+        {
+          
+        })
     }
 
     console.log(this.loginForm.value);

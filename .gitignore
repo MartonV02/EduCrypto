@@ -242,3 +242,4 @@ _Pvt_Extensions
 /EduCrypto/ClientApp/src/app/shared/GenericUrlGenerator.service.js.map
 /EduCrypto/ClientApp/src/app/components/home-crypto-list/model/imported-crypto-usd.model.js
 /EduCrypto/ClientApp/src/app/components/home-crypto-list/model/imported-crypto-usd.model.js.map
+.DS_Store
