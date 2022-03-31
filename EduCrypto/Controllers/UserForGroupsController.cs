@@ -88,11 +88,14 @@ namespace EduCrypto.Controllers
         }
 
         [HttpGet("leaderBoard/{groupId}")]
-        [AllowAnonymous]
         public ActionResult GetLeaderBoardByGroupId(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(userForGroupsAppService.GetLeaderBordByGroupId(groupId, userHandlingAppService, userCryptoAppService));
             });
         }

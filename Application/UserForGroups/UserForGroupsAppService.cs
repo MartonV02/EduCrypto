@@ -142,7 +142,7 @@ namespace Application.UserForGroups
                 catch (KeyNotFoundException) { }
             }
 
-            leaderBoard.Sort((e, s) => e.AllMoney.CompareTo(s.AllMoney));
+            leaderBoard.Sort((e, s) => s.AllMoney.CompareTo(e.AllMoney));
 
 
             int place = 1;

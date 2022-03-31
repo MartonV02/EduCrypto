@@ -71,7 +71,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 100,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 3,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 100,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -100,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 5,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
+							"raw": "{\r\n  \"id\": 0,\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 30,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"boughtValue\": 0,\r\n  \"userForGroupsModelId\": 1\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -378,7 +378,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"id\" : 15,\r\n    \"name\": \"JWT city\",\r\n    \"startBudget\": 2000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test\",\r\n    \"startBudget\": 300.00000000000000000000000000,\r\n    \"startDate\": \"9991-01-01T00:00:00\",\r\n    \"finishDate\": \"2022-05-01T00:00:00\",\r\n    \"isFinished\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -822,6 +822,28 @@
 					"response": []
 				},
 				{
+					"name": "Get LeaderBoard By GroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/leaderBoard/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"leaderBoard",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Join a Group",
 					"request": {
 						"method": "PUT",
@@ -876,7 +898,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"JWT@gmail.com\",\r\n    \"password\": \"JWTtoken\"\r\n}",
+					"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"Test123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -904,7 +926,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IkpXVEBnbWFpbC5jb20iLCJ1c2VySWQiOiIxNiIsImV4cCI6MTY0ODI4NTg3MywiaXNzIjoidHJhZGVyIiwiYXVkIjoiZmVkZXJhdGlvbiJ9.lyccipuEL1S14_ZD2cymynI8qj2I1K9R9HFL3O7mS0o",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOiIxIiwiZXhwIjoxNjQ4NzIxOTEzLCJpc3MiOiJ0cmFkZXIiLCJhdWQiOiJmZWRlcmF0aW9uIn0.EGq_Mm51C3sTP1X_6yqi7Dp3Q3JFgtDDprv8mcWfVoY",
 				"type": "string"
 			}
 		]
