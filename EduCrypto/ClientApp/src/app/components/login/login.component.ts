@@ -45,16 +45,13 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (!this.loginForm.valid) 
     {
-      this._loginServe.sendLogIn(this.userHandlingModel)
+      this._loginServe.sendLogIn(this.loginForm.value)
         .subscribe((jwt: string) => 
         {
-          console.log(this.name);
           console.log(jwt);
           this.jwtToken = jwt;
         })
     }
-
-    console.log(this.loginForm.value);
   }
 
   resolved(captchaResponse: string) {
