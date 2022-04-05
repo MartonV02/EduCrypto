@@ -171,6 +171,7 @@ namespace Application.UserTradeHistory
                 else
                 {
                     userTradeHystoryModel.boughtValue = CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue);
+                    userTradeHystoryModel.actualPrice = crypto.actual_USD_Price;
                     try
                     {
                         UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserIdAndCryptoSymbol(user.Id, crypto.symbol);
@@ -217,6 +218,7 @@ namespace Application.UserTradeHistory
                     else
                     {
                         userTradeHystoryModel.boughtValue = CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue);
+                        userTradeHystoryModel.actualPrice = crypto.actual_USD_Price;
                         userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                         this.IncreaseDollar(userTradeHystoryModel.boughtValue, user, userAppService);
                         return userCryptoAppService.Update(userCrypto);
@@ -257,6 +259,7 @@ namespace Application.UserTradeHistory
                 else
                 {
                     userTradeHystoryModel.boughtValue = CryptoData.ChangeToCrypto(crypto, userTradeHystoryModel.spentValue);
+                    userTradeHystoryModel.actualPrice = crypto.actual_USD_Price;
                     try
                     {
                         UserCryptoModel userCryptoModel = userCryptoAppService.GetByUserForGroupsIdAndCryptoSymbol(userForGroups.Id, crypto.symbol);
@@ -315,6 +318,7 @@ namespace Application.UserTradeHistory
                         else
                         {
                             userTradeHystoryModel.boughtValue = CryptoData.ChangeToDollar(crypto, userTradeHystoryModel.spentValue);
+                            userTradeHystoryModel.actualPrice = crypto.actual_USD_Price;
                             userCrypto.cryptoValue -= userTradeHystoryModel.spentValue;
                             this.IncreaseDollarInGroup(userTradeHystoryModel.boughtValue, userForGroups, userForGroupsAppService);
                             return userCryptoAppService.Update(userCrypto);
