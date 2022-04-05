@@ -14,5 +14,6 @@ namespace Application.UserTradeHistory.Interfaces
         public string? boughtCryptoSymbol { get; set; }
         public decimal boughtValue { get; set; }
         public UserForGroupsModel? userForGroupsModel { get; set; }
+        public decimal actualPrice { get; set; }
     }
 }
