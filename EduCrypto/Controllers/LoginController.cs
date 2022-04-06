@@ -35,7 +35,9 @@ namespace EduCrypto.Controllers
                 var token = jwt.GenerateSecurityToken(email, user.Id);
                 return Ok(new
                 {
-                    token
+                    token,
+                    userId = user.Id,
+                    userName = user.userName
                 });
             });
         }
