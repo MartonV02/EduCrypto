@@ -24,7 +24,7 @@ namespace EduCrypto.Controllers
         {
             return this.Run(() =>
             {
-                string email = ((JsonElement)model).GetProperty("username").GetString();
+                string email = ((JsonElement)model).GetProperty("email").GetString();
                 string password = ((JsonElement)model).GetProperty("password").GetString();
 
                 UserHandlingModel user = userAppService.GetByEmail(email);

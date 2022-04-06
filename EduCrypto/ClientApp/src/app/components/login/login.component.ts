@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
       this._loginServe.sendLogIn(this.loginForm.value)
         .subscribe((jwt: string) => 
         {
-          console.log(jwt);
           this.jwtToken = jwt;
         })
     }
