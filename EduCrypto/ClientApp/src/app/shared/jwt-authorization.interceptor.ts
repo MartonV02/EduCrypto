@@ -1,28 +1,32 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { environment } from "src/environments/environment";
+import { LoginService } from "../components/login/service/login.service";
 
 
 @Injectable()
 export class JwtAuthorizationInterceptor implements HttpInterceptor
 {
-    constructor() { }
+  constructor(private loginService: LoginService) { }
 
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
+  {
+    const requestRoute = req.url;
+    const disabledRouteForInterceptor: Array<string> = ["api/ImportCrypto", "api/Login", "api/Register"];
+
+    if (disabledRouteForInterceptor.indexOf(requestRoute) == -1)
     {
-        const account = this.accountService.accountValue;
-        const isLoggedIn = account?.token;
-        const isApiUrl = request.url.startsWith(environment.apiUrl);
-        if (isLoggedIn && isApiUrl) {
-            request = request.clone({
-                setHeaders: { Authorization: `Bearer ${account.token}` }
-            });
-        }
+      const actualUserModel = this.loginService.responseModelToInterceptor;
+      const isLoggedIn = actualUserModel.token;
 
-        return next.handle(request);
-        
-
+      if (isLoggedIn)
+      {
+        req = req.clone({
+          setHeaders: { Authorization: `Bearer ${actualUserModel.token}` }
+        });
+      }
     }
-    
+
+    return next.handle(req);
+  }
 }

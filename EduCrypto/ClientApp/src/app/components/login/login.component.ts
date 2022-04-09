@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AppComponent } from 'src/app/app.component';
-import { UserHandlingModel } from 'src/app/shared/user-handling.model';
+import { AppComponent } from '../../app.component';
+import { UserHandlingModel } from '../../shared/user-handling.model';
 import { LoginService } from './service/login.service';
 
 @Component({
@@ -10,9 +10,6 @@ import { LoginService } from './service/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  @Input("userName") name: string;
-
   key: string;
   hide: boolean = false;
 
@@ -43,11 +40,9 @@ export class LoginComponent implements OnInit {
   })
 
   onLogin() {
-    if (!this.loginForm.valid) 
-    {
+    if (!this.loginForm.valid) {
       this._loginServe.sendLogIn(this.loginForm.value)
-        .subscribe((jwt: string) => 
-        {
+        .subscribe((jwt: string) => {
           this.jwtToken = jwt;
         })
     }
