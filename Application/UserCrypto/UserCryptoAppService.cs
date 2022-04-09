@@ -1,7 +1,6 @@
 ﻿using Application.Common;
 using Application.UserCrypto.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using EntityClass = Application.UserCrypto.UserCryptoModel;

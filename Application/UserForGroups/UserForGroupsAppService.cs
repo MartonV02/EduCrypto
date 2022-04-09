@@ -1,5 +1,8 @@
 ﻿using Application.Common;
+using Application.ImportCryptos;
+using Application.UserCrypto;
 using Application.UserForGroups.Interfaces;
+using Application.UserHandling;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -100,6 +103,60 @@ namespace Application.UserForGroups
                 return false;
             else
                 return true;
+        }
+
+        public List<PlayerModel> GetLeaderBordByGroupId(int groupId, UserHandlingAppService userHandlingAppService, UserCryptoAppService userCryptoAppService)
+        {
+            List<PlayerModel> leaderBoard = new();
+            List<UserForGroupsModel> userForGroupsModels = this.GetByGroupId(groupId).ToList();
+
+            foreach (var item in userForGroupsModels)
+            {
+                try
+                {
+                    UserHandlingModel user = userHandlingAppService.GetById(item.userHandlingModelId);
+                    PlayerModel player = new PlayerModel()
+                    {
+                        Place = 0,
+                        UserForGroupsModelId = item.Id,
+                        Username = user.userName,
+                        ProfilePictureUrl = user.profilePictureUrl,
+                        AllMoney = item.money,
+                    };
+
+                    try
+                    {
+                        List<UserCryptoModel> userCryptoModels = userCryptoAppService.GetByGroupAndUserId(groupId, user.Id).ToList();
+                        foreach (var crypto in userCryptoModels)
+                        {
+                            player.AllMoney +=  CryptoData.ChangeToDollar(CryptoData.GetByCryptoSymbol(crypto.cryptoSymbol), crypto.cryptoValue);
+                        }
+                        leaderBoard.Add(player);
+                    }
+                    catch (KeyNotFoundException)
+                    {
+                        leaderBoard.Add(player);
+                    }
+
+                }
+                catch (KeyNotFoundException) { }
+            }
+
+            leaderBoard.Sort((e, s) => s.AllMoney.CompareTo(e.AllMoney));
+
+
+            int place = 1;
+            for (int i = 0; i < leaderBoard.Count-1; i++)
+            {
+                leaderBoard[i].Place = place;
+                if (leaderBoard[i].AllMoney != leaderBoard[i + 1].AllMoney)
+                {
+                    place++;
+                }
+            }
+            leaderBoard[leaderBoard.Count - 1].Place = place;
+
+            return leaderBoard;
         }
     }
 }
