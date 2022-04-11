@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MaterialModule } from './material/material.module';
 import { MenuSideBarTemplateComponent } from './components/menu-sidebar-template/component/menu-sidebar-template.component';
@@ -17,6 +17,7 @@ import { QuizComponent } from './components/quiz/quiz.component';
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { JwtAuthorizationInterceptor } from './shared/jwt-authorization.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,10 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     MaterialModule,
     NgxChartsModule
   ],
-  providers: [],
+  providers:  
+  [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtAuthorizationInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

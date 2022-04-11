@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AppComponent } from 'src/app/app.component';
+import { AppComponent } from '../../app.component';
+import { UserHandlingModel } from '../../shared/user-handling.model';
+import { LoginService } from './service/login.service';
 
 @Component({
   selector: 'app-login',
@@ -8,43 +10,45 @@ import { AppComponent } from 'src/app/app.component';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
-  key : string;
+  key: string;
   hide: boolean = false;
-  public captchaColor: boolean;
 
+  public captchaColor: boolean;
+  public userHandlingModel: UserHandlingModel = new UserHandlingModel();
+
+  private jwtToken: string;
 
   constructor(
     private fb: FormBuilder,
-    private appComp: AppComponent) {
+    private appComp: AppComponent,
+    private _loginServe: LoginService) {
     this.key = '';
-   }
+  }
 
   ngOnInit(): void {
-    if(this.appComp.isDarkRecaptcha)
-    {
-      this.captchaColor= true
+    if (this.appComp.isDarkRecaptcha) {
+      this.captchaColor = true
     }
     else {
       this.captchaColor = false
     }
   }
+
   loginForm: FormGroup = this.fb.group({
-    username: ['', [Validators.required]],
+    email: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
-    onLogin() {
-      if (!this.loginForm.valid) {
-        return;
-      }
-      
-      console.log(this.loginForm.value);
+  onLogin() {
+    if (!this.loginForm.valid) {
+      this._loginServe.sendLogIn(this.loginForm.value)
+        .subscribe((jwt: string) => {
+          this.jwtToken = jwt;
+        })
     }
-    
-    resolved(captchaResponse: string) {
-      this.key = captchaResponse;
-    }
+  }
 
-
+  resolved(captchaResponse: string) {
+    this.key = captchaResponse;
+  }
 }
