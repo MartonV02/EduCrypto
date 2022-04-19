@@ -57,7 +57,7 @@ export class HomeCryptoListComponent implements OnInit
   public createTransaction(symbol: string): void
   {
     this.transactionModel.spentCryptoSymbol = symbol;
-    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId();
+    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
 
     console.log(this.transactionModel.spentCryptoSymbol);
   }

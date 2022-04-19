@@ -12,7 +12,7 @@ export class JwtAuthorizationInterceptor implements HttpInterceptor
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
   {
     const requestRoute = req.url;
-    const disabledRouteForInterceptor: Array<string> = ["api/ImportCrypto", "api/Login", "api/Register"];
+    const disabledRouteForInterceptor: Array<string> = ["api/ImportCrypto", "api/Login", "api/UserHandling"];
 
     if (disabledRouteForInterceptor.indexOf(requestRoute) == -1)
     {

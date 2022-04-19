@@ -39,11 +39,14 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
-  onLogin() {
-    if (!this.loginForm.valid) {
+  onLogin()
+  {
+    console.log(!this.loginForm.valid);
+    if (this.loginForm.valid) {
       this._loginServe.sendLogIn(this.loginForm.value)
         .subscribe((jwt: string) => {
           this.jwtToken = jwt;
+          console.log(jwt);
         })
     }
   }
