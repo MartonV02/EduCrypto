@@ -30,6 +30,14 @@ export class LoginService {
       );
   }
 
+  public isUserLoggedIn(): boolean
+  {
+    if(this.currentUserModel.userId != 0)
+      return true;
+    
+    return false
+  }
+
   public get responseModelToInterceptor(): LoginResponseModel
   {
     return this.currentUserModel;
