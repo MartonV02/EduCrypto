@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import * as apex from 'ng-apexcharts';
+import { ProfileComponent } from 'src/app/components/profile/profile.component';
 import { ProfileService } from 'src/app/components/profile/service/profile.service';
+import { UserTradeHistoryModel } from '../UserTradeHistoryModel';
 
 export type ChartOptions = {
   series: apex.ApexNonAxisChartSeries;
@@ -20,20 +22,37 @@ export type ChartOptions = {
 })
 export class PieComponent implements OnInit {
   @ViewChild('chart') chart: PieComponent;
-  public tradeService: ProfileService;
+  public tradeService: ProfileComponent;
   public chartOptions: Partial<ChartOptions> | any;
   public data = [23, 45, 34];
-  public cryptos = ['Bitcoin', 'Ethereum', 'LiteCoin'];
+  public cryptos = ['Bitcoin', 'Ethereum'];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getHistory();
+  }
+  public tradeModel : UserTradeHistoryModel[];
+  public userId = 3;
+  public boughtValue : number[];
+  
+  
 
-  constructor() {
+  public getHistory(): void {
+    
+    this.profileService.GetByUserId(this.userId).subscribe((result)=> 
+    {
+      this.tradeModel = result;
+      this.boughtValue = this.tradeModel.map(x => x.boughtValue);
+    });
+  }
+
+  constructor(private profileService : ProfileService) {
     this.chartOptions = {
-      series: this.data,
+      series: [1,2],
       chart: {
         type: 'donut',
         foreColor: '#50b2c0',
         width: 500,
+        
       },
       legend: {
         show: true,
@@ -72,5 +91,13 @@ export class PieComponent implements OnInit {
         },
       ],
     };
+    
   }
+  public updateSeries() {
+    this.chartOptions.series = [{
+        data: this.boughtValue
+    }];
+  }
+
+
 }

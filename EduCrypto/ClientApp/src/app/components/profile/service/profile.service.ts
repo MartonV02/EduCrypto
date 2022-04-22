@@ -12,7 +12,7 @@ import { GenericUrlGenerator } from '../../../shared/GenericUrlGenerator.service
 export class ProfileService
 {
   private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.UserTradeHistory);
-  public auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InZhbGFtaUBnbWFpbC5jb20iLCJ1c2VySWQiOiIzIiwiZXhwIjoxNjQ4NzExODk4LCJpc3MiOiJ0cmFkZXIiLCJhdWQiOiJmZWRlcmF0aW9uIn0.Nr3pFVgXSZ8nGrzLVfoZZKaKW8Ok8T3PnPzuYoX5wsM";
+  public auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzb21iaUBnbWFpbC5jb20iLCJ1c2VySWQiOiIzIiwiZXhwIjoxNjUwMDM2OTA5LCJpc3MiOiJ0cmFkZXIiLCJhdWQiOiJmZWRlcmF0aW9uIn0.tEjctaEXmbrsiS7S4FRznAE5RtCKpNaVB3Mtatk30YU";
 
   constructor(private http: HttpClient) { }
 
