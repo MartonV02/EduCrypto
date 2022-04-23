@@ -5,7 +5,7 @@
     </div>
     <div class="div-text">
       <p class="right-text-content">
-        <span><a id="register-now-id" routerLink="register">Register now</a></span> in order to try out what could you achieve, if you would trade with cryptos. Without any financial risk.
+        <span><a id="register-now-id" routerLink="register">Register or</a></span> <span><a id="register-now-id" routerLink="login">Login now</a></span> in order to try out what could you achieve, if you would trade with cryptos. Without any financial risk.
       </p>
     </div>
   </mat-card>
@@ -18,7 +18,7 @@
     </div>
     <div class="div-text">
       <p class="right-text-content">
-        <span><a id="register-now-id" routerLink="register">Register now</a></span> in order to try out what could you achieve, if you would trade with cryptos. Without any financial risk.
+        Try out your skills and luck with trading crypto currencies, without any risk to lose, because it is just only simulation with current currencies.
       </p>
     </div>
   </mat-card>
@@ -56,7 +56,7 @@
                     <mat-label>Amount of money</mat-label>
                     <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your budget" value="100">
                   </mat-form-field>
-                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Buy</button>
+                  <button class="transaction-button" (click)="createBuyTransaction(element.symbol)" mat-raised-button>Buy</button>
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
@@ -72,9 +72,9 @@
                 <div class="input-content">
                   <mat-form-field appearance="fill">
                     <mat-label>Amount of money</mat-label>
-                    <input matInput placeholder="From your crypto" value="100" class="input-field">
+                    <input [(ngModel)]="transactionModel.boughtValue" matInput placeholder="From your crypto" value="100" class="input-field">
                   </mat-form-field>
-                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Sell</button>
+                  <button class="transaction-button" (click)="createSellTransaction(element.symbol)" mat-raised-button>Sell</button>
                 </div>
               </mat-expansion-panel>
             </mat-accordion>

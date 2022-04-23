@@ -59,11 +59,29 @@ export class HomeCryptoListComponent implements OnInit
     this.userLoggedIn = this._loginService.isUserLoggedIn();
   }
 
-  public createTransaction(symbol: string): void
+  public createBuyTransaction(symbol: string): void
   {
     this.transactionModel.boughtCryptoSymbol = symbol;
     this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
     console.log(this.transactionModel.spentValue);
+
+    this._homeCryptoListService.Create(this.transactionModel).subscribe
+    (
+      result => { },
+      error =>
+      {
+        console.log(error)
+      }
+    );
+
+    console.log(this.transactionModel.boughtCryptoSymbol);
+  }
+
+  public createSellTransaction(symbol: string): void
+  {
+    this.transactionModel.spentCryptoSymbol = symbol;
+    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
+    console.log(this.transactionModel.boughtValue);
 
     this._homeCryptoListService.Create(this.transactionModel).subscribe
     (
