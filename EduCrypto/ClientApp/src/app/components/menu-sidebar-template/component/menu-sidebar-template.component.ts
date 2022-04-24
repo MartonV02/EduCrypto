@@ -3,22 +3,32 @@ import { BreakpointObserver } from '@angular/cdk/layout';
 import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { LoginService } from '../../login/service/login.service';
 
 @Component({
   selector: 'app-menu-sidebar-template',
   templateUrl: './menu-sidebar-template.component.html',
   styleUrls: ['./menu-sidebar-template.component.scss'],
 })
-export class MenuSideBarTemplateComponent
+export class MenuSideBarTemplateComponent implements OnInit
 {
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
   @Output()
   readonly modeSwitched = new EventEmitter<boolean>();
-
+  public userLoggedIn: boolean;
   isDark: boolean;
-  constructor(private observer: BreakpointObserver) {}
+
+
+  constructor(
+    private observer: BreakpointObserver,
+    private _loginService: LoginService) { }
+
+  ngOnInit(): void
+  {
+    this.userLoggedIn = this._loginService.isUserLoggedIn();
+  }
 
   ngAfterViewInit() {
     this.observer

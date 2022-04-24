@@ -12,6 +12,7 @@ import { LoginResponseModel } from "../model/login.model";
 export class LoginService {
   private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.Login);
   private currentUserModel: LoginResponseModel;
+  private _actualUserId: number = 0;
 
   constructor(private _http: HttpClient) { }
 
@@ -25,6 +26,8 @@ export class LoginService {
         {
           this.currentUserModel = responseData;
 
+          this._actualUserId = this.currentUserModel.userId;
+
           return responseData;
         })
       );
@@ -32,7 +35,7 @@ export class LoginService {
 
   public isUserLoggedIn(): boolean
   {
-    if(this.currentUserModel.userId != 0)
+    if (this._actualUserId != 0)
       return true;
     
     return false

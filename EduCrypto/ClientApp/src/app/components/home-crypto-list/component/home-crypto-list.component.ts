@@ -63,7 +63,6 @@ export class HomeCryptoListComponent implements OnInit
   {
     this.transactionModel.boughtCryptoSymbol = symbol;
     this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
-    console.log(this.transactionModel.spentValue);
 
     this._homeCryptoListService.Create(this.transactionModel).subscribe
     (
@@ -73,8 +72,6 @@ export class HomeCryptoListComponent implements OnInit
         console.log(error)
       }
     );
-
-    console.log(this.transactionModel.boughtCryptoSymbol);
   }
 
   public createSellTransaction(symbol: string): void

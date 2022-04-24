@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { UserHandlingModel } from '../../shared/user-handling.model';
 import { LoginService } from './service/login.service';
@@ -21,7 +22,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private appComp: AppComponent,
-    private _loginServe: LoginService) {
+    private _loginServe: LoginService,
+    private router: Router)
+  {
     this.key = '';
   }
 
@@ -46,6 +49,7 @@ export class LoginComponent implements OnInit {
       this._loginServe.sendLogIn(this.loginForm.value)
         .subscribe((jwt: string) => {
           this.jwtToken = jwt;
+          this.router.navigate(['']);
           console.log(jwt);
         })
     }

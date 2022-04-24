@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-elevation-z8 header">
-  <button mat-icon-button (click)="sidenav.toggle()">
+  <button *ngIf="userLoggedIn == true" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
       menu
     </mat-icon>
@@ -10,7 +10,7 @@
   EduCrypto
   
 
-  <div class="div_login">
+  <div *ngIf="userLoggedIn == false" class="div_login">
     <img id="img_login" class="mat-elevation-z8" src="..\assets\images\user_paint.png"/>
     <a id="login_id" routerLink="login">Log in</a>
   </div>
@@ -46,11 +46,6 @@
     </button>
 
     <mat-divider></mat-divider>
-
-    <button mat-button class="menu-button">
-      <mat-icon>help</mat-icon>
-      <span>Help</span>
-    </button>
 
   </mat-sidenav>
   <mat-sidenav-content>
