@@ -46,7 +46,6 @@ namespace Application.UserCrypto
             return result;
         }
 
-        //Vissza adja egy adott user adott grupphoz tartozó valutáit
         public IEnumerable<EntityClass> GetByUserForGroupsId(int userForGroupId)
         {
             var result = dbContext.Set<EntityClass>()
@@ -63,7 +62,6 @@ namespace Application.UserCrypto
             return result;
         }
 
-        //Viszza adja egy adott gruphoz tartozó összes birtokolt valutát
         public IEnumerable<EntityClass> GetByGroupId(int groupId)
         {
             var result = dbContext.Set<EntityClass>()
@@ -79,24 +77,7 @@ namespace Application.UserCrypto
 
             return result;
         }
-
-        //Vissza adja egy adott grup adott cryptovaluta birtoklásokat
-        public IEnumerable<EntityClass> GetByGroupAndCryptoSymbol(int groupId, string cryptoSymbol)
-        {
-            var result = dbContext.Set<EntityClass>()
-                .Include(e => e.userHandlingModel)
-                .Include(e => e.userForGroupsModel).ThenInclude(i => i.groupModel)
-                .Where(x => x.userForGroupsModel.groupModel.Id == groupId && x.cryptoSymbol == cryptoSymbol)
-                .ToList();
-
-            if (result.Count == 0)
-            {
-                throw new KeyNotFoundException();
-            }
-
-            return result;
-        }
-        
+                
         public IEnumerable<EntityClass> GetByGroupAndUserId(int groupId, int userId)
         {
             var result = dbContext.Set<EntityClass>()
@@ -137,6 +118,21 @@ namespace Application.UserCrypto
                 .FirstOrDefault();
 
             if (result == null)
+            {
+                throw new KeyNotFoundException();
+            }
+
+            return result;
+        }
+
+        public IEnumerable<EntityClass> GetByUserId(int userId)
+        {
+            var result = dbContext.Set<EntityClass>()
+                .Include(e => e.userHandlingModel)
+                .Where(x => x.userHandlingModelId == userId && x.userForGroupsModel == null)
+                .ToList();
+
+            if (result.Count == 0)
             {
                 throw new KeyNotFoundException();
             }

@@ -56,7 +56,21 @@ namespace EduCrypto.Controllers
             });
         }
 
-        [HttpGet("userForGroup/{userForGroupId:int}")] //TODO I'm not sure we need this, the one below this is for the same purpose
+        [HttpGet("user/{id}")]
+        public IActionResult GetByUserId(int id)
+        {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != id)
+                return Forbid();
+
+            return this.Run(() =>
+            {
+                var result = userCryptoAppService.GetByUserId(id);
+                return Ok(result);
+            });
+        }
+
+        [HttpGet("userForGroup/{userForGroupId:int}")]
         public IActionResult GetByUserForGroupsId(int userForGroupId)
         {
             var token = HttpContext.Request.Headers["Authorization"];
