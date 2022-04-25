@@ -1,24 +1,29 @@
 ﻿using Application.Common;
+using Application.Common.Auth;
 using Application.Group;
+using Application.UserCrypto;
 using Application.UserForGroups;
 using Application.UserHandling;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduCrypto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UserForGroupsController : Controller
     {
-        readonly UserForGroupsAppService userForGroupsAppService;
-        readonly GroupAppService groupAppService;
-        readonly UserHandlingAppService userHandlingAppService;
+        private readonly IConfiguration config;
+        private readonly UserForGroupsAppService userForGroupsAppService;
+        private readonly GroupAppService groupAppService;
+        private readonly UserHandlingAppService userHandlingAppService;
+        private readonly UserCryptoAppService userCryptoAppService;
 
-        public UserForGroupsController(ApplicationDbContext dbContext)
+        public UserForGroupsController(ApplicationDbContext dbContext, IConfiguration config)
         {
 #if DEBUG
             dbContext.Database.EnsureCreated();
@@ -26,20 +31,43 @@ namespace EduCrypto.Controllers
             userHandlingAppService = new UserHandlingAppService(dbContext);
             groupAppService = new GroupAppService(dbContext);
             userForGroupsAppService = new UserForGroupsAppService(dbContext);
+            userCryptoAppService = new UserCryptoAppService(dbContext);
+            this.config = config;
         }
+
+#if DEBUG
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult GetAll()
+        {
+            return this.Run(() =>
+            {
+                return Ok(userForGroupsAppService.GetAll());
+            });
+        }
+#endif
 
         [HttpGet("{id}")]
         public ActionResult GetById(int id)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
             return this.Run(() =>
             {
-                return Ok(userForGroupsAppService.GetById(id));
+                var userForGrooups = userForGroupsAppService.GetById(id);
+
+                if (AuthenticationExtension.GetUserIdFromToken(config, token) != userForGrooups.userHandlingModelId)
+                    return Forbid();
+                return Ok(userForGrooups);
             });
         }
 
         [HttpGet("user/{userId}")]
         public ActionResult GetByUserId(int userId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
+                return Forbid();
+
             return this.Run(() =>
             {
                 return Ok(userForGroupsAppService.GetByUserId(userId));
@@ -49,38 +77,74 @@ namespace EduCrypto.Controllers
         [HttpGet("group/{groupId}")]
         public ActionResult GetByGroupId(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
                 return Ok(userForGroupsAppService.GetByGroupId(groupId));
             });
         }
 
-        [HttpPut("{code}/{userId}")]
-        public ActionResult Join(string code, int userId)
+        [HttpGet("leaderBoard/{groupId}")]
+        public ActionResult GetLeaderBoardByGroupId(int groupId)
         {
+            var token = HttpContext.Request.Headers["Authorization"];
+
             return this.Run(() =>
             {
-                string[] s = code.Split('#');
-                int id = Convert.ToInt32(s[1]);
-                string name = s[0];
-                GroupModel group = groupAppService.GetById(id);
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
+                return Ok(userForGroupsAppService.GetLeaderBordByGroupId(groupId, userHandlingAppService, userCryptoAppService));
+            });
+        }
 
-                if (group.name == name)
+        [HttpPut("join/{code}/{userId}")]
+        public ActionResult Join(string code, int userId)
+            {
+            var token = HttpContext.Request.Headers["Authorization"];
+            if (AuthenticationExtension.GetUserIdFromToken(config, token) != userId)
+                return Forbid();
+
+            return this.Run(() =>
+            {
+
+                string[] s = code.Split('-');
+                try
                 {
-                    UserForGroupsModel userForGroups = new UserForGroupsModel();
-                    UserHandlingModel user = userHandlingAppService.GetById(userId);
+                    int id = Convert.ToInt32(s[1]);
+                    string name = s[0];
+                    GroupModel group = groupAppService.GetById(id);
+                    if (userForGroupsAppService.IsMember(id, userId))
+                    {
+                        throw new Exception();
+                    }
 
-                    userForGroups.userHandlingModel = user;
-                    userForGroups.groupModel = group;
-                    userForGroups.accesLevel = "member";
-                    userForGroups.money = group.startBudget;
+                    if (group.name == name)
+                    {
+                        UserHandlingModel user = userHandlingAppService.GetById(userId);
+                        UserForGroupsModel userForGroups = new() { 
+                            userHandlingModelId = user.Id,
+                            groupModelId = group.Id,
+                            accesLevel = "member",
+                            money = group.startBudget,
+                        };
 
-                    return Ok(userForGroupsAppService.Create(userForGroups));
+                        return Ok(userForGroupsAppService.Create(userForGroups));
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
                 }
-                return BadRequest(new
+                catch
                 {
-                    ErrorMessage = "There is no such a goup with \"" + name + "\" name, and \"" + id + "\" id"
-                });
+                    return BadRequest(new
+                    {
+                        ErrorMessage = "There is no such a goup with that name and Id, or you have already joint that group"
+                    });
+                }
             });
         }
     }

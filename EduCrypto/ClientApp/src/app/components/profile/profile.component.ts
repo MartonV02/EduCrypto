@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { LegendPosition, Color, colorSets } from '@swimlane/ngx-charts';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { UserTradeHistoryModel } from 'src/app/shared/UserTradeHistoryModel';
+import { ProfileService } from './service/profile.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../login/service/login.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -8,46 +14,41 @@ import { LegendPosition, Color, colorSets } from '@swimlane/ngx-charts';
 
 export class ProfileComponent implements OnInit {
 
-  constructor() {}
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  public Cryptos = [
-    {
-      name: 'Bitcoin',
-      value: '12',
-    },
-    {
-      name: 'Ethereum',
-      value: '35',
-    },
-    {
-      name: 'DogeCoin',
-      value: '54',
-    },
-    {
-      name: 'XRP',
-      value: '110',
-    },
-    {
-      name: 'LiteCoin',
-      value: '87',
-    },
-  ];
-
-  // public view: [number, number] = [400, 200];
-  public legendTitle: string = 'Cryptos';
-  public legendPosition: LegendPosition = LegendPosition.Below; //right or below;
-  public legend: boolean = true;
-  customColors = 
-  [
-    { name: "Bitcoin", value: '#F46197' },
-    { name: "Ethereum", value: '#3F88C5' },
-    { name: "DogeCoin", value: '#44BBA4' },
-    { name: "XRP", value: '#FFD23F' },
-    { name: "LiteCoin", value: '#3C91E6' },
-  ]
-  // public scheme: string | Color = "valami" 
-
-
+  public tradeModel : UserTradeHistoryModel[];
+  public userId:number;
+  public boughtValue : number[];
+  public dataSource: any;
   ngOnInit(): void {
+    this.userId = this.login.provideActualUserId;
+    console.log(this.userId)
+    this.getHistory();
   }
+
+  constructor(
+    private profileService : ProfileService,
+    private login : LoginService
+  ) {}
+
+
+  public getHistory(): void {
+    
+    this.profileService.GetByUserId(this.userId).subscribe((result)=> 
+    {
+      this.tradeModel = result;
+      this.boughtValue = this.tradeModel.map(x => x.boughtValue);
+      this.dataSource = new MatTableDataSource<UserTradeHistoryModel>(this.tradeModel);
+      this.dataSource.paginator = this.paginator;
+      console.log(this.tradeModel);
+      console.log(this.boughtValue);
+    });
+  }
+
+  displayedColumns: string[] =
+  [
+    'boughtCryptoSymbol',
+    'boughtValue',
+    'tradeDate',
+  ];
 }

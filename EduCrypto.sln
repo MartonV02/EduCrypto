@@ -19,13 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GUI-plans", "GUI-plans", "{16B3AA0D-68F4-400E-99A3-6D4FF17B14A3}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\Downloads\Group page.png = ..\..\..\Downloads\Group page.png
-		..\..\..\Downloads\Home page logged in.png = ..\..\..\Downloads\Home page logged in.png
-		..\..\..\Downloads\Login.png = ..\..\..\Downloads\Login.png
-		..\..\..\Downloads\Opening page without login.png = ..\..\..\Downloads\Opening page without login.png
-		..\..\..\Downloads\Profile page.png = ..\..\..\Downloads\Profile page.png
-		..\..\..\Downloads\Test page.png = ..\..\..\Downloads\Test page.png
+		..\..\Downloads\Group page.png = ..\..\Downloads\Group page.png
+		..\..\Downloads\Home page logged in.png = ..\..\Downloads\Home page logged in.png
+		..\..\Downloads\Login.png = ..\..\Downloads\Login.png
+		..\..\Downloads\Opening page without login.png = ..\..\Downloads\Opening page without login.png
+		..\..\Downloads\Profile page.png = ..\..\Downloads\Profile page.png
+		..\..\Downloads\Test page.png = ..\..\Downloads\Test page.png
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{B2EEB802-A9AD-4E32-BEFB-C842629C8A6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16D25B02-1F11-4E68-9508-877759D6A4E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2EEB802-A9AD-4E32-BEFB-C842629C8A6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2EEB802-A9AD-4E32-BEFB-C842629C8A6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2EEB802-A9AD-4E32-BEFB-C842629C8A6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2EEB802-A9AD-4E32-BEFB-C842629C8A6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6F6A6E91-0612-49DB-9945-77738FF213EF} = {BCD1E900-4CDD-4ACF-9F59-D3BBFF0AB8B1}
 		{16D25B02-1F11-4E68-9508-877759D6A4E4} = {5BBF0B5B-E00E-4801-A209-E2606BD9A79B}
+		{B2EEB802-A9AD-4E32-BEFB-C842629C8A6B} = {5BBF0B5B-E00E-4801-A209-E2606BD9A79B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD7502FA-FBB9-4FFD-81D1-576B05CFE420}

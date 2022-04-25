@@ -1,6 +1,13 @@
 <div class="main-item">
   <mat-card>
-
+    <div class="div-img">
+      <img class="left-img-content" src="/../assets/images/stock_prices_img.png"/>
+    </div>
+    <div class="div-text">
+      <p class="right-text-content">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+      </p>
+    </div>
   </mat-card>
 </div>
 
@@ -11,7 +18,6 @@
       <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
     </ng-container>
 
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
         <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
@@ -23,7 +29,42 @@
           </div>
           <div class="example-element-description">
             {{element.description}}
-            <span class="example-element-description-attribution"> -- Wikipedia </span>
+
+            <mat-accordion>
+              <mat-expansion-panel class="expansion-panel-buy" *ngIf="sellPanelOpenState == false" (opened)="buyPanelOpenState = true"
+                                   (closed)="buyPanelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Buy crypto
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="input-content">
+                  <mat-form-field appearance="fill" class="input-field">
+                    <mat-label>Amount of money</mat-label>
+                    <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your budget" value="100">
+                  </mat-form-field>
+                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Buy</button>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion>
+              <mat-expansion-panel class="expansion-panel-sell" *ngIf="buyPanelOpenState == false" (opened)="sellPanelOpenState = true"
+                                   (closed)="sellPanelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Sell crypto
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="input-content">
+                  <mat-form-field appearance="fill">
+                    <mat-label>Amount of money</mat-label>
+                    <input matInput placeholder="From your crypto" value="100" class="input-field">
+                  </mat-form-field>
+                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Sell</button>
+                </div>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
         </div>
       </td>
@@ -35,8 +76,6 @@
         (click)="expandedElement = expandedElement === element ? null : element">
     </tr>
     <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
   </table>
 
   <mat-paginator [pageSizeOptions]="[20, 15, 5, 10, 30]" showFirstLastButtons

@@ -1,4 +1,5 @@
 using Application.Common;
+using Application.Common.Auth;
 using Application.ImportCryptos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -61,6 +62,8 @@ namespace EduCrypto
                 option.UseMySql(Configuration.GetConnectionString("educrypto"), new MySqlServerVersion(new Version()));
             });
 
+            services.AddTokenAuthentication(Configuration);
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -100,6 +103,9 @@ namespace EduCrypto
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapControllerRoute(
@@ -117,8 +123,8 @@ namespace EduCrypto
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                    //spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
+                    spa.UseAngularCliServer(npmScript: "start");
                 }
             });
         }

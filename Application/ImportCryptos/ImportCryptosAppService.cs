@@ -29,22 +29,21 @@ namespace Application.ImportCryptos
             return client.DownloadString(URL.ToString());
         }
 
-        public IEnumerable<dynamic> GetList()
+        public IEnumerable<FinalCryptoData> GetList()
         {
             var resultData = JsonSerializer.Deserialize<ImportedCryptos>(this.GetCryptoList());
             
             var resultInnerProperties = resultData.data;
 
-            return resultInnerProperties.Select(r => new 
+            return resultInnerProperties.Select(r => new FinalCryptoData
             { 
-                r.id,
-                r.name,
-                r.symbol,
-                r.date_added,
-                r.max_supply,
-                r.circulating_supply,
-                r.last_updated,
-                //r.quote,
+                id = r.id,
+                name = r.name,
+                symbol = r.symbol,
+                date_added = r.date_added,
+                max_supply = r.max_supply,
+                circulating_supply = r.circulating_supply,
+                last_updated = r.last_updated,
                 percent_Change24h = r.quote.USD.percent_change_24h,
                 percent_Change30d = r.quote.USD.percent_change_30d,
                 percent_Change90d = r.quote.USD.percent_change_90d,

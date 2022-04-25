@@ -12,29 +12,20 @@ import { RegisterService } from './service/register.service';
 })
 export class RegisterComponent implements OnInit {
   key : string;
-  hide: boolean = false;
+  hide= true;
   public captchaColor: boolean;
   public registerModel: RegisterModel[] = [];
   form: FormGroup;
-
+  minDate = new Date(1950, 0, 1);
+  maxDate = new Date();
   constructor(
     private fb: FormBuilder,
     private appComp: AppComponent,
     private registerService: RegisterService,
     private router: Router) {
     this.key = '';
+    this.maxDate.setFullYear(this.maxDate.getFullYear()-18);
    }
-
-  //  this.form = this.fb.group({
-  //     username: ['', [Validators.required, Validators.minLength(3)]],
-  //     email: ['', [Validators.required, Validators.email]],
-  //     fullName: ['', [Validators.required]],
-  //     date: ['', [Validators.required]],
-  //     Passwords: this.fb.group({
-  //       password: ['', [Validators.required, Validators.minLength(6)]],
-  //       confirmPassword: ['', [Validators.required]],
-  //     }, {validator: this.comparePasswords})
-  //   })
 
   ngOnInit(): void {
     if(this.appComp.isDarkRecaptcha)
@@ -49,12 +40,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', [Validators.required]],
       date: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required]],
-      // Passwords: this.fb.group({
-      //   password: ['', [Validators.required, Validators.minLength(6)]],
-      //   confirmPassword: ['', [Validators.required]],
-      // }, {validator: this.comparePasswords})
+      password: ['', [Validators.required, Validators.minLength(2)]],
     })
   }
 
@@ -65,7 +51,9 @@ export class RegisterComponent implements OnInit {
             userName: this.form.value.username,
             fullName: this.form.value.fullName,
             birthDate: this.form.value.date,
-        }
+      }
+
+      console.log(newUser);
 
         this.registerService.createUser(newUser).subscribe(
           result => {
@@ -80,24 +68,6 @@ export class RegisterComponent implements OnInit {
       
       
     }
-
-
-    // comparePasswords(fb: FormGroup) {
-    //   let confirmPass = fb.get('confirmPassword');
-
-    //   if (confirmPass?.errors == null || 'passwordMismatch' in confirmPass.errors) 
-    //   {
-    //     if (fb.get('password')?.value != fb.get('confirmPassword')?.value)
-    //     {
-    //       confirmPass ?.setErrors({ passwordMismatch: true})
-    //     }
-    //     else
-    //     {
-    //       confirmPass?.setErrors(null)  
-    //     }
-    //   }
-    // }
-
     resolved(captchaResponse: string) {
       this.key = captchaResponse;
     }

@@ -7,4 +7,5 @@ export enum BackendUrlEnum
   UserForGroups = "UserForGroups",
   UserHandling = "UserHandling",
   UserTradeHistory = "UserTradeHistory",
+  Login = "Login",
 }

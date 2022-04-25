@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EduCrypto.Controllers
 {
@@ -23,15 +21,25 @@ namespace EduCrypto.Controllers
             }
             catch (Exception ex)
             {
+#if DEBUG
+                var errorMessage = ex.Message;
+                while (ex.InnerException != null)
+                {
+                    errorMessage += $"\n {ex.InnerException.Message}";
+                    ex = ex.InnerException;
+                }
                 return controller.BadRequest(new
                 {
-#if DEBUG
-                    ErrorMessage = ex.Message,
-                    StackTrace = ex.StackTrace
-#else
-                    ErrorMessage = "Unexpected Error"
-#endif
+                    ErrorMessage = errorMessage,
+                    ex.StackTrace
+
                 });
+#else
+                return controller.BadRequest(new 
+                {
+                    ErrorMessage = "Unexpected Error"
+                });
+#endif
             }
         }
     }

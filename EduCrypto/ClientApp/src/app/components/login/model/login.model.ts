@@ -1,5 +1,6 @@
-export class loginModel {
-    public username = '';
-    public name = '';
-    public token = '';
+export class LoginResponseModel
+{
+  public token: string;
+  public userId: number;
+  public userName: string;
 }

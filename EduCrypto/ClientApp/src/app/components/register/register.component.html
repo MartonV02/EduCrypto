@@ -34,37 +34,19 @@
             </mat-form-field>
           </div>
 
-        <div class="passwordInput">
           <mat-form-field class="full-width" appearance="outline" >
-            <mat-label>Create a password</mat-label>
-              <input formControlName="password" matInput [type]="hide ? 'text' : 'password'">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <mat-error *ngIf="!form.controls['password'].valid">
-                Password is required
-              </mat-error>
+            <mat-label>Enter your password</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="!form.controls['password'].valid">
+                  Password is required
+            </mat-error>
           </mat-form-field>
-        </div>
 
-        <!-- <div class="passwordInput">
-          <mat-form-field class="full-width" appearance="outline" >
-            <mat-label>Confirm password</mat-label>
-              <input formControlName="confirmPassword" matInput [type]="hide ? 'password' : 'text'">
-              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-              </button>
-              <mat-error *ngIf="!form.controls['confirmPassword'].valid">
-                Mismatch
-              </mat-error>
-          </mat-form-field>
-        </div> -->
-
-
-        <div>
+        <div class="datepicker">
           <mat-form-field appearance="fill" class="full-width">
             <mat-label>Choose your birthdate</mat-label>
-            <input matInput [matDatepicker]="datepicker" formControlName="date">
+            <input matInput [matDatepicker]="datepicker" formControlName="date" [min]="minDate" [max]="maxDate">
             <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
             <mat-datepicker #datepicker>
               <mat-datepicker-actions>
@@ -88,7 +70,7 @@
         <button mat-flat-button color="primary" type="submit" [disabled]="!key">Create new account</button>
   
         <div class="button-row">
-          <a routerLink="/login" routerLinkActive="active">Login</a>
+          <a routerLink="/login" routerLinkActive="active">Or login</a>
         </div>
       </form>
     </mat-card-content>

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Quiz
 {
@@ -14,7 +10,7 @@ namespace Application.Quiz
         public QuizAppService()
         {
             Questions = new List<QuizModel>();
-            StreamReader sr = new StreamReader("question.txt");
+            StreamReader sr = new("question.txt");
             while (!sr.EndOfStream)
             {
                 Questions.Add( new QuizModel(sr.ReadLine()));
