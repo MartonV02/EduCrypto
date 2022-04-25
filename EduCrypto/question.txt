@@ -1,5 +1,4 @@
-﻿Hova megy a sündisznó?;Sehova;Az idegeidre;Haza;Boltba;1
-What is a blockchain?;A type of cryptocurrency;A distributed ledger on a peer to peer network;An exchange;A centralized ledger;1
+﻿What is a blockchain?;A type of cryptocurrency;A distributed ledger on a peer to peer network;An exchange;A centralized ledger;1
 When a record is on a blockchain, who can access it?;One person at a time;Multiple people simultaneously;Only the people involved in the transaction;No one;1
 Once records are submitted on a blockchain, can they be altered?;Yes – the parties can go back in and alter them at any time;Yes – but only within a certain time frame;Yes – but only two times;No – they cannot be altered;3 
 What was the first cryptocurrency?;Ethereum;Dogecoin;Bitcoin;Litecoin;2
