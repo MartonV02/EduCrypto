@@ -103,6 +103,8 @@ $accent: map-get($my-theme, accent);
 {
     margin: auto;
     margin-left: 20px;
+    text-decoration: none;
+    color: #e3e3e3;
 }
 
 body {
@@ -113,6 +115,8 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin-left:auto;
+  float: right;
 }
 
 .dark {

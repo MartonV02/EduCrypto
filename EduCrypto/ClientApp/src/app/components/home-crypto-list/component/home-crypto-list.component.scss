@@ -49,8 +49,8 @@ table
 
   .left-img-content {
     border-radius: 2000px;
-    height: 50vh;
-    width: auto;
+    height: auto;
+    width: 40vw;
   }
 
   .right-text-content {
@@ -146,7 +146,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   color: #40A2B2 !important;
 }
 
-@media only screen and (max-width: 1500px) {
+@media only screen and (max-width: 1877px) {
   .mat-table-size 
   {
     width: 100vw;

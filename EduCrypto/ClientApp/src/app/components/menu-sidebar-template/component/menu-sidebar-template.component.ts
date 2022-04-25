@@ -4,6 +4,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { delay } from 'rxjs/operators';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { LoginService } from '../../login/service/login.service';
+import { Observable } from 'rxjs';
+import { LoginResponseModel } from '../../login/model/login.model';
 
 @Component({
   selector: 'app-menu-sidebar-template',
@@ -15,11 +17,11 @@ export class MenuSideBarTemplateComponent implements OnInit
   @ViewChild(MatSidenav)
   sidenav!: MatSidenav;
 
+  public userLoggedIn: boolean = false;
+
   @Output()
   readonly modeSwitched = new EventEmitter<boolean>();
-  public userLoggedIn: boolean;
   isDark: boolean;
-
 
   constructor(
     private observer: BreakpointObserver,
@@ -27,7 +29,12 @@ export class MenuSideBarTemplateComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.userLoggedIn = this._loginService.isUserLoggedIn();
+    this._loginService.modelForMenu.subscribe(
+      response =>
+      {
+        this.userLoggedIn = true;
+      });
+
   }
 
   ngAfterViewInit() {
@@ -52,4 +59,6 @@ export class MenuSideBarTemplateComponent implements OnInit
     if (checked) this.isDark = true;
     else this.isDark = false;
   }
+
+  
 }

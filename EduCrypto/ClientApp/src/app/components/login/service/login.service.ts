@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, of, Subject } from "rxjs";
 import { map, take } from "rxjs/operators";
 import { BackendUrlEnum } from "../../../shared/BackendUrlEnum.constant";
 import { GenericUrlGenerator } from "../../../shared/GenericUrlGenerator.service";
@@ -14,6 +14,8 @@ export class LoginService {
   private currentUserModel: LoginResponseModel;
   private _actualUserId: number = 0;
 
+  public modelForMenu: Subject<LoginResponseModel> = new Subject<LoginResponseModel>();
+
   constructor(private _http: HttpClient) { }
 
   public sendLogIn(loginData: any): Observable<any> {
@@ -25,6 +27,8 @@ export class LoginService {
         map((responseData: LoginResponseModel) =>
         {
           this.currentUserModel = responseData;
+
+          this.modelForMenu.next(responseData);
 
           this._actualUserId = this.currentUserModel.userId;
 
