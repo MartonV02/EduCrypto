@@ -17,11 +17,11 @@ export class GenericUrlGenerator {
   GetUrlWithParam(id?: number, action?: string): string {
     var HttpUri = this._UriPrefix + this._backendUrlEnum;
 
-    if (action) {
-      HttpUri += '/' + action;
-    }
     if (id) {
       HttpUri += '/' + id;
+    }
+    if (action) {
+      HttpUri += '/' + action;
     }
 
     return HttpUri;

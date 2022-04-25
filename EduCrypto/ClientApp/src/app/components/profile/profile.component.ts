@@ -3,6 +3,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { UserTradeHistoryModel } from 'src/app/shared/UserTradeHistoryModel';
 import { ProfileService } from './service/profile.service';
 import { MatPaginator } from '@angular/material/paginator';
+import { LoginComponent } from '../login/login.component';
+import { LoginService } from '../login/service/login.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,15 +17,18 @@ export class ProfileComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   public tradeModel : UserTradeHistoryModel[];
-  public userId = 3;
+  public userId:number;
   public boughtValue : number[];
   public dataSource: any;
   ngOnInit(): void {
+    this.userId = this.login.provideActualUserId;
+    console.log(this.userId)
     this.getHistory();
   }
 
   constructor(
-    private profileService : ProfileService
+    private profileService : ProfileService,
+    private login : LoginService
   ) {}
 
 

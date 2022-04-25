@@ -75,3 +75,27 @@ table
 .mat-header-cell {
   padding: 8px 30px 8px 0;
 }
+
+
+@media only screen and (max-width: 1500px) {
+  .mat-table-size 
+  {
+    width: 100vw;
+  }
+
+  .main-item
+  {
+    mat-card
+    {
+        display: grid;
+        align-items:center;
+    }
+  }
+
+  .div-text
+  {
+      margin: auto;
+      text-align:center;
+      min-width: 40vw !important;
+  }
+}

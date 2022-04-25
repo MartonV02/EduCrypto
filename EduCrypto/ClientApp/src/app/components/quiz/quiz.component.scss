@@ -20,11 +20,12 @@ $accent: map-get($my-theme, accent);
 .question{
     text-align: center;
     font-size: large;
+    font-weight: bold;
 }
 
 .base{
     margin: auto;
-    width: 80vh;
+    width: 80%;
 }
 
 .img{

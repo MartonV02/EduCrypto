@@ -12,7 +12,6 @@ import { GenericUrlGenerator } from '../../../shared/GenericUrlGenerator.service
 export class ProfileService
 {
   private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.UserTradeHistory);
-  public auth_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNzb21iaUBnbWFpbC5jb20iLCJ1c2VySWQiOiIzIiwiZXhwIjoxNjUwMDM2OTA5LCJpc3MiOiJ0cmFkZXIiLCJhdWQiOiJmZWRlcmF0aW9uIn0.tEjctaEXmbrsiS7S4FRznAE5RtCKpNaVB3Mtatk30YU";
 
   constructor(private http: HttpClient) { }
 
@@ -20,11 +19,7 @@ export class ProfileService
   {
 
       var HttpURI = this._uriGenerator.GetUrlWithParam(userId);
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.auth_token}`
-      })
-      return this.http.get<UserTradeHistoryModel[]>(HttpURI, {"headers": headers})
+      return this.http.get<UserTradeHistoryModel[]>(HttpURI)
         .pipe(
           take(1),
           map((data: UserTradeHistoryModel[]) =>

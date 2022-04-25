@@ -4,31 +4,24 @@
       <p>Sign in to your account</p>
     </div>
     <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
-      <div class="usernameInput bg-accent">
+      <div class="emailInput">
         <mat-form-field class="full-width" appearance="outline" >
-          <mat-label>Username</mat-label>
-          <input formControlName="email" matInput placeholder="Enter username">
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Enter email">
           <mat-error *ngIf="!loginForm.controls['email'].valid">
-            Username is required
+            Email is required
           </mat-error>
         </mat-form-field>
       </div>
 
-      <div class="passwordInput">
-        <span>
-          <a class="text-link aLink" routerLink="/auth/forgot-password">Forgot Password?</a>
-        </span>
-        <mat-form-field class="full-width" appearance="outline" >
-          <mat-label>Enter your password</mat-label>
-            <input formControlName="password" placeholder="Enter your password" matInput [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="!loginForm.controls['password'].valid">
+      <mat-form-field class="full-width" appearance="outline" >
+        <mat-label>Enter your password</mat-label>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="!loginForm.controls['password'].valid">
               Password is required
-            </mat-error>
-        </mat-form-field>
-      </div>
+        </mat-error>
+      </mat-form-field>
       
       <div class="captcha-div">
         <div class="recaptcha">

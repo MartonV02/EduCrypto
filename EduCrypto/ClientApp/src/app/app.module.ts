@@ -17,8 +17,10 @@ import { QuizComponent } from './components/quiz/quiz.component';
 
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { JwtAuthorizationInterceptor } from './shared/jwt-authorization.interceptor';
+import { PieComponent } from './shared/pie/pie.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -43,7 +45,8 @@ import { JwtAuthorizationInterceptor } from './shared/jwt-authorization.intercep
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatSnackBarModule
   ],
   providers:  
   [
