@@ -32,5 +32,7 @@ namespace Application.UserTradeHistory
 
         public UserForGroupsModel? userForGroupsModel { get; set; }
         public int? userForGroupsModelId { get; set; }
+
+        public decimal actualPrice { get; set; }
     }
 }

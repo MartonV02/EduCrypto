@@ -5,6 +5,8 @@ import { ImportedCryptoModel } from '../model/imported-crypto.model';
 import { ImportCryptoCurrenciesService } from '../service/import-crypto-currencies.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { HomeCryptoListModel } from '../model/home-crypto-list.model';
+import { LoginService } from '../../login/service/login.service';
+import { HomeCryptoListService } from '../service/home-crypto-list.service';
 
 @Component({
   selector: 'home-crypto-list',
@@ -44,7 +46,10 @@ export class HomeCryptoListComponent implements OnInit
     'actual_USD_Price',
   ];
 
-  constructor(private _importCryptoCurrenciesService: ImportCryptoCurrenciesService) { }
+  constructor(
+    private _importCryptoCurrenciesService: ImportCryptoCurrenciesService,
+    private _homeCryptoListService: HomeCryptoListService,
+    private _loginService: LoginService) { }
 
   ngOnInit(): void
   {
@@ -54,6 +59,18 @@ export class HomeCryptoListComponent implements OnInit
   public createTransaction(symbol: string): void
   {
     this.transactionModel.spentCryptoSymbol = symbol;
+    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
+    console.log(this.transactionModel.spentValue);
+
+    this._homeCryptoListService.Create(this.transactionModel).subscribe
+    (
+      result => { },
+      error =>
+      {
+        console.log(error)
+      }
+    );
+
     console.log(this.transactionModel.spentCryptoSymbol);
   }
 

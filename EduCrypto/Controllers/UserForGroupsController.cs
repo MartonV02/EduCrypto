@@ -1,6 +1,7 @@
 ﻿using Application.Common;
 using Application.Common.Auth;
 using Application.Group;
+using Application.UserCrypto;
 using Application.UserForGroups;
 using Application.UserHandling;
 using Microsoft.AspNetCore.Authorization;
@@ -20,6 +21,7 @@ namespace EduCrypto.Controllers
         private readonly UserForGroupsAppService userForGroupsAppService;
         private readonly GroupAppService groupAppService;
         private readonly UserHandlingAppService userHandlingAppService;
+        private readonly UserCryptoAppService userCryptoAppService;
 
         public UserForGroupsController(ApplicationDbContext dbContext, IConfiguration config)
         {
@@ -29,6 +31,7 @@ namespace EduCrypto.Controllers
             userHandlingAppService = new UserHandlingAppService(dbContext);
             groupAppService = new GroupAppService(dbContext);
             userForGroupsAppService = new UserForGroupsAppService(dbContext);
+            userCryptoAppService = new UserCryptoAppService(dbContext);
             this.config = config;
         }
 
@@ -81,6 +84,19 @@ namespace EduCrypto.Controllers
                 if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
                     return Forbid();
                 return Ok(userForGroupsAppService.GetByGroupId(groupId));
+            });
+        }
+
+        [HttpGet("leaderBoard/{groupId}")]
+        public ActionResult GetLeaderBoardByGroupId(int groupId)
+        {
+            var token = HttpContext.Request.Headers["Authorization"];
+
+            return this.Run(() =>
+            {
+                if (!userForGroupsAppService.IsMember(groupId, AuthenticationExtension.GetUserIdFromToken(config, token)))
+                    return Forbid();
+                return Ok(userForGroupsAppService.GetLeaderBordByGroupId(groupId, userHandlingAppService, userCryptoAppService));
             });
         }
 
