@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
       this.captchaColor = false
     }
     this.form = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
+      username: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
       fullName: ['', [Validators.required]],
       date: ['', [Validators.required]],
