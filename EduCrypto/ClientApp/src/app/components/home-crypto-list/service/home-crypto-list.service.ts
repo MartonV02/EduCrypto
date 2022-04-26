@@ -16,14 +16,14 @@ export class HomeCryptoListService
 
   constructor(private _http: HttpClient) { }
 
-  public Create(homeCryptoListModel: HomeCryptoListModel): Observable<HomeCryptoListModel[]>
+  public Create(homeCryptoListModel: HomeCryptoListModel): Observable<HomeCryptoListModel>
   {
     var HttpURI = this._uriGenerator.GetBasicUrl();
 
-    return this._http.put<HomeCryptoListModel[]>(HttpURI, homeCryptoListModel)
+    return this._http.put<HomeCryptoListModel>(HttpURI, homeCryptoListModel)
       .pipe(
         take(1),
-        map((data: HomeCryptoListModel[]) =>
+        map((data: HomeCryptoListModel) =>
         {
             return data;
         })

@@ -68,12 +68,12 @@ export class HomeCryptoListComponent implements OnInit
     this.transactionModelForBuy.userHandlingModelId = this._loginService.provideActualUserId;
 
     this._homeCryptoListService.Create(this.transactionModelForBuy).subscribe
-    (
-      result => { this.matSnackBar.open("Successfully bought cryptocurrency", "Ok", {duration: 2000})},
-      error =>
-      {
-        console.log(error)
-      }
+      (
+        result => { this.matSnackBar.open("Successfully bought cryptocurrency for " + result.spentValue + "$ - amount of crypto" + result.boughtValue, "Ok", { duration: 2000 }) },
+        error =>
+        {
+          console.log(error)
+        }
     );
   }
 
@@ -84,8 +84,8 @@ export class HomeCryptoListComponent implements OnInit
     console.log(this.transactionModelForSell.boughtValue);
 
     this._homeCryptoListService.Create(this.transactionModelForSell).subscribe
-    (
-      result => { this.matSnackBar.open("Successfully sold cryptocurrency", "Ok", { duration: 2000 })},
+      (
+        result => { this.matSnackBar.open("Successfully sold " + result.spentValue + " cryptocurrency for " + result.boughtValue + "$", "Ok", { duration: 2000 }) },
       error =>
       {
         console.log(error)
