@@ -33,7 +33,8 @@ export class HomeCryptoListComponent implements OnInit
   public dataSource: any;
   public userLoggedIn: boolean;
 
-  public transactionModel: HomeCryptoListModel = new HomeCryptoListModel();
+  public transactionModelForBuy: HomeCryptoListModel = new HomeCryptoListModel();
+  public transactionModelForSell: HomeCryptoListModel = new HomeCryptoListModel();
 
   displayedColumns: string[] =
   [
@@ -63,10 +64,10 @@ export class HomeCryptoListComponent implements OnInit
 
   public createBuyTransaction(symbol: string): void
   {
-    this.transactionModel.boughtCryptoSymbol = symbol;
-    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
+    this.transactionModelForBuy.boughtCryptoSymbol = symbol;
+    this.transactionModelForBuy.userHandlingModelId = this._loginService.provideActualUserId;
 
-    this._homeCryptoListService.Create(this.transactionModel).subscribe
+    this._homeCryptoListService.Create(this.transactionModelForBuy).subscribe
     (
       result => { this.matSnackBar.open("Successfully bought cryptocurrency", "Ok", {duration: 2000})},
       error =>
@@ -78,11 +79,11 @@ export class HomeCryptoListComponent implements OnInit
 
   public createSellTransaction(symbol: string): void
   {
-    this.transactionModel.spentCryptoSymbol = symbol;
-    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
-    console.log(this.transactionModel.boughtValue);
+    this.transactionModelForSell.spentCryptoSymbol = symbol;
+    this.transactionModelForSell.userHandlingModelId = this._loginService.provideActualUserId;
+    console.log(this.transactionModelForSell.boughtValue);
 
-    this._homeCryptoListService.Create(this.transactionModel).subscribe
+    this._homeCryptoListService.Create(this.transactionModelForSell).subscribe
     (
       result => { this.matSnackBar.open("Successfully sold cryptocurrency", "Ok", { duration: 2000 })},
       error =>
@@ -91,7 +92,7 @@ export class HomeCryptoListComponent implements OnInit
       }
     );
 
-    console.log(this.transactionModel.boughtCryptoSymbol);
+    console.log(this.transactionModelForSell.boughtCryptoSymbol);
   }
 
   private getList(): void

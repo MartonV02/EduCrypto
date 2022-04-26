@@ -53,8 +53,8 @@
                 </mat-expansion-panel-header>
                 <div class="input-content">
                   <mat-form-field appearance="fill" class="input-field">
-                    <mat-label>Amount of money</mat-label>
-                    <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your budget" value="100">
+                    <mat-label>Amount of crypto</mat-label>
+                    <input [(ngModel)]="transactionModelForBuy.spentValue" matInput placeholder="From your budget" value="100">
                   </mat-form-field>
                   <button class="transaction-button" (click)="createBuyTransaction(element.symbol)" mat-raised-button>Buy</button>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="input-content">
                   <mat-form-field appearance="fill">
                     <mat-label>Amount of money</mat-label>
-                    <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your crypto" value="100" class="input-field">
+                    <input [(ngModel)]="transactionModelForSell.spentValue" matInput placeholder="From your crypto" value="100" class="input-field">
                   </mat-form-field>
                   <button class="transaction-button" (click)="createSellTransaction(element.symbol)" mat-raised-button>Sell</button>
                 </div>

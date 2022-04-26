@@ -5,6 +5,7 @@ import { map, take } from 'rxjs/operators';
 import { UserTradeHistoryModel } from 'src/app/shared/UserTradeHistoryModel';
 import { BackendUrlEnum } from '../../../shared/BackendUrlEnum.constant';
 import { GenericUrlGenerator } from '../../../shared/GenericUrlGenerator.service';
+import { UserCryptoModel } from '../model/UserCrypto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { GenericUrlGenerator } from '../../../shared/GenericUrlGenerator.service
 export class ProfileService
 {
   private _uriGenerator: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.UserTradeHistory);
+  private _uriGenerator1: GenericUrlGenerator = new GenericUrlGenerator(BackendUrlEnum.UserCrypto);
 
   constructor(private http: HttpClient) { }
 
@@ -27,5 +29,17 @@ export class ProfileService
               return data;
           })
         );
-    }
+  }
+
+  public GetUserCrypto(userId:number): Observable<UserCryptoModel[]>
+  {
+    var HttpURI = this._uriGenerator1.GetUrlWithParam(userId);
+    return this.http.get<UserCryptoModel[]>(HttpURI).pipe(
+      take(1),
+      map((data: UserCryptoModel[]) => 
+      {
+        return data;
+      })
+    );
+  }
 }

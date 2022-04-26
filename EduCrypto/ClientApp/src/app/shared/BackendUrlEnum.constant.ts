@@ -8,4 +8,5 @@ export enum BackendUrlEnum
   UserHandling = "UserHandling",
   UserTradeHistory = "UserTradeHistory",
   Login = "Login",
+  UserCrypto = "UserCrypto/user",
 }
