@@ -30,6 +30,7 @@ export class HomeCryptoListComponent implements OnInit
 
   public entities: ImportedCryptoModel[];
   public dataSource: any;
+  public userLoggedIn: boolean;
 
   public transactionModel: HomeCryptoListModel = new HomeCryptoListModel();
 
@@ -46,6 +47,7 @@ export class HomeCryptoListComponent implements OnInit
     'actual_USD_Price',
   ];
 
+
   constructor(
     private _importCryptoCurrenciesService: ImportCryptoCurrenciesService,
     private _homeCryptoListService: HomeCryptoListService,
@@ -54,13 +56,29 @@ export class HomeCryptoListComponent implements OnInit
   ngOnInit(): void
   {
     this.getList();
+    this.userLoggedIn = this._loginService.isUserLoggedIn();
   }
 
-  public createTransaction(symbol: string): void
+  public createBuyTransaction(symbol: string): void
+  {
+    this.transactionModel.boughtCryptoSymbol = symbol;
+    this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
+
+    this._homeCryptoListService.Create(this.transactionModel).subscribe
+    (
+      result => { },
+      error =>
+      {
+        console.log(error)
+      }
+    );
+  }
+
+  public createSellTransaction(symbol: string): void
   {
     this.transactionModel.spentCryptoSymbol = symbol;
     this.transactionModel.userHandlingModelId = this._loginService.provideActualUserId;
-    console.log(this.transactionModel.spentValue);
+    console.log(this.transactionModel.boughtValue);
 
     this._homeCryptoListService.Create(this.transactionModel).subscribe
     (
@@ -71,7 +89,7 @@ export class HomeCryptoListComponent implements OnInit
       }
     );
 
-    console.log(this.transactionModel.spentCryptoSymbol);
+    console.log(this.transactionModel.boughtCryptoSymbol);
   }
 
   private getList(): void

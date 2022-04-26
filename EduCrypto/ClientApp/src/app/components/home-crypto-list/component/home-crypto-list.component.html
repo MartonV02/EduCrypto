@@ -1,11 +1,24 @@
-<div class="main-item">
+<div class="main-item" *ngIf="userLoggedIn == false">
   <mat-card>
     <div class="div-img">
       <img class="left-img-content" src="/../assets/images/stock_prices_img.png"/>
     </div>
     <div class="div-text">
       <p class="right-text-content">
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."
+        <span><a id="register-now-id" routerLink="register">Register</a></span> or <span><a id="register-now-id" routerLink="login">Login</a></span> now in order to try out what could you achieve, if you would trade with cryptos. Without any financial risk.
+      </p>
+    </div>
+  </mat-card>
+</div>
+
+<div class="main-item" *ngIf="userLoggedIn == true">
+  <mat-card>
+    <div class="div-img">
+      <img class="left-img-content" src="/../assets/images/stock_prices_img.png"/>
+    </div>
+    <div class="div-text">
+      <p class="right-text-content">
+        Try out your skills and luck with trading crypto currencies, without any risk to lose, because it is just only simulation with current currencies.
       </p>
     </div>
   </mat-card>
@@ -43,7 +56,7 @@
                     <mat-label>Amount of money</mat-label>
                     <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your budget" value="100">
                   </mat-form-field>
-                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Buy</button>
+                  <button class="transaction-button" (click)="createBuyTransaction(element.symbol)" mat-raised-button>Buy</button>
                 </div>
               </mat-expansion-panel>
             </mat-accordion>
@@ -59,9 +72,9 @@
                 <div class="input-content">
                   <mat-form-field appearance="fill">
                     <mat-label>Amount of money</mat-label>
-                    <input matInput placeholder="From your crypto" value="100" class="input-field">
+                    <input [(ngModel)]="transactionModel.boughtValue" matInput placeholder="From your crypto" value="100" class="input-field">
                   </mat-form-field>
-                  <button class="transaction-button" (click)="createTransaction(element.symbol)" mat-raised-button>Sell</button>
+                  <button class="transaction-button" (click)="createSellTransaction(element.symbol)" mat-raised-button>Sell</button>
                 </div>
               </mat-expansion-panel>
             </mat-accordion>

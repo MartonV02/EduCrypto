@@ -1,5 +1,5 @@
-<mat-toolbar class="mat-elevation-z8 header" [ngClass]="isDark ? 'darktool' : 'lighttool'">
-  <button mat-icon-button (click)="sidenav.toggle()">
+<mat-toolbar  class="mat-elevation-z8 header">
+  <button *ngIf="userLoggedIn == true" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
       menu
     </mat-icon>
@@ -10,7 +10,7 @@
   EduCrypto
   
 
-  <div class="div_login">
+  <div class="div_login" *ngIf="userLoggedIn == false">
     <img id="img_login" class="mat-elevation-z8" src="..\assets\images\user_paint.png"/>
     <a id="login_id" routerLink="login">Log in</a>
   </div>
@@ -21,24 +21,19 @@
 <mat-sidenav-container [ngClass]="isDark ? 'dark' : 'light'" >
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
 
-    <img class="avatar mat-elevation-z8" src="" />
-
-    <h4 class="name">John Smith</h4>
-    <p class="designation">Software Engineer</p>
-
     <mat-divider></mat-divider>
 
     <button mat-button class="menu-button" routerLink="">
       <mat-icon>home</mat-icon>
-      <span>Kezdőlap</span>
+      <span>Home</span>
     </button>
     <button mat-button class="menu-button" routerLink="profile">
       <mat-icon>person</mat-icon>
-      <span>Profil</span>
+      <span>Profile</span>
     </button>
     <button mat-button class="menu-button">
       <mat-icon>info</mat-icon>
-      <span>Befektetések</span>
+      <span>Investments</span>
     </button>
     <button mat-button class="menu-button" routerLink="quiz">
       <mat-icon>school</mat-icon>
@@ -46,11 +41,6 @@
     </button>
 
     <mat-divider></mat-divider>
-
-    <button mat-button class="menu-button">
-      <mat-icon>help</mat-icon>
-      <span>Help</span>
-    </button>
 
   </mat-sidenav>
   <mat-sidenav-content>
