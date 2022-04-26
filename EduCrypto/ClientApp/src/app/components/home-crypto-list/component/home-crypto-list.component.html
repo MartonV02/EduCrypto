@@ -72,7 +72,7 @@
                 <div class="input-content">
                   <mat-form-field appearance="fill">
                     <mat-label>Amount of money</mat-label>
-                    <input [(ngModel)]="transactionModel.boughtValue" matInput placeholder="From your crypto" value="100" class="input-field">
+                    <input [(ngModel)]="transactionModel.spentValue" matInput placeholder="From your crypto" value="100" class="input-field">
                   </mat-form-field>
                   <button class="transaction-button" (click)="createSellTransaction(element.symbol)" mat-raised-button>Sell</button>
                 </div>

@@ -7,6 +7,7 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { HomeCryptoListModel } from '../model/home-crypto-list.model';
 import { LoginService } from '../../login/service/login.service';
 import { HomeCryptoListService } from '../service/home-crypto-list.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'home-crypto-list',
@@ -51,7 +52,8 @@ export class HomeCryptoListComponent implements OnInit
   constructor(
     private _importCryptoCurrenciesService: ImportCryptoCurrenciesService,
     private _homeCryptoListService: HomeCryptoListService,
-    private _loginService: LoginService) { }
+    private _loginService: LoginService,
+    private matSnackBar: MatSnackBar) { }
 
   ngOnInit(): void
   {
@@ -66,7 +68,7 @@ export class HomeCryptoListComponent implements OnInit
 
     this._homeCryptoListService.Create(this.transactionModel).subscribe
     (
-      result => { },
+      result => { this.matSnackBar.open("Successfully bought cryptocurrency", "Ok", {duration: 2000})},
       error =>
       {
         console.log(error)
@@ -82,7 +84,7 @@ export class HomeCryptoListComponent implements OnInit
 
     this._homeCryptoListService.Create(this.transactionModel).subscribe
     (
-      result => { },
+      result => { this.matSnackBar.open("Successfully sold cryptocurrency", "Ok", { duration: 2000 })},
       error =>
       {
         console.log(error)
