@@ -1,4 +1,11 @@
-﻿Hova megy a sündisznó?;Sehova;Az idegeidre;Haza;Boltba;1
-kérdés2?;asd;sdf;dfg;fgh;2
-kérdés3?;hej;ho;ha;hu;4
-kérdés4?;hej;ho;ha;hu;1
+﻿What is a blockchain?;A type of cryptocurrency;A distributed ledger on a peer to peer network;An exchange;A centralized ledger;1
+When a record is on a blockchain, who can access it?;One person at a time;Multiple people simultaneously;Only the people involved in the transaction;No one;1
+Once records are submitted on a blockchain, can they be altered?;Yes – the parties can go back in and alter them at any time;Yes – but only within a certain time frame;Yes – but only two times;No – they cannot be altered;3 
+What was the first cryptocurrency?;Ethereum;Dogecoin;Bitcoin;Litecoin;2
+Who started Bitcoin?;The International Monetary Fund;Satoshi Nakamoto;The G8;The Federal Reserve;1
+What is the maximum number of bitcoins that can be created?;15 million;50 million;21 million;There is no maximum;2
+Where can you buy cryptocurrency?;An exchange;A private transaction;A Bitcoin ATM;All of the above;3
+Where can you store cryptocurrency?;Bank account;Hardware/Software wallet;In your pocket;Pendrive;1
+Which factor or who determines the market price of cryptos?;The creator of the curreny;The world's economy and politics;The supply and demand of them;All of the above;2
+Which of the following social issues is usually associated with the use of cryptocurrencies?;Corruption;Economic inequality;Crime;Environmental problems;3
+You have answered all the questions!; ; ; ; ;0

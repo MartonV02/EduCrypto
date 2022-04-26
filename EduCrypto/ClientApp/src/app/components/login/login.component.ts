@@ -11,7 +11,7 @@ import { LoginService } from './service/login.service';
 })
 export class LoginComponent implements OnInit {
   key: string;
-  hide: boolean = false;
+  hide = true;
 
   public captchaColor: boolean;
   public userHandlingModel: UserHandlingModel = new UserHandlingModel();
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginForm: FormGroup = this.fb.group({
-    email: ['', [Validators.required]],
+    username: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 

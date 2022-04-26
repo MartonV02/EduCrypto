@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,8 +17,12 @@ import { QuizComponent } from './components/quiz/quiz.component';
 
 import { HomeCryptoListComponent } from './components/home-crypto-list/component/home-crypto-list.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { JwtAuthorizationInterceptor } from './shared/jwt-authorization.interceptor';
+import { PieComponent } from './shared/pie/pie.component';
+import { NgApexchartsModule } from "ng-apexcharts";
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
 
 @NgModule({
   declarations: [
@@ -27,7 +32,8 @@ import { JwtAuthorizationInterceptor } from './shared/jwt-authorization.intercep
     RegisterComponent,
     QuizComponent,
     HomeCryptoListComponent,
-    ProfileComponent
+    ProfileComponent,
+    PieComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +44,9 @@ import { JwtAuthorizationInterceptor } from './shared/jwt-authorization.intercep
     MatNativeDateModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxChartsModule
+    FlexLayoutModule,
+    NgApexchartsModule,
+    MatSnackBarModule
   ],
   providers:  
   [

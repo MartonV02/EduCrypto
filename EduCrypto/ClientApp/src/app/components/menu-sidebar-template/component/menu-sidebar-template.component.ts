@@ -38,7 +38,6 @@ export class MenuSideBarTemplateComponent
 
   darkModeChange({ checked }: MatSlideToggleChange) {
     this.modeSwitched.emit(checked);
-    console.log(checked);
     if (checked) this.isDark = true;
     else this.isDark = false;
   }

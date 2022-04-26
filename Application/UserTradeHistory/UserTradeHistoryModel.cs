@@ -25,6 +25,7 @@ namespace Application.UserTradeHistory
 
         public string? boughtCryptoSymbol { get; set; }
 
+
         [Required]
         [Range(0,999999999999999.99)]
         public decimal boughtValue { get; set; }

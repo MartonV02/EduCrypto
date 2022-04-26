@@ -15,12 +15,9 @@ body {
 }
 
 $my-blue: mat.define-palette($md-myblue);
-$my-blue-dark: mat.define-palette($md-myblue);
+$my-blue-dark: mat.define-palette($md-darkblue);
 $my-green: mat.define-palette($md-mygreen, A200, A100, A400);
 $my-orange: mat.define-palette($md-myorange);
-// $mat-theming-blue2: mat-palette($mat-success);
-// $mat-theming-accent2: mat-palette($mat-green,A200, A100, A400);
-// $mat-theming-warn2: mat-palette($mat-error);
 
 $my-theme: mat.define-light-theme(
   (
@@ -36,49 +33,13 @@ $my-theme: palette-helper.modify-background($my-theme, $mywhite);
 $my-theme-dark: mat.define-dark-theme(
   (
     color: (
-      primary: $my-blue,
+      primary: $my-blue-dark,
       accent: $my-green,
       warn: $my-orange,
     ),
   )
 );
 $my-theme-dark: palette-helper.modify-background($my-theme-dark, $myblack);
-
-
-$light-theme-foreground-palette: (
-  base:              $myblack,
-  divider:           $myblack,
-  dividers:          $myblack,
-  disabled:          $myblack,
-  disabled-button:   $myblack,
-  disabled-text:     $myblack,
-  elevation:         $myblack,
-  hint-text:         $myblack,
-  secondary-text:    $myblack,
-  icon:              $myblack,
-  icons:             $myblack,
-  text:              $myblack,
-  slider-min:        $myblack,
-  slider-off:        $myblack,
-  slider-off-active: $myblack,
-);
-
-$mat-dark-theme-foreground: (
-  base:              $mywhite,
-  divider:           $mywhite,
-  dividers:          $mywhite,
-  disabled:          $mywhite,
-  disabled-button:   $mywhite,
-  disabled-text:     $mywhite,
-  hint-text:         $mywhite,
-  secondary-text:    $mywhite,
-  icon:              $mywhite,
-  icons:             $mywhite,
-  text:              $mywhite,
-  slider-min:        $mywhite,
-  slider-off:        $mywhite,
-  slider-off-active: $mywhite,
-);
 
 .theme-dark {
   @include mat.all-component-themes($my-theme-dark);
