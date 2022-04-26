@@ -2,7 +2,7 @@ import { UserHandlingModel } from "./UserHandlingModel";
 
 export class UserTradeHistoryModel
 {
-    public UserHandlingModel : UserHandlingModel;
+    public userHandlingModel : UserHandlingModel;
     public userHandlingModelId: number;
     public boughtValue: number;
     public spentCryptoSymbol: string;

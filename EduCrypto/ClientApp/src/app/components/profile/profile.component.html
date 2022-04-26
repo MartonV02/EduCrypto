@@ -11,7 +11,37 @@
   </mat-card>
 </div>
 
+<div class="balance">
+  <h1>Here is your current balance</h1>
+  <h2>{{this.balance[0]}} $</h2>
+</div>
+<mat-divider></mat-divider>
+<!-- First table -->
+<div class=" mat-table-size2">
+<h3>Here you can see the sum value of your cryptos</h3>
+  <table mat-table [dataSource]="userCrypto" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="cryptoSymbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.cryptoSymbol}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="boughtValue">
+      <th mat-header-cell *matHeaderCellDef> All bought </th>
+      <td mat-cell *matCellDef="let element"> {{element.cryptoValue}} </td>
+    </ng-container>
 
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[20, 15, 5, 10, 30]" showFirstLastButtons
+      aria-label="Select page of cryptos">
+    </mat-paginator>
+  </div>
+
+  <mat-divider></mat-divider>
 <div class=" mat-table-size">
 <!-- <div fxLayout="row" fxLayoutAlign="space-between center"  class="mat-elevation-z8">
   <div>
@@ -21,6 +51,7 @@
     <app-pie></app-pie>
   </div>
 </div> -->
+<h3>Here you can see your entire purchase history</h3>
 
 <table mat-table [dataSource]="tradeModel" class="mat-elevation-z8">
 
@@ -44,6 +75,6 @@
 </table>
 
 <mat-paginator [pageSizeOptions]="[20, 15, 5, 10, 30]" showFirstLastButtons
-    aria-label="Select page of periodic elements">
+    aria-label="Select page of cryptos">
   </mat-paginator>
 </div>

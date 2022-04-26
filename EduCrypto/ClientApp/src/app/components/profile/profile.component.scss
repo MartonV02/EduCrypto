@@ -65,10 +65,19 @@ table
 .mat-table-size {
   margin: auto;
   width: 80%;
-  height: 100%;
-  max-width: 100%;
+  max-width: 90%;
   overflow-y: auto;
   overflow-x: auto;
+}
+
+.mat-table-size2 {
+  margin: auto;
+  width: 80%;
+  max-width: 90%;
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-bottom: 20px;
+
 }
 
 .mat-cell,
@@ -76,12 +85,37 @@ table
   padding: 8px 30px 8px 0;
 }
 
+.balance{
+  margin: auto;
+  overflow-y: auto;
+  overflow-x: auto;
+  width: 80%;
+  max-width: 90%;
+}
+.mat-divider
+{
+  width: 80%;
+  max-width: 90%;
+  margin: auto;
+}
 
 @media only screen and (max-width: 1500px) {
   .mat-table-size 
   {
     width: 100vw;
   }
+
+  .mat-table-size2
+  {
+    width: 100vw;
+  }
+  .balance{
+    width: 100vw;
+  }
+  .mat-divider
+{
+  width: 100vw;
+}
 
   .main-item
   {

@@ -22,10 +22,12 @@ export class ProfileComponent implements OnInit {
   public boughtValue : number[];
   public dataSource: any;
   public userCrypto : UserCryptoModel[];
-  public allCrypto: number[] = [];
+  public allCrypto: number[] =[];
+  public boughtCryptos: any[];
+  public balance: number[];
   ngOnInit(): void {
     this.userId = this.login.provideActualUserId;
-    console.log(this.userId)
+    // console.log(this.userId)
     this.getHistory();
     this.getUserData();
   }
@@ -42,6 +44,10 @@ export class ProfileComponent implements OnInit {
     {
       this.tradeModel = result;
       this.boughtValue = this.tradeModel.map(x => x.boughtValue);
+      this.balance = this.tradeModel.map(x=> x.userHandlingModel.moneyDollar);
+      console.log(this.balance);
+      Math.round(this.balance[0]);
+      // console.log(this.boughtValue);
       this.dataSource = new MatTableDataSource<UserTradeHistoryModel>(this.tradeModel);
       this.dataSource.paginator = this.paginator;
     });
@@ -52,8 +58,11 @@ export class ProfileComponent implements OnInit {
     {
       this.userCrypto = result;
       console.log(this.userCrypto);
-      this.userCrypto.forEach(x=> this.allCrypto.push(x.CryptoValue));
+      // this.userCrypto.forEach(x=> this.allCrypto.push(x.cryptoValue));
+      this.allCrypto = this.userCrypto.map(x=> x.cryptoValue);
+      this.boughtCryptos = this.userCrypto.map(x=> x.cryptoSymbol);
       console.log(this.allCrypto);
+      console.log(this.boughtCryptos);
     })
   }
 
@@ -62,5 +71,11 @@ export class ProfileComponent implements OnInit {
     'boughtCryptoSymbol',
     'boughtValue',
     'tradeDate',
+  ];
+
+  displayedColumns2: string[] =
+  [
+    'cryptoSymbol',
+    'boughtValue',
   ];
 }
