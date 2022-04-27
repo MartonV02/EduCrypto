@@ -7,7 +7,6 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-
     <!-- Set this to true if you enable server-side prerendering -->
     <BuildServerSideRenderer>false</BuildServerSideRenderer>
   </PropertyGroup>
@@ -15,26 +14,57 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="4.5.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\app\components\home-crypto-list\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
+    <Compile Remove="ClientApp\src\app\components\home-crypto-list\**" />
+    <EmbeddedResource Remove="ClientApp\src\app\components\home-crypto-list\**" />
+    <TypeScriptCompile Remove="ClientApp\src\app\components\home-crypto-list\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto-usd.model.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\imported-crypto.model.js.map" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\next.model.ts" />
+    <None Remove="ClientApp\src\app\components\home-crypto-list\model\status.model.ts" />
+    <None Remove="ClientApp\src\app\components\menu-sidebar-template\component\menu-sidebar-template.component.ts" />
+    <None Remove="ClientApp\src\app\shared\BackendUrlEnum.constant.ts" />
+    <None Remove="ClientApp\src\app\shared\generic-http-api-response.model.ts" />
+    <None Remove="ClientApp\src\app\shared\GenericUrlGenerator.service.ts" />
+    <None Remove="ClientApp\src\app\shared\message-api.model.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\app\components\home-crypto-list\service\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\model\" />
     <Folder Include="ClientApp\src\app\components\menu-sidebar-template\service\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\components\home-crypto-list\model\imported-crypto-usd.model.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -57,7 +87,7 @@
     <ItemGroup>
       <DistFiles Include="$(SpaRoot)dist\**; $(SpaRoot)dist-server\**" />
       <DistFiles Include="$(SpaRoot)node_modules\**" Condition="'$(BuildServerSideRenderer)' == 'true'" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+      <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
         <RelativePath>%(DistFiles.Identity)</RelativePath>
         <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         <ExcludeFromSingleFile>true</ExcludeFromSingleFile>

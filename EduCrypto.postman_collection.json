@@ -1,0 +1,1061 @@
+{
+	"info": {
+		"_postman_id": "6dda5ea6-fc5e-49ba-a720-646907371e13",
+		"name": "EduCrypto",
+		"description": "A dokumentációban fellelhető GetAll kérések minden esetben csak Debug módban elérhetők, ezzel elősegítve a kérések tesztelését.\n\nAz érvényes tokent a felhasználó a login kérésből szerezheti, ami tartalmazza a felhasználó azonosítóját (userId). ennek minden kérésnél meg kell felelni a kéréssel kapcsolatos valamely userId-val.\n\nAz útvonalakban a számok valamilyen azonosítót takarnak. Ezek helyére kell beilleszteni az éppen megfelelőt.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Quiz Calls",
+			"item": [
+				{
+					"name": "Get Next Question",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/quiz/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"quiz",
+								"1"
+							]
+						},
+						"description": "Itt lehet lekérdezni egy kérdést egy a felhasználó azonosítójával (userId) (URL)"
+					},
+					"response": []
+				},
+				{
+					"name": "Check Question",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/quiz/1?userId=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"quiz",
+								"1"
+							],
+							"query": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Ezzel lehet ellenőrizni hogy a felhasználó helyesen válaszolt e kérdésre. Az elérési út (URL) végére kerül a válasz azonosítója 0-tól indexelve., a querrybe pedig a felhasználó azonosítója"
+					},
+					"response": []
+				}
+			],
+			"description": "A kérésekhez szükség van olyan Token-ra, amelyik tartalmazza a megfelelő userId-t"
+		},
+		{
+			"name": "Trades",
+			"item": [
+				{
+					"name": "Dollar to Crypto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 100,\r\n  \"boughtCryptoSymbol\": \"LUNA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						},
+						"description": "Ezzel a kéréssel szabad módban tud crypto valutát vásárolni a felhasználó - userHandlingModelId. Ezt úgy jelzi, hogy a boughtCryptoSymbol mezőbe beírja a crypto valuta szimbólumát, és a spentCryptoSymbol mezőt üresen (null) hagyja."
+					},
+					"response": []
+				},
+				{
+					"name": "Dollar to Crypto in Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": null,\r\n  \"spentValue\": 30,\r\n  \"boughtCryptoSymbol\": \"LUNA\",\r\n  \"userForGroupsModelId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						},
+						"description": "Ezzel a kéréssel csoportos (group) módban tud crypto valutát vásárolni a felhasználó - userHandlingModelId. Ezt úgy jelzi, hogy a boughtCryptoSymbol mezőbe beírja a crypto valuta szimbólumát, és a spentCryptoSymbol mezőt üresen (null) hagyja.\n\nVamint ahhoz, hogy jelezze, hogy group módban teszi ezt a groupModelId-t ki kell töltenie valamilyen számmal. Itt a program ellenőrzi, hogy valójában csatlakozott e a group-hoz"
+					},
+					"response": []
+				},
+				{
+					"name": "Crypto to Dollar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.4,\r\n  \"boughtCryptoSymbol\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						},
+						"description": "Ezzel a kéréssel szabad módban tud crypto valutát vásárolni a felhasználó - userHandlingModelId. Ezt úgy jelzi, hogy a spentCryptoSymbol mezőbe beírja a crypto valuta szimbólumát, és a boughtCryptoSymbol mezőt üresen (null) hagyja."
+					},
+					"response": []
+				},
+				{
+					"name": "Crypto to Dollar in Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userHandlingModelId\": 1,\r\n  \"spentCryptoSymbol\": \"LUNA\",\r\n  \"spentValue\": 0.5,\r\n  \"boughtCryptoSymbol\": null,\r\n  \"userForGroupsModelId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						},
+						"description": "Ezzel a kéréssel csoportos (group) módban tud crypto valutát vásárolni a felhasználó - userHandlingModelId. Ezt úgy jelzi, hogy a spentCryptoSymbol mezőbe beírja a crypto valuta szimbólumát, és a boughtCryptoSymbol mezőt üresen (null) hagyja.\n\nVamint ahhoz, hogy jelezze, hogy group módban teszi ezt a groupModelId-t ki kell töltenie valamilyen számmal. Itt a program ellenőrzi, hogy valójában csatlakozott e a group-hoz"
+					},
+					"response": []
+				}
+			],
+			"description": "A kérésekhez szükség van olyan Token-ra, amelyik tartalmazza a megfelelő userId-t, hogy azonosítani tudja a felhasználót.\n\nMinden esetben a spentValue mezőt kell kitölteni a költeni kívánt mennyiséggel, és a boughtValue értékét 0 -ra kell állítani."
+		},
+		{
+			"name": "Trade History",
+			"item": [
+				{
+					"name": "Get All",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory"
+							]
+						},
+						"description": "Az összes modell lekérése (csak debug)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get By User Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory",
+								"1"
+							]
+						},
+						"description": "A felhasználó azonosítója alapján (URL) lekéri az összes szabad módhoz és felhasználóhoz tartozó vásárlási előzményt."
+					},
+					"response": []
+				},
+				{
+					"name": "Get By Group Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory/group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory",
+								"group",
+								"1"
+							]
+						},
+						"description": "Lekéri a csoporthoz tartozó összes vásárlási előzményt, a csoport azonosítója alapján (URL)."
+					},
+					"response": []
+				},
+				{
+					"name": "Get By User & Group Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserTradeHistory/3/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserTradeHistory",
+								"3",
+								"1"
+							]
+						},
+						"description": "Lekéri egy adott felhasználó (első azonosító az URL-ben) adott csoporthoz (második azonosító az URL-ben) tartozó összes vásárlási előzményét."
+					},
+					"response": []
+				}
+			],
+			"description": "Itt a vásárlási előzményeket lehet lekérni bizonyos azonosítók alapján. A program itt is ellenőrzi a tokennel, hogy a kérő hozzáférhet e azokhoz az adatokhoz"
+		},
+		{
+			"name": "CryptoCurrencyData",
+			"item": [
+				{
+					"name": "GetCryptos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/ImportCrypto",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"ImportCrypto"
+							]
+						},
+						"description": "A kérés visszaadja az elérhető crypto valuták aktuális adatait"
+					},
+					"response": []
+				},
+				{
+					"name": "GetCryptoBySymbol",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/ImportCrypto/LUNA",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"ImportCrypto",
+								"LUNA"
+							]
+						},
+						"description": "A a kérés az URL-ben lévő crypto valuta szimbólum alapján visszaadja egy valuta adatait"
+					},
+					"response": []
+				}
+			],
+			"description": "Ezekhez a kérésekhez bárki hozzáférhet token használata nélkül is.",
+			"auth": {
+				"type": "noauth"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Groups",
+			"item": [
+				{
+					"name": "Get All Groups",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/Group",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group"
+							]
+						},
+						"description": "Az összes csoport lekérése (csak debug)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"név\",\r\n    \"startBudget\": 1000,\r\n    \"finishDate\": \"2022-07-11\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/Group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group",
+								"1"
+							]
+						},
+						"description": "Ezzel lehet csoportot létrehozni, az URL-be a készítő felhasználó azonosítóját kell illeszteni."
+					},
+					"response": []
+				},
+				{
+					"name": "Modify Group",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"test\",\r\n    \"startBudget\": 300.00000000000000000000000000,\r\n    \"startDate\": \"9991-01-01T00:00:00\",\r\n    \"finishDate\": \"2022-05-01T00:00:00\",\r\n    \"isFinished\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/Group",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group"
+							]
+						},
+						"description": "Az a felhasználó, aki létrehozta a csoportot (tokennel ellenőrizve), módosíthatja azt. A body-ban az Id azonosítja a módosítani kívánt csoportot."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Group",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/Group/15",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group",
+								"15"
+							]
+						},
+						"description": "Az a felhasználó, aki létrehozta a csoportot (tokennel ellenőrizve), módosíthatja azt. Az URL-ben lévő id azonosítja a csoportot"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Group by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/Group/15",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"Group",
+								"15"
+							]
+						},
+						"description": "A csoport tagja (tokennel ellenőrizve), lekérheti a csoporthoz tartozó adatokat a csoport azonosítójával (URL)."
+					},
+					"response": []
+				}
+			],
+			"description": "A csoportok adatait lehet lekérni, valamint műveleteket végrehajtani rajtuk. Ebben az esetben is ellenőrzi a program a token alapján, hogy a felhasználó végrehajthatja e a műveletet.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User Handling",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling"
+							]
+						},
+						"description": "Az összes felhasználó lekérése (csak debug)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling",
+								"16"
+							]
+						},
+						"description": "Egy adott felhasználó adatainak lekérése a felhasználó azonosítójával (URL)."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userName\": \"MrJWT2\",\r\n    \"email\": \"JWT2@gmail.com\",\r\n    \"fullName\": \"Mr JWT János\",\r\n    \"birthDate\": \"2001-01-03\",\r\n    \"walletNumber\": null,\r\n    \"profilePictureUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mandelpart2.jpg/250px-Mandelpart2.jpg\",\r\n    \"Password\": \"JWTtoken\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling"
+							]
+						},
+						"description": "Egy felhasználó \"regisztrálása\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Modify User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 6,\r\n    \"userName\": \"MrJWT2\",\r\n    \"email\": \"JWT2@gmail.com\",\r\n    \"fullName\": \"Mr JWT János\",\r\n    \"birthDate\": \"2001-01-03\",\r\n    \"walletNumber\": null,\r\n    \"profilePictureUrl\": \"https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Mandelpart2.jpg/250px-Mandelpart2.jpg\",\r\n    \"Password\": \"JWTtoken\"\r\n}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling"
+							]
+						},
+						"description": "A felhasználó model módosítása. A body-ban az Id mező azonosítja a modelt."
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/UserHandling/15",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"UserHandling",
+								"15"
+							]
+						},
+						"description": "Egy felhasználó model törlése felhasználó azonosító alapján (URL)"
+					},
+					"response": []
+				}
+			],
+			"description": "Ezekkel a kérésekkel hajthatóak végre a felhasználóhoz tartozó műveletek. Mindegyik esetében ellenőrizve van a token által, hogy csak a saját adataihoz férjen hozzá.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User Crypto",
+			"item": [
+				{
+					"name": "Get All UserCryptos",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto"
+							]
+						},
+						"description": "Az összes felhasználó összes crypto valuta egyenlegének lekérése (csak debug)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCrypto by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"1"
+							]
+						},
+						"description": "Azonosító alapján (URL) lekérhető egy crypto valuta egyenleg."
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCrypto by UserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/user/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"user",
+								"1"
+							]
+						},
+						"description": "A felhasználó azonosítója alapján (URL) lekérhető az össze hozzá tartozó crypto valuta egyenleg."
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCryptos by GroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"group",
+								"1"
+							]
+						},
+						"description": "A csoport azonosítója alapján (URL) lekérhető az össze hozzá tartozó crypto valuta egyenleg."
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCryptos by userForGroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/userForGroup/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"userForGroup",
+								"1"
+							]
+						},
+						"description": "A csoportot és a felhasználót összekötő adatok azonosítója alapján (URL) lekérhető az össze hozzá tartozó crypto valuta egyenleg."
+					},
+					"response": []
+				},
+				{
+					"name": "Get UserCryptos by GroupAndUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/usercrypto/group/1/user/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"usercrypto",
+								"group",
+								"1",
+								"user",
+								"1"
+							]
+						},
+						"description": "A csoport azonosítója (első szám az URL-ben) valamint a felhasználó azonosítója alapján (második szám az URL-ben) lekérhető az össze hozzá tartozó crypto valuta egyenleg."
+					},
+					"response": []
+				}
+			],
+			"description": "A felhasználók crypto valuta egyenlegét lehet lekérni ezekkel a kérésekkel. Ebben az esetben is ellenőrzi a program a hozzáféréseket a tokennen."
+		},
+		{
+			"name": "User For Groups",
+			"item": [
+				{
+					"name": "Get UFG by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/22",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"22"
+							]
+						},
+						"description": "Id alapján lekérhető UserForGroupModel."
+					},
+					"response": []
+				},
+				{
+					"name": "Get All UFG",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								""
+							]
+						},
+						"description": "Az összes UserForGroups Model lekérése (csak Debug)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get UFG by UserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/user/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"user",
+								"16"
+							]
+						},
+						"description": "Egy felhasználóhoz tartozó UserForGroups modellek lekérése"
+					},
+					"response": []
+				},
+				{
+					"name": "Get UFG by GroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/group/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"group",
+								"1"
+							]
+						},
+						"description": "Egy csoporthoz (group) tartozó összes UserForGroups model lekérése"
+					},
+					"response": []
+				},
+				{
+					"name": "Get LeaderBoard By GroupId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/leaderBoard/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"leaderBoard",
+								"1"
+							]
+						},
+						"description": "Egy csoporthoz tartozó tagok állásánaklekérése."
+					},
+					"response": []
+				},
+				{
+					"name": "Join a Group",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44336/api/userforgroups/join/Viena-7/16",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44336",
+							"path": [
+								"api",
+								"userforgroups",
+								"join",
+								"Viena-7",
+								"16"
+							]
+						},
+						"description": "Csatlakozás egy csoporthoz. Ehhez az útvonban szükséges először a csoport neve a csoport azonosítójával kötőjellel elválsztva (pl.: \"példanév-3\"), valamint a felhasználó azonosítója"
+					},
+					"response": []
+				}
+			],
+			"description": "Az összes kéréshez szükséges egy olyan token, ami tartalmaz egy olyan felhasználó azonosítót (userId), ami csatlakozik a lekérni kívánt modellhez tartozó csoporthoz (group)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test@test.com\",\r\n    \"password\": \"Test123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44336/api/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44336",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "Ezzel a kéréssel lehet a Tokenhez hozzájutni. Ehez egy érvényes jelszó és email cím páros kell"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VySWQiOiIxIiwiZXhwIjoxNjUwODE2NzI0LCJpc3MiOiJ0cmFkZXIiLCJhdWQiOiJmZWRlcmF0aW9uIn0.gHYC2kATsYSDFfbB0dhBK1QjzctTeL-UucEj2GuYSxk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

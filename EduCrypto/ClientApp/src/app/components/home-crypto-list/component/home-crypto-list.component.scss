@@ -1,0 +1,177 @@
+table 
+{
+  width: 100%;
+  position: sticky;
+}
+
+.main-item 
+{
+  mat-card 
+  {
+    background-image: linear-gradient(
+      45deg,
+      rgb(77, 77, 77) 0%,
+      rgb(77, 77, 77) 63%,
+      rgb(133, 201, 211) 63%,
+      rgb(133, 201, 211) 75%,
+      rgb(80, 178, 192) 75%,
+      rgb(80, 178, 192) 81%,
+      rgb(80, 178, 192) 81%,
+      rgb(80, 178, 192) 85%,
+      rgb(64, 162, 178) 85%,
+      rgb(64, 162, 178) 90%,
+      rgb(39, 138, 156) 90%,
+      rgb(39, 138, 156) 100%
+    );
+    background-size: auto;
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    overflow-y: auto;
+    overflow-x: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+
+    .div-img {
+      width: 50%;
+      height: auto;
+    }
+
+    .div-text {
+      width: 50%;
+      height: auto;
+    }
+  }
+
+  .left-img-content {
+    border-radius: 2000px;
+    height: auto;
+    width: 40vw;
+  }
+
+  .right-text-content {
+    margin: auto;
+    max-width: 35vw;
+    font-size: 40px;
+    color: #e3e3e3;
+    line-height: 1;
+  }
+}
+
+.mat-table-size {
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  max-width: 100%;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 8px 30px 8px 0;
+}
+
+/* Expanded rows start */
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+/* Expanded rows end */
+
+.expansion-panel-buy
+{
+  margin-bottom: 20px;
+}
+
+.input-field
+{
+  margin-right: 20px;
+}
+
+.input-content
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: auto;
+}
+
+#register-now-id
+{
+  text-decoration: none;
+  color: #40A2B2 !important;
+}
+
+@media only screen and (max-width: 1877px) {
+  .mat-table-size 
+  {
+    width: 100vw;
+  }
+
+  .main-item
+  {
+    mat-card
+    {
+        display: grid;
+        align-items:center;
+    }
+  }
+
+  .div-img
+  {
+    margin: auto;
+    text-align:center;
+    min-width: 40vw !important;
+  }
+
+  .div-text
+  {
+      margin: auto;
+      text-align:center;
+      min-width: 40vw !important;
+  }
+}

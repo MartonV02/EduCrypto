@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-content>
+    <div class="header">
+      <p>Sign in to your account</p>
+    </div>
+    <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+      <div class="emailInput">
+        <mat-form-field class="full-width" appearance="outline" >
+          <mat-label>Email</mat-label>
+          <input formControlName="email" matInput placeholder="Enter email">
+          <mat-error *ngIf="!loginForm.controls['email'].valid">
+            Email is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="full-width" appearance="outline" >
+        <mat-label>Enter your password</mat-label>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="!loginForm.controls['password'].valid">
+              Password is required
+        </mat-error>
+      </mat-form-field>
+      
+      <div class="captcha-div">
+        <div class="recaptcha">
+          <re-captcha (resolved)="resolved($event)" [theme] = "captchaColor ? 'dark' : 'light'" siteKey="6Le__UQeAAAAAFhBU7JBFCzGp9n6ON8I-x0p7oCu"></re-captcha>
+        </div>
+      </div>
+      
+      <button mat-flat-button color="primary" [disabled]="!key">Login</button>
+      <div class="button-row">
+        <a routerLink="/register" routerLinkActive="active">Create New Account</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+  
+

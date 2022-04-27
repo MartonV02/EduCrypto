@@ -1,10 +1,16 @@
+using Application.Common;
+using Application.Common.Auth;
+using Application.ImportCryptos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace EduCrypto
 {
@@ -21,10 +27,47 @@ namespace EduCrypto
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BasicAuth", Version = "v1" });
+                c.AddSecurityDefinition("basic", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic",
+                    In = ParameterLocation.Header,
+                    Description = "Basic Authorization header using the Bearer scheme."
+                });
+            });
+
+            services.AddScoped<ImportCryptosAppService, ImportCryptosAppService>();
+
+            services.AddCors(option =>
+            {
+                option.AddPolicy("EnableCORS", builder =>
+                {
+                    builder.SetIsOriginAllowed(origin => origin.StartsWith("http://localhost:4200"))
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                        .AllowCredentials()
+                        .Build();
+                });
+            });
+
+            services.AddMvc();
+
+            services.AddDbContext<ApplicationDbContext>(option =>
+            {
+                option.UseMySql(Configuration.GetConnectionString("educrypto"), new MySqlServerVersion(new Version()));
+            });
+
+            services.AddTokenAuthentication(Configuration);
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
-                configuration.RootPath = "ClientApp/dist";
+                configuration.RootPath = "ClientApp/dist/ClientApp";
             });
         }
 
@@ -34,6 +77,12 @@ namespace EduCrypto
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                });
             }
             else
             {
@@ -47,15 +96,22 @@ namespace EduCrypto
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
+                
             }
+
+            app.UseCors("EnableCORS");
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                //endpoints.MapControllerRoute(
+                //    name: "default",
+                //    pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapControllers();
             });
 
             app.UseSpa(spa =>
@@ -67,6 +123,7 @@ namespace EduCrypto
 
                 if (env.IsDevelopment())
                 {
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });

@@ -1,0 +1,77 @@
+<mat-card class="card">
+    <mat-card-content>
+      <div class="header">
+        <p>Create a new account</p>
+      </div>
+      <form (ngSubmit)="signUp()" name="form" [formGroup]="form">
+        <div class="emailInput" >
+          <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput placeholder="Enter email address">
+            <mat-error *ngIf="!form.controls['email'].valid">
+              Email is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="fullNameInput">
+            <mat-form-field class="full-width" appearance="outline" >
+              <mat-label>Full name</mat-label>
+              <input formControlName="fullName" matInput placeholder="Enter your full name">
+              <mat-error *ngIf="!form.controls['fullName'].valid">
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div class="usernameInput">
+            <mat-form-field class="full-width" appearance="outline" >
+              <mat-label>Username</mat-label>
+              <input formControlName="username" matInput placeholder="Enter username">
+              <mat-error *ngIf="!form.controls['username'].valid">
+                Username is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="full-width" appearance="outline" >
+            <mat-label>Enter your password</mat-label>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="!form.controls['password'].valid">
+                  Password is required
+            </mat-error>
+          </mat-form-field>
+
+        <div class="datepicker">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Choose your birthdate</mat-label>
+            <input matInput [matDatepicker]="datepicker" formControlName="date" [min]="minDate" [max]="maxDate">
+            <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+            <mat-datepicker #datepicker>
+              <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+              </mat-datepicker-actions>
+            </mat-datepicker>
+            <mat-error *ngIf="!form.controls['date'].valid">
+              Birthdate is required
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <div class="captcha-div">
+          <div class="recaptcha">
+            <re-captcha (resolved)="resolved($event)" [theme] = "captchaColor ? 'dark' : 'light'" siteKey="6Le__UQeAAAAAFhBU7JBFCzGp9n6ON8I-x0p7oCu"></re-captcha>
+          </div>
+        </div>
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="!key">Create new account</button>
+  
+        <div class="button-row">
+          <a routerLink="/login" routerLinkActive="active">Or login</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

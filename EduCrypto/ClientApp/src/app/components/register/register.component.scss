@@ -1,0 +1,40 @@
+mat-card {
+  min-width: 400px;
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center;
+    max-height: 600px;
+  }
+  
+  .header{
+    text-align: center;
+  }
+  .full-width {
+    width: 80%;
+  }
+  
+  .button-row {
+    padding-top: 5px;
+  }
+
+  
+  .emailInput{
+    padding-top: 10px;
+  }
+  
+  .contentBody {
+    padding: 60px 1rem;
+    background :#1b6ca8;
+    display: block;
+  }
+  .captcha-div{
+    text-align: center;
+  }
+
+  .recaptcha{
+    display: inline-block;
+  }
+
+  .datepicker{
+    opacity: 1;
+  }

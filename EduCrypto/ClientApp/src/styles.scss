@@ -1,4 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+@use "~@angular/material/" as mat;
+@use "./palette-helper";
+@import "./palettes";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import "~@angular/material/theming";
+@include mat.core();
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+$my-blue: mat.define-palette($md-myblue);
+$my-blue-dark: mat.define-palette($md-darkblue);
+$my-green: mat.define-palette($md-mygreen, A200, A100, A400);
+$my-orange: mat.define-palette($md-myorange);
+
+$my-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $my-blue,
+      accent: $my-green,
+      warn: $my-orange,
+    ),
+  )
+);
+$my-theme: palette-helper.modify-background($my-theme, $mywhite);
+
+$my-theme-dark: mat.define-dark-theme(
+  (
+    color: (
+      primary: $my-blue-dark,
+      accent: $my-green,
+      warn: $my-orange,
+    ),
+  )
+);
+$my-theme-dark: palette-helper.modify-background($my-theme-dark, $myblack);
+
+.theme-dark {
+  @include mat.all-component-themes($my-theme-dark);
+  background-color: $myblack;
+}
+
+.theme-light {
+  @include mat.all-component-themes($my-theme);
+  background-color: $mywhite;
+}
+
+@include mat-slide-toggle-theme($my-theme);

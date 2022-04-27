@@ -1,5 +1,5 @@
-<mat-toolbar class="mat-elevation-z8">
-  <button mat-icon-button (click)="sidenav.toggle()">
+<mat-toolbar  class="mat-elevation-z8 header">
+  <button *ngIf="userLoggedIn == true" mat-icon-button (click)="sidenav.toggle()">
     <mat-icon *ngIf="!sidenav.opened">
       menu
     </mat-icon>
@@ -7,50 +7,39 @@
       close
     </mat-icon>
   </button>
-  Responsive side navigation
+  EduCrypto
+  
+
+  <div class="div_login" *ngIf="userLoggedIn == false">
+    <img id="img_login" class="mat-elevation-z8" src="..\assets\images\user_paint.png"/>
+    <a id="login_id" routerLink="login">Log in</a>
+  </div>
+  <div class="switcher"><mat-icon>light_mode</mat-icon><mat-slide-toggle (change)="darkModeChange($event)"></mat-slide-toggle><mat-icon>dark_mode</mat-icon></div>
+  
 </mat-toolbar>
 
-<mat-sidenav-container>
+<mat-sidenav-container [ngClass]="isDark ? 'dark' : 'light'" >
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
-
-    <img class="avatar mat-elevation-z8" src="" />
-
-    <h4 class="name">John Smith</h4>
-    <p class="designation">Software Engineer</p>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLink="">
       <mat-icon>home</mat-icon>
       <span>Home</span>
     </button>
-    <button mat-button class="menu-button">
+    <button mat-button class="menu-button" routerLink="profile">
       <mat-icon>person</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-button class="menu-button">
-      <mat-icon>info</mat-icon>
-      <span>About</span>
+    <button mat-button class="menu-button" routerLink="quiz">
+      <mat-icon>school</mat-icon>
+      <span>Quiz</span>
     </button>
 
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button">
-      <mat-icon>help</mat-icon>
-      <span>Help</span>
-    </button>
-
   </mat-sidenav>
   <mat-sidenav-content>
-    <div class="content mat-elevation-z8">
-      Main content here!
-    </div>
+      <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-<!-- <mat-sidenav-container>
-  <mat-sidenav mode="over" [(opened)] = "opened">Sidenav</mat-sidenav>
-  <mat-sidenav-content>Main
-    <button (click)="opened=!opened">Toggle open</button>
-  </mat-sidenav-content>
-</mat-sidenav-container> -->

@@ -1,0 +1,80 @@
+<div class="main-item">
+  <mat-card>
+    <div class="div-img">
+      <img class="left-img-content" src="/../assets/images/financialdata.png"/>
+    </div>
+    <div class="div-text">
+      <p class="right-text-content">
+        Welcome to your dashboard. Here you can see your investments.
+      </p>
+    </div>
+  </mat-card>
+</div>
+
+<div class="balance">
+  <h1>Here is your current balance</h1>
+  <h2>{{this.balance[0]}} $</h2>
+</div>
+<mat-divider></mat-divider>
+<!-- First table -->
+<div class=" mat-table-size2">
+<h3>Here you can see the sum value of your cryptos</h3>
+  <table mat-table [dataSource]="userCrypto" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="cryptoSymbol">
+      <th mat-header-cell *matHeaderCellDef> Symbol </th>
+      <td mat-cell *matCellDef="let element"> {{element.cryptoSymbol}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="boughtValue">
+      <th mat-header-cell *matHeaderCellDef> All bought </th>
+      <td mat-cell *matCellDef="let element"> {{element.cryptoValue}} </td>
+    </ng-container>
+
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+  </table>
+  
+  <mat-paginator [pageSizeOptions]="[20, 15, 5, 10, 30]" showFirstLastButtons
+      aria-label="Select page of cryptos">
+    </mat-paginator>
+  </div>
+
+  <mat-divider></mat-divider>
+<div class=" mat-table-size">
+<!-- <div fxLayout="row" fxLayoutAlign="space-between center"  class="mat-elevation-z8">
+  <div>
+    Account balance:
+  </div>
+  <div id="chart">
+    <app-pie></app-pie>
+  </div>
+</div> -->
+<h3>Here you can see your entire purchase history</h3>
+
+<table mat-table [dataSource]="tradeModel" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="boughtCryptoSymbol">
+    <th mat-header-cell *matHeaderCellDef> Symbol </th>
+    <td mat-cell *matCellDef="let element"> {{element.boughtCryptoSymbol}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="boughtValue">
+    <th mat-header-cell *matHeaderCellDef> Bought </th>
+    <td mat-cell *matCellDef="let element"> {{element.boughtValue}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="tradeDate">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.tradeDate}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[20, 15, 5, 10, 30]" showFirstLastButtons
+    aria-label="Select page of cryptos">
+  </mat-paginator>
+</div>
