@@ -7,4 +7,4 @@ The program made for educational purposes.
  Klenovszky Áron - Szücs Ábel Csombor - Varga Márton
  
  ## Documentation: 
- https://docs.google.com/document/d/1GhEKUCgx_d8rT8JOMm57J3d6FuX2TcjMIJcU_KdByD8/edit?usp=sharing
+ https://docs.google.com/document/d/18SZhBsFptl9IfWqXQzijKh2tHomCxeGWkvbc9-MMjh0/edit?usp=sharing
